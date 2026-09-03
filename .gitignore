@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+
+# 本地工具状态（Mimosa 扫描器会话数据，与项目无关）
+.mimosa/
+
+# 编辑器
+.vscode/
+.idea/

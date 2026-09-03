@@ -1,0 +1,2775 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="人类演化全景图：从 700 万年前的乍得沙赫人到今天的 80 亿智人——26 个人族物种的谱系树、时空共存、脑容量演化、走出非洲的迁徙路线、古人类基因渗入与中国化石遗址，一页读懂人类 700 万年演化史。">
+<meta name="theme-color" content="#04060f">
+<meta name="color-scheme" content="dark">
+<meta property="og:title" content="人类演化全景图 · 从七百万年前到今天">
+<meta property="og:description" content="一页读懂人类 700 万年演化史：谱系树、时空共存、脑容量、迁徙路线、古人类基因与中国化石遗址。">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
+<title>人类演化全景图 · 从七百万年前到今天</title>
+<style>
+/* ============ 设计令牌 ============ */
+:root{
+  --bg:#04060f;
+  --bg2:#070b18;
+  --panel:rgba(255,255,255,.035);
+  --panel2:rgba(255,255,255,.055);
+  --line:rgba(255,255,255,.09);
+  --line2:rgba(255,255,255,.16);
+  --tx:#e9eefb;
+  --tx2:#a9b6d4;
+  --tx3:#6f7fa3;
+  --cyan:#22d3ee;
+  --violet:#a78bfa;
+  --amber:#fbbf24;
+  --rose:#fb7185;
+  --emerald:#34d399;
+  --blue:#60a5fa;
+  --orange:#fb923c;
+  --grad1:linear-gradient(120deg,#22d3ee,#a78bfa 55%,#fb7185);
+  --grad2:linear-gradient(120deg,#fbbf24,#fb923c 60%,#fb7185);
+  --shadow:0 18px 50px -12px rgba(0,0,0,.75);
+  --mono:'SF Mono',ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;
+  --halo:#04060f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{
+  font-family:'Noto Sans SC','PingFang SC','Hiragino Sans GB','Microsoft YaHei',system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--tx);line-height:1.75;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(1100px 700px at 12% -5%,rgba(34,211,238,.16),transparent 60%),
+    radial-gradient(900px 700px at 88% 8%,rgba(167,139,250,.16),transparent 62%),
+    radial-gradient(1000px 800px at 50% 105%,rgba(251,113,133,.12),transparent 60%),
+    linear-gradient(180deg,#04060f,#070b1c 45%,#04060f);
+}
+#stars{position:fixed;inset:0;z-index:-1;opacity:.85;pointer-events:none}
+::selection{background:rgba(34,211,238,.3);color:#fff}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:#050813}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#22d3ee55,#a78bfa55);border-radius:6px;border:2px solid #050813}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#22d3eeaa,#a78bfaaa)}
+
+/* ============ 导航 ============ */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:100;
+  background:var(--grad1);box-shadow:0 0 14px rgba(34,211,238,.9);transition:width .1s linear}
+.nav{position:fixed;top:0;left:0;right:0;z-index:99;padding:10px 0;
+  background:rgba(6,9,20,.72);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);
+  transform:translateY(-100%);transition:transform .35s cubic-bezier(.4,0,.2,1)}
+.nav.show{transform:translateY(0)}
+.nav-in{max-width:1320px;margin:0 auto;padding:0 22px;display:flex;align-items:center;gap:8px}
+.nav-logo{font-weight:800;letter-spacing:.5px;font-size:.95rem;
+  background:var(--grad1);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap;margin-right:8px}
+.nav-links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{color:var(--tx2);text-decoration:none;font-size:.8rem;padding:6px 11px;border-radius:20px;
+  white-space:nowrap;transition:.25s;border:1px solid transparent}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.07);border-color:var(--line2)}
+.nav-links a.active{color:#04060f;background:linear-gradient(120deg,#22d3ee,#a78bfa);font-weight:700}
+
+/* ============ 通用 ============ */
+.wrap{max-width:1280px;margin:0 auto;padding:0 22px}
+section{padding:96px 0;position:relative}
+.sec-head{margin-bottom:44px}
+.sec-num{font-family:var(--mono);font-size:.78rem;letter-spacing:.28em;color:var(--cyan);
+  text-transform:uppercase;display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.sec-num::after{content:'';flex:1;height:1px;max-width:180px;
+  background:linear-gradient(90deg,rgba(34,211,238,.65),transparent)}
+.sec-title{font-size:clamp(1.85rem,4vw,2.9rem);font-weight:800;line-height:1.2;letter-spacing:-.5px}
+.sec-title em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sec-desc{color:var(--tx2);max-width:76ch;margin-top:16px;font-size:1.02rem}
+
+.glass{background:var(--panel);border:1px solid var(--line);border-radius:18px;
+  backdrop-filter:blur(10px);box-shadow:var(--shadow)}
+.pad{padding:26px}
+.note{font-size:.82rem;color:var(--tx3);line-height:1.7}
+
+/* 揭示动画 */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* ============ HERO ============ */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:100px 22px 60px;position:relative;overflow:hidden}
+.hero-badge{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:100px;
+  background:rgba(34,211,238,.09);border:1px solid rgba(34,211,238,.32);color:#7de9fb;
+  font-size:.78rem;letter-spacing:.06em;margin-bottom:30px;
+  animation:fadeUp 1s .1s both cubic-bezier(.16,1,.3,1)}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);
+  box-shadow:0 0 10px var(--cyan);animation:pulse 2s infinite}
+.hero h1{font-size:clamp(2.5rem,8.5vw,6rem);font-weight:900;line-height:1.03;letter-spacing:-2px;margin-bottom:6px}
+.hero h1 .l1{display:block;background:linear-gradient(120deg,#fff 10%,#9fb4dd 90%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:fadeUp 1s .2s both cubic-bezier(.16,1,.3,1)}
+.hero h1 .l2{display:block;background:var(--grad1);-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:fadeUp 1s .35s both cubic-bezier(.16,1,.3,1);filter:drop-shadow(0 0 40px rgba(167,139,250,.35))}
+.hero-sub{font-size:clamp(1rem,2.2vw,1.32rem);color:var(--tx2);max-width:64ch;margin:24px auto 0;
+  animation:fadeUp 1s .5s both cubic-bezier(.16,1,.3,1)}
+.hero-sub b{color:var(--amber);font-weight:600}
+.hero-stats{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:48px;
+  animation:fadeUp 1s .65s both cubic-bezier(.16,1,.3,1)}
+.hs{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;
+  padding:16px 24px;min-width:150px;backdrop-filter:blur(8px);transition:.35s}
+.hs:hover{transform:translateY(-6px);border-color:rgba(34,211,238,.45);background:rgba(34,211,238,.07)}
+.hs .v{font-family:var(--mono);font-size:1.6rem;font-weight:700;background:var(--grad1);
+  -webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.2}
+.hs .k{font-size:.76rem;color:var(--tx3);margin-top:4px;letter-spacing:.05em}
+.scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--tx3);font-size:.72rem;letter-spacing:.18em}
+.scroll-hint .mouse{width:22px;height:34px;border:1.5px solid var(--line2);border-radius:12px;position:relative}
+.scroll-hint .mouse::after{content:'';position:absolute;left:50%;top:7px;width:3px;height:7px;
+  border-radius:2px;background:var(--cyan);transform:translateX(-50%);animation:wheel 1.8s infinite}
+@keyframes wheel{0%{opacity:0;transform:translate(-50%,0)}30%{opacity:1}100%{opacity:0;transform:translate(-50%,13px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(1.5)}}
+
+/* ============ 关键认知 ============ */
+.kp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:20px}
+.kp{position:relative;padding:28px 24px;border-radius:18px;background:var(--panel);
+  border:1px solid var(--line);overflow:hidden;transition:.4s}
+.kp::before{content:'';position:absolute;inset:0;opacity:0;transition:.4s;
+  background:radial-gradient(400px 200px at var(--mx,50%) var(--my,0%),rgba(255,255,255,.09),transparent 70%)}
+.kp:hover{transform:translateY(-7px);border-color:var(--line2)}
+.kp:hover::before{opacity:1}
+.kp .ico{font-size:1.7rem;margin-bottom:12px;display:block}
+.kp h4{font-size:1.06rem;margin-bottom:9px;font-weight:700}
+.kp p{font-size:.89rem;color:var(--tx2);line-height:1.72}
+.kp .accent{position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--c,var(--cyan))}
+
+/* ============ 谱系树 ============ */
+.tree-shell{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start}
+.tree-box{position:relative;border-radius:20px;background:
+  radial-gradient(800px 500px at 30% 20%,rgba(34,211,238,.07),transparent 60%),
+  rgba(255,255,255,.025);
+  border:1px solid var(--line);overflow:hidden}
+.tree-toolbar{display:flex;flex-wrap:wrap;gap:8px;padding:14px 16px;border-bottom:1px solid var(--line);
+  background:rgba(0,0,0,.25);align-items:center}
+.tb{font-size:.76rem;padding:5px 12px;border-radius:20px;cursor:pointer;user-select:none;
+  border:1px solid var(--line2);color:var(--tx2);background:rgba(255,255,255,.03);transition:.25s;font-weight:600}
+.tb:hover{color:#fff;background:rgba(255,255,255,.1)}
+.tb.on{color:#04060f;background:linear-gradient(120deg,#22d3ee,#a78bfa);border-color:transparent}
+.tb-sep{width:1px;height:18px;background:var(--line2);margin:0 3px}
+.tree-scroll{overflow-x:auto;overflow-y:hidden;padding:8px 4px 4px}
+.tree-scroll::-webkit-scrollbar{height:8px}
+#phylo{display:block;min-width:1180px;width:100%;height:auto}
+#phylo .link{fill:none;stroke:rgba(255,255,255,.26);stroke-width:1.6}
+#phylo .link.hl{stroke:var(--cyan);stroke-width:2.4;filter:drop-shadow(0 0 6px rgba(34,211,238,.8))}
+#phylo .range{opacity:.14;rx:3}
+#phylo .range.hl{opacity:.4}
+#phylo .node{cursor:pointer}
+#phylo .node circle.dot{stroke:var(--halo,#04060f);stroke-width:2;transition:.25s}
+#phylo .node:hover circle.dot{r:7;filter:drop-shadow(0 0 8px currentColor)}
+#phylo .node text{fill:var(--tx);font-size:12.5px;font-weight:600;paint-order:stroke;
+  stroke:var(--halo,#04060f);stroke-width:3.5px;stroke-linejoin:round}
+#phylo .node text.sci{font-size:10.5px;font-style:italic;font-weight:400;fill:var(--tx3)}
+#phylo .node.ext text{fill:#8fa2c6}
+#phylo .node.sel circle.dot{r:7.5;stroke:#fff;stroke-width:2.5}
+#phylo .node.sel text{fill:#fff}
+.axis line{stroke:rgba(255,255,255,.14);stroke-width:1}
+.axis text{fill:var(--tx3);font-size:10px;font-family:var(--mono)}
+.legend{display:flex;flex-wrap:wrap;gap:10px 16px;padding:12px 16px;border-top:1px solid var(--line);
+  font-size:.76rem;color:var(--tx2);background:rgba(0,0,0,.2)}
+.lg{display:flex;align-items:center;gap:6px}
+.lg i{width:10px;height:10px;border-radius:50%;display:inline-block}
+
+/* 详情面板 */
+.detail{position:sticky;top:84px;border-radius:20px;background:var(--panel);border:1px solid var(--line);
+  overflow:hidden;box-shadow:var(--shadow)}
+.detail-top{padding:22px;background:linear-gradient(150deg,rgba(34,211,238,.14),rgba(167,139,250,.07));
+  border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.detail-top h3{font-size:1.4rem;font-weight:800;margin-bottom:3px}
+.detail-top .sci{font-style:italic;color:var(--tx2);font-size:.86rem}
+.detail-top .badge{display:inline-block;margin-top:10px;padding:3px 11px;border-radius:20px;
+  font-size:.7rem;font-weight:700;letter-spacing:.05em}
+.badge.live{background:rgba(52,211,153,.16);color:#6ee7b7;border:1px solid rgba(52,211,153,.4)}
+.badge.dead{background:rgba(251,113,133,.13);color:#fda4af;border:1px solid rgba(251,113,133,.35)}
+.badge.cont{background:rgba(251,191,36,.13);color:#fcd34d;border:1px solid rgba(251,191,36,.35)}
+.detail-body{padding:20px 22px 24px}
+.drow{display:flex;gap:12px;padding:9px 0;border-bottom:1px dashed rgba(255,255,255,.07);font-size:.86rem}
+.drow:last-of-type{border-bottom:none}
+.drow .k{color:var(--tx3);min-width:62px;flex-shrink:0}
+.drow .v{color:var(--tx);flex:1}
+.detail-desc{margin-top:16px;font-size:.88rem;color:var(--tx2);line-height:1.8;
+  padding:14px;border-radius:12px;background:rgba(255,255,255,.03);border-left:3px solid var(--cyan)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chip{font-size:.7rem;padding:3px 10px;border-radius:20px;background:rgba(255,255,255,.06);
+  border:1px solid var(--line);color:var(--tx2)}
+
+/* ============ 存续甘特 ============ */
+.gantt-box{border-radius:20px;background:rgba(255,255,255,.025);border:1px solid var(--line);padding:18px}
+#gantt{display:block;width:100%;height:auto;min-width:900px}
+.gantt-scroll{overflow-x:auto}
+.gantt-scroll::-webkit-scrollbar{height:8px}
+#gantt .g-row text.nm{font-size:11.5px;fill:var(--tx);font-weight:600;paint-order:stroke;stroke:var(--halo,#04060f);stroke-width:3px}
+#gantt .g-row text.tm{font-size:9.5px;fill:var(--tx3);font-family:var(--mono)}
+#gantt .g-row rect.bar{rx:4;transition:.3s;cursor:pointer}
+#gantt .g-row:hover rect.bar{filter:brightness(1.35)}
+#gantt .g-row:hover text.nm{fill:#fff}
+#gantt .era-t{fill:var(--tx3);font-size:10.5px;font-family:var(--mono)}
+#gantt .coex{fill:#ffffff}
+
+/* ============ 脑容量 ============ */
+.brain-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:20px;align-items:start}
+#brain{display:block;width:100%;height:auto}
+#brain .grid line{stroke:rgba(255,255,255,.07)}
+#brain .ax text{fill:var(--tx3);font-size:10px;font-family:var(--mono)}
+#brain .area{fill:url(#bgrad);opacity:.5}
+#brain .trend{fill:none;stroke:url(#lgrad);stroke-width:2.5;
+  stroke-dasharray:1400;stroke-dashoffset:1400;transition:stroke-dashoffset 2.4s cubic-bezier(.3,0,.2,1)}
+#brain.on .trend{stroke-dashoffset:0}
+#brain .pt{cursor:pointer;transition:.25s}
+#brain .pt circle{stroke:var(--halo,#04060f);stroke-width:1.8}
+#brain .pt:hover circle{r:8;filter:drop-shadow(0 0 10px currentColor)}
+#brain .pt text{font-size:10.5px;fill:var(--tx2);paint-order:stroke;stroke:var(--halo,#04060f);stroke-width:3px;opacity:0;transition:.25s}
+#brain .pt:hover text{opacity:1;fill:#fff}
+#brain .pt.on text{opacity:1;fill:#fff}
+.tip{position:absolute;pointer-events:none;background:rgba(6,10,22,.96);border:1px solid var(--line2);
+  border-radius:10px;padding:8px 12px;font-size:.78rem;color:var(--tx);opacity:0;transition:.15s;
+  box-shadow:0 10px 30px rgba(0,0,0,.6);z-index:20;white-space:nowrap}
+.tip.on{opacity:1}
+.brain-facts{display:flex;flex-direction:column;gap:14px}
+.bf{padding:18px 20px;border-radius:14px;background:var(--panel);border:1px solid var(--line);
+  border-left:3px solid var(--c,var(--cyan))}
+.bf h5{font-size:.95rem;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.bf p{font-size:.84rem;color:var(--tx2);line-height:1.75}
+
+/* ============ 迁徙地图 ============ */
+.map-box{position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--line);
+  background:radial-gradient(700px 420px at 50% 40%,rgba(30,58,138,.28),rgba(3,6,16,.9))}
+#globe{display:block;width:100%;touch-action:pan-y;cursor:grab}
+#globe.drag{cursor:grabbing}
+@keyframes ripple{0%{r:2;opacity:.7}100%{r:16;opacity:0}}
+.map-legend{display:flex;flex-wrap:wrap;gap:8px;padding:14px 18px;border-top:1px solid var(--line);
+  background:rgba(0,0,0,.3);font-size:.76rem}
+.ml{display:flex;align-items:center;gap:7px;color:var(--tx2)}
+.ml i{width:16px;height:3px;border-radius:2px;display:inline-block}
+
+/* ============ 基因交流 ============ */
+.flow-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.flow{padding:24px;border-radius:18px;background:var(--panel);border:1px solid var(--line);
+  position:relative;overflow:hidden}
+.flow::after{content:'';position:absolute;right:-40px;top:-40px;width:140px;height:140px;border-radius:50%;
+  background:radial-gradient(circle,var(--c),transparent 70%);opacity:.16}
+.flow .pct{font-family:var(--mono);font-size:2.5rem;font-weight:800;color:var(--c);line-height:1.1}
+.flow h4{font-size:1.02rem;margin:6px 0 10px}
+.flow p{font-size:.85rem;color:var(--tx2);line-height:1.78}
+.bar{height:7px;border-radius:4px;background:rgba(255,255,255,.08);margin-top:14px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:4px;background:var(--c);
+  width:0;transition:width 1.8s cubic-bezier(.16,1,.3,1);box-shadow:0 0 12px var(--c)}
+.gene-table{width:100%;border-collapse:collapse;font-size:.86rem;margin-top:8px}
+.gene-table th,.gene-table td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line)}
+.gene-table th{color:var(--tx3);font-weight:600;font-size:.78rem;letter-spacing:.05em;
+  background:rgba(255,255,255,.03)}
+.gene-table td{color:var(--tx2)}
+.gene-table tr:hover td{background:rgba(255,255,255,.03);color:var(--tx)}
+.gene-table td b{color:var(--tx)}
+
+/* ============ 物种档案 ============ */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;align-items:center}
+.ft{font-size:.78rem;padding:6px 14px;border-radius:20px;cursor:pointer;border:1px solid var(--line2);
+  background:rgba(255,255,255,.03);color:var(--tx2);transition:.25s;user-select:none;font-weight:600}
+.ft:hover{color:#fff;background:rgba(255,255,255,.09)}
+.ft.on{background:linear-gradient(120deg,#22d3ee,#a78bfa);color:#04060f;border-color:transparent}
+.fcount{font-family:var(--mono);font-size:.78rem;color:var(--tx3);margin-left:auto}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(316px,1fr));gap:18px}
+.sp-card{position:relative;padding:22px;border-radius:18px;background:var(--panel);
+  border:1px solid var(--line);overflow:hidden;transition:.4s cubic-bezier(.16,1,.3,1);
+  animation:cardIn .55s both cubic-bezier(.16,1,.3,1)}
+@keyframes cardIn{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:none}}
+.sp-card:hover{transform:translateY(-8px);border-color:var(--line2);
+  box-shadow:0 24px 50px -16px rgba(0,0,0,.85)}
+.sp-card::before{content:'';position:absolute;left:0;right:0;top:0;height:2px;background:var(--c)}
+.sp-card .hd{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:4px}
+.sp-card h4{font-size:1.12rem;font-weight:800;line-height:1.35}
+.sp-card .sci{font-style:italic;color:var(--tx3);font-size:.8rem;margin-bottom:12px}
+.st{font-size:.68rem;padding:3px 9px;border-radius:20px;white-space:nowrap;font-weight:700;flex-shrink:0}
+.st.live{background:rgba(52,211,153,.15);color:#6ee7b7}
+.st.dead{background:rgba(251,113,133,.13);color:#fda4af}
+.st.cont{background:rgba(251,191,36,.13);color:#fcd34d}
+.sp-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.mt{font-size:.7rem;padding:3px 9px;border-radius:6px;background:rgba(255,255,255,.055);
+  color:var(--tx2);font-family:var(--mono)}
+.sp-card p{font-size:.85rem;color:var(--tx2);line-height:1.8}
+.sp-card .loc{font-size:.74rem;color:var(--tx3);margin-top:12px;display:flex;align-items:center;gap:5px}
+
+/* ============ 文化技术 ============ */
+.tech-flow{position:relative;padding-left:0}
+.tech-strip{display:flex;gap:12px;overflow-x:auto;padding:24px 4px 12px;scroll-snap-type:x mandatory}
+.tech-strip::-webkit-scrollbar{height:8px}
+.tech{scroll-snap-align:start;min-width:250px;flex:1;padding:22px;border-radius:16px;
+  background:var(--panel);border:1px solid var(--line);position:relative;transition:.4s;flex-shrink:0}
+.tech:hover{transform:translateY(-6px);border-color:var(--line2);background:var(--panel2)}
+.tech .yr{font-family:var(--mono);font-size:.76rem;color:var(--c);font-weight:700;letter-spacing:.05em}
+.tech h4{font-size:1.05rem;margin:8px 0 8px;font-weight:750}
+.tech p{font-size:.83rem;color:var(--tx2);line-height:1.75}
+.tech .n{position:absolute;right:14px;top:10px;font-family:var(--mono);font-size:2.2rem;
+  font-weight:800;color:rgba(255,255,255,.05);line-height:1}
+.mile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:26px}
+.mile{padding:18px 20px;border-radius:14px;background:var(--panel);border:1px solid var(--line);
+  display:flex;gap:14px;align-items:flex-start;transition:.35s}
+.mile:hover{transform:translateX(5px);border-color:rgba(34,211,238,.4)}
+.mile .mi{font-size:1.5rem;line-height:1}
+.mile h5{font-size:.94rem;margin-bottom:3px}
+.mile span{font-family:var(--mono);font-size:.74rem;color:var(--cyan)}
+.mile p{font-size:.8rem;color:var(--tx2);margin-top:5px;line-height:1.7}
+
+/* ============ 统一性 ============ */
+.unity{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+.dna-vis{border-radius:18px;background:rgba(255,255,255,.03);border:1px solid var(--line);padding:24px}
+.dna-strip{display:flex;height:34px;border-radius:8px;overflow:hidden;margin:14px 0 8px}
+.dna-strip div{transition:.5s}
+.dna-strip div:hover{filter:brightness(1.5)}
+.big-quote{padding:30px 32px;border-radius:20px;position:relative;overflow:hidden;
+  background:linear-gradient(140deg,rgba(34,211,238,.11),rgba(167,139,250,.07));
+  border:1px solid rgba(34,211,238,.24)}
+.bq{font-size:clamp(1.05rem,2.1vw,1.5rem);font-weight:700;line-height:1.6;letter-spacing:-.2px}
+.bq em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;background-clip:text;color:transparent}
+.bq-src{font-size:.8rem;color:var(--tx3);margin-top:14px}
+.cline{margin-top:18px}
+.cline-bar{height:30px;border-radius:8px;background:linear-gradient(90deg,#3b2f22,#8a6748,#c9a17a,#e8c9a8,#f5e6d3);
+  display:flex;align-items:center;justify-content:space-between;padding:0 12px;
+  font-size:.72rem;color:rgba(0,0,0,.62);font-weight:700;letter-spacing:.05em}
+
+/* ============ 前沿 ============ */
+.fr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.fr{padding:24px;border-radius:18px;background:var(--panel);border:1px solid var(--line);transition:.4s;position:relative}
+.fr:hover{transform:translateY(-6px);border-color:rgba(167,139,250,.45)}
+.fr .yr{display:inline-block;font-family:var(--mono);font-size:.72rem;padding:3px 10px;border-radius:6px;
+  background:linear-gradient(120deg,#a78bfa,#22d3ee);color:#04060f;font-weight:800;margin-bottom:12px}
+.fr h4{font-size:1.02rem;margin-bottom:9px;line-height:1.5}
+.fr p{font-size:.85rem;color:var(--tx2);line-height:1.8}
+.fr .tagx{display:inline-block;margin-top:12px;font-size:.7rem;padding:3px 9px;border-radius:20px;
+  background:rgba(251,191,36,.14);color:#fcd34d;border:1px solid rgba(251,191,36,.3)}
+
+/* ============ 中国化石地图 ============ */
+.cnmap-grid{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start}
+.cnmap-grid .map-box{border-radius:20px}
+#cnmap{display:block;width:100%;height:auto}
+.map-box.cnbg{background:radial-gradient(700px 460px at 55% 45%,rgba(251,113,133,.10),rgba(3,6,16,.92))}
+#cnmap .cnland{fill:rgba(120,150,200,.12);stroke:rgba(150,190,255,.4);stroke-width:1.2}
+#cnmap .cnriver{fill:none;stroke:rgba(96,165,250,.45);stroke-width:1.6;stroke-linecap:round}
+#cnmap .cnriver.w2{stroke:rgba(52,211,153,.4)}
+#cnmap .cngrid{stroke:rgba(255,255,255,.045);stroke-width:.6}
+#cnmap .siteg{cursor:pointer}
+#cnmap .siteg circle.hit{fill:transparent}
+#cnmap .siteg circle.core{stroke:var(--halo,#04060f);stroke-width:1.4;transition:.25s}
+#cnmap .siteg circle.halo{fill:none;stroke-width:1.2;opacity:.5;animation:ripple 3.6s infinite ease-out}
+#cnmap .siteg:hover circle.core,#cnmap .siteg.on circle.core{r:7.5;filter:drop-shadow(0 0 10px currentColor)}
+#cnmap .siteg:hover circle.halo,#cnmap .siteg.on circle.halo{opacity:1}
+#cnmap .siteg text{font-size:11px;fill:var(--tx2);paint-order:stroke;stroke:var(--halo,#04060f);stroke-width:3.5px;
+  stroke-linejoin:round;transition:.25s;pointer-events:none}
+#cnmap .siteg:hover text,#cnmap .siteg.on text{fill:#fff;font-weight:700}
+#cnmap .reglabel{font-size:12px;fill:rgba(255,255,255,.16);pointer-events:none;letter-spacing:.14em}
+.cnrivlabel{font-size:11px;paint-order:stroke;stroke:var(--halo,#04060f);stroke-width:3px;pointer-events:none}
+.cnsite-panel{position:sticky;top:84px;border-radius:18px;background:var(--panel);
+  border:1px solid var(--line);overflow:hidden;box-shadow:var(--shadow)}
+.cnsite-panel .top{padding:18px 20px;border-bottom:1px solid var(--line);
+  background:linear-gradient(150deg,rgba(251,113,133,.13),rgba(167,139,250,.05))}
+.cnsite-panel .top h3{font-size:1.2rem;font-weight:800}
+.cnsite-panel .top .yr{font-family:var(--mono);font-size:.78rem;color:var(--cyan);margin-top:3px}
+.cnsite-panel .body{padding:16px 20px 20px}
+.cnsite-panel .body p{font-size:.85rem;color:var(--tx2);line-height:1.8}
+.cnlist{display:flex;flex-direction:column;gap:4px;max-height:340px;overflow-y:auto;margin-top:6px}
+.cnlist::-webkit-scrollbar{width:6px}
+.cnlist::-webkit-scrollbar-thumb{background:rgba(167,139,250,.4);border-radius:3px}
+.cnli{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:9px;cursor:pointer;
+  font-size:.82rem;transition:.22s;border:1px solid transparent}
+.cnli:hover{background:rgba(255,255,255,.06);border-color:var(--line2)}
+.cnli.on{background:rgba(255,255,255,.09);border-color:var(--line2)}
+.cnli i{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.cnli .nm{flex:1;color:var(--tx)}
+.cnli .yr{font-family:var(--mono);font-size:.72rem;color:var(--tx3)}
+.cnmap-note{margin-top:20px}
+@media(max-width:1080px){.cnmap-grid{grid-template-columns:1fr}.cnsite-panel{position:static}}
+
+/* ============ 人类世 ============ */
+.pop-scroll{overflow-x:auto}
+.pop-scroll::-webkit-scrollbar{height:8px}
+#popchart{display:block;width:100%;height:auto;min-width:820px}
+#popchart .pgrid line{stroke:rgba(255,255,255,.06)}
+#popchart .pgrid text{fill:var(--tx3);font-size:10px;font-family:var(--mono)}
+#popchart .hist{fill:none;stroke:url(#pgrad);stroke-width:3;stroke-linecap:round;
+  stroke-dasharray:3000;stroke-dashoffset:3000;transition:stroke-dashoffset 2.6s cubic-bezier(.3,0,.2,1)}
+#popchart.on .hist{stroke-dashoffset:0}
+#popchart .proj{fill:none;stroke:#fb7185;stroke-width:2.4;stroke-dasharray:6 5;opacity:0;transition:opacity .8s 1.4s}
+#popchart.on .proj{opacity:1}
+#popchart .pfill{fill:url(#pfill);opacity:0;transition:opacity 1.2s .6s}
+#popchart.on .pfill{opacity:.55}
+#popchart .pmk circle{stroke:var(--halo,#04060f);stroke-width:2}
+#popchart .pmk text{font-size:10px;fill:var(--tx2);font-family:var(--mono);paint-order:stroke;
+  stroke:var(--halo,#04060f);stroke-width:3px}
+#popchart .era-band text{font-size:10.5px;fill:var(--tx3);letter-spacing:.1em}
+#popchart .peakline{stroke:rgba(52,211,153,.55);stroke-dasharray:4 4}
+.pop-duo{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}
+#popBars{display:flex;flex-direction:column;gap:9px}
+.pb{display:flex;align-items:center;gap:10px;font-size:.8rem}
+.pb .lbl{width:112px;color:var(--tx2);flex-shrink:0;font-family:var(--mono);font-size:.74rem}
+.pb .track{flex:1;height:20px;border-radius:4px;background:rgba(255,255,255,.05);overflow:hidden;position:relative}
+.pb .fill{height:100%;border-radius:4px;width:0;transition:width 1.6s cubic-bezier(.16,1,.3,1)}
+.pb .val{width:52px;text-align:right;color:var(--tx);font-family:var(--mono);font-weight:700;font-size:.78rem}
+.pb .fill.f{background:linear-gradient(90deg,#22d3ee,#60a5fa)}
+.pb .fill.p{background:linear-gradient(90deg,#a78bfa,#fb7185)}
+.rate-row{display:flex;flex-direction:column;gap:12px}
+.rate{padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--line)}
+.rate .rv{font-family:var(--mono);font-size:1.5rem;font-weight:800;line-height:1.1}
+.rate .rk{font-size:.78rem;color:var(--tx3);margin-top:3px}
+.anthro-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:18px}
+.accel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:14px}
+.acc{padding:20px;border-radius:16px;background:var(--panel);border:1px solid var(--line);transition:.4s;position:relative;overflow:hidden}
+.acc:hover{transform:translateY(-6px);border-color:var(--line2)}
+.acc .ai{font-size:1.4rem;margin-bottom:8px}
+.acc h5{font-size:.92rem;margin-bottom:10px;color:var(--tx)}
+.acc .cmp{display:flex;align-items:baseline;gap:9px;margin-bottom:8px}
+.acc .cmp .a{font-family:var(--mono);font-size:.78rem;color:var(--tx3)}
+.acc .cmp .ar{color:var(--tx3);font-size:.7rem}
+.acc .cmp .b{font-family:var(--mono);font-size:1.02rem;font-weight:800;color:var(--c)}
+.acc .accbar{height:5px;border-radius:3px;background:rgba(255,255,255,.07);overflow:hidden}
+.acc .accbar i{display:block;height:100%;background:var(--c);width:0;transition:width 1.6s cubic-bezier(.16,1,.3,1)}
+.acc p{font-size:.78rem;color:var(--tx3);margin-top:9px;line-height:1.7}
+@media(max-width:820px){.pop-duo{grid-template-columns:1fr}}
+
+/* ============ 术语 / 尾 ============ */
+.glossary{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.gl{padding:16px 18px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--line);
+  transition:.3s}
+.gl:hover{background:rgba(255,255,255,.06);border-color:var(--line2)}
+.gl dt{font-weight:750;font-size:.92rem;margin-bottom:5px;color:var(--cyan)}
+.gl dd{font-size:.82rem;color:var(--tx2);line-height:1.72}
+.refs{font-size:.8rem;color:var(--tx3);line-height:2}
+.refs a{color:var(--tx2);text-decoration:none;border-bottom:1px dotted var(--tx3)}
+.refs a:hover{color:var(--cyan);border-color:var(--cyan)}
+footer{padding:56px 0 40px;border-top:1px solid var(--line);text-align:center;color:var(--tx3);font-size:.82rem}
+footer .fg{font-size:2.4rem;margin-bottom:12px}
+
+/* ============ 增强组件 ============ */
+#dna{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.55}
+.hero>*:not(#dna):not(.scroll-hint){position:relative;z-index:1}
+.hero .scroll-hint{z-index:1}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.xsmask{
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 26px),transparent 100%);
+  mask-image:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 26px),transparent 100%)}
+#gantt .g-row{cursor:pointer}
+.sp-search{margin-left:auto;background:rgba(255,255,255,.05);border:1px solid var(--line2);color:var(--tx);
+  border-radius:22px;padding:7px 16px;font-size:.8rem;outline:none;min-width:200px;font-family:inherit;transition:.25s}
+.sp-search::placeholder{color:var(--tx3)}
+.sp-search:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(34,211,238,.15)}
+.filters .fcount{margin-left:10px}
+.clink{margin-top:14px;width:100%;padding:8px 12px;border-radius:10px;cursor:pointer;font-size:.78rem;font-weight:600;
+  color:var(--tx2);background:rgba(255,255,255,.045);border:1px solid var(--line);transition:.25s;font-family:inherit}
+.clink:hover{color:#04060f;background:linear-gradient(120deg,#22d3ee,#a78bfa);border-color:transparent}
+.dlink{margin-top:16px;width:100%;padding:9px 12px;border-radius:10px;cursor:pointer;font-size:.8rem;font-weight:700;
+  color:#04060f;background:linear-gradient(120deg,#22d3ee,#a78bfa);border:none;font-family:inherit;transition:.25s}
+.dlink:hover{filter:brightness(1.15)}
+.detail.flash{animation:dflash 1.1s ease-out}
+@keyframes dflash{0%{box-shadow:0 0 0 0 rgba(34,211,238,.65)}100%{box-shadow:0 0 0 22px rgba(34,211,238,0)}}
+.sp-card.flash-card{animation:cflash 1.8s ease-out}
+@keyframes cflash{0%,55%{border-color:var(--cyan);box-shadow:0 0 0 2px rgba(34,211,238,.55)}}
+#toTop{position:fixed;right:22px;bottom:22px;z-index:98;width:44px;height:44px;border-radius:50%;cursor:pointer;
+  border:1px solid var(--line2);background:rgba(6,10,22,.8);color:var(--tx);font-size:1.05rem;backdrop-filter:blur(10px);
+  opacity:0;pointer-events:none;transform:translateY(14px);transition:.35s;font-family:inherit}
+#toTop.show{opacity:1;pointer-events:auto;transform:none}
+#toTop:hover{color:#04060f;background:linear-gradient(120deg,#22d3ee,#a78bfa);border-color:transparent}
+/* 共存实验室 */
+.lab-picks{display:flex;flex-wrap:wrap;gap:10px 12px;align-items:center}
+.lab-picks label{font-size:.78rem;color:var(--tx3)}
+.lab-picks select{background:rgba(255,255,255,.05);border:1px solid var(--line2);color:var(--tx);border-radius:10px;
+  padding:8px 12px;font-size:.85rem;font-family:inherit;max-width:220px;outline:none;cursor:pointer}
+.lab-picks select:focus{border-color:var(--cyan)}
+.lab-picks select option{background:#0a0f22;color:var(--tx)}
+.lab-btn{font-size:.78rem;padding:7px 14px;border-radius:20px;cursor:pointer;border:1px solid var(--line2);
+  background:rgba(255,255,255,.04);color:var(--tx2);font-family:inherit;transition:.25s;font-weight:600}
+.lab-btn:hover{color:#fff;background:rgba(255,255,255,.1);border-color:var(--cyan)}
+.cmp-verdict{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;font-size:.94rem;font-weight:700}
+.cmp-verdict.yes{background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.35);color:#7de9fb}
+.cmp-verdict.no{background:rgba(251,113,133,.09);border:1px solid rgba(251,113,133,.3);color:#fda4af}
+.cmp-tl{position:relative;height:104px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--line);
+  overflow:hidden;margin-top:14px}
+.cmp-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.cmp-col{padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-top:2px solid var(--c)}
+.cmp-col h5{font-size:.96rem;margin-bottom:8px;line-height:1.45}
+.cmp-col .r{display:flex;justify-content:space-between;gap:10px;font-size:.8rem;color:var(--tx2);
+  padding:5px 0;border-bottom:1px dashed rgba(255,255,255,.06)}
+.cmp-col .r:last-child{border-bottom:none}
+.cmp-col .r b{color:var(--tx);text-align:right;font-weight:600;max-width:62%}
+.cmp-brain{height:8px;border-radius:4px;background:rgba(255,255,255,.07);margin:6px 0 4px;overflow:hidden}
+.cmp-brain i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,#22d3ee,#a78bfa)}
+@media(max-width:640px){.cmp-stats{grid-template-columns:1fr}.lab-picks select{max-width:160px}}
+/* ============ 复原头像 / 主题按钮 ============ */
+.sp-av{width:58px;height:58px;flex-shrink:0;filter:drop-shadow(0 4px 10px rgba(0,0,0,.28))}
+.sp-av svg{width:100%;height:100%;display:block}
+.sp-av.lg{width:86px;height:86px}
+.sp-av.sm{width:46px;height:46px}
+.avwrap{display:flex;gap:12px;align-items:center;min-width:0}
+#themeBtn{position:fixed;left:22px;bottom:22px;z-index:98;width:44px;height:44px;border-radius:50%;cursor:pointer;
+  border:1px solid var(--line2);background:rgba(6,10,22,.8);color:var(--tx);font-size:1.05rem;backdrop-filter:blur(10px);
+  transition:.35s;font-family:inherit}
+#themeBtn:hover{color:#04060f;background:linear-gradient(120deg,#22d3ee,#a78bfa);border-color:transparent}
+
+/* ============ 亮色主题（纸面博物馆） ============ */
+body.light{
+  --bg:#f5f3ec;--bg2:#fffdf7;
+  --panel:rgba(28,38,66,.045);--panel2:rgba(28,38,66,.07);
+  --line:rgba(28,38,66,.14);--line2:rgba(28,38,66,.24);
+  --tx:#1d2436;--tx2:#47526e;--tx3:#79839e;
+  --halo:#f5f3ec;
+  --shadow:0 16px 40px -14px rgba(30,40,70,.22);
+}
+body.light::before{
+  background:
+    radial-gradient(1100px 700px at 12% -5%,rgba(34,211,238,.16),transparent 60%),
+    radial-gradient(900px 700px at 88% 8%,rgba(167,139,250,.18),transparent 62%),
+    radial-gradient(1000px 800px at 50% 105%,rgba(251,113,133,.12),transparent 60%),
+    linear-gradient(180deg,#f8f6f0,#fbf9f3 45%,#f4f2ea);
+}
+body.light #stars{display:none}
+body.light #dna{opacity:.4}
+body.light .hero h1 .l1{background:linear-gradient(120deg,#202a44 10%,#5b6a94 90%)}
+body.light .hero-badge{color:#0e7490;background:rgba(34,211,238,.12);border-color:rgba(14,116,144,.35)}
+body.light .nav{background:rgba(250,248,242,.82);border-bottom-color:rgba(28,38,66,.12)}
+body.light .nav-links a{color:#47526e}
+body.light .nav-links a:hover{color:#1d2436;background:rgba(28,38,66,.06)}
+body.light::-webkit-scrollbar-track{background:#efece3}
+body.light::-webkit-scrollbar-thumb{border-color:#efece3}
+body.light .tree-toolbar,body.light .legend,body.light .map-legend{background:rgba(28,38,66,.045)}
+body.light .tree-box{background:radial-gradient(800px 500px at 30% 20%,rgba(34,211,238,.09),transparent 60%),rgba(255,255,255,.55)}
+body.light .gantt-box,body.light .dna-vis,body.light .rate,body.light .gl{background:rgba(255,255,255,.55)}
+body.light .map-box{background:radial-gradient(700px 420px at 50% 40%,rgba(147,197,253,.30),rgba(255,253,247,.92))}
+body.light .map-box.cnbg{background:radial-gradient(700px 460px at 55% 45%,rgba(251,113,133,.12),rgba(255,253,247,.94))}
+body.light #cnmap .cnland{fill:rgba(96,165,250,.14);stroke:rgba(37,99,235,.5);stroke-width:1.3}
+body.light #cnmap .cngrid{stroke:rgba(28,38,66,.07)}
+body.light #cnmap .cnriver{stroke:rgba(37,99,235,.5)}
+body.light #cnmap .cnriver.w2{stroke:rgba(5,150,105,.5)}
+body.light #cnmap .reglabel{fill:rgba(28,38,66,.22)}
+body.light #cnmap .cnrivlabel.w1l{fill:rgba(37,99,235,.8)}
+body.light #cnmap .cnrivlabel.w2l{fill:rgba(5,150,105,.8)}
+body.light .hs{background:rgba(255,255,255,.6)}
+body.light .detail,body.light .sp-card{background:rgba(255,255,255,.6)}
+body.light .tip{background:rgba(255,253,246,.97);border-color:rgba(28,38,66,.22);color:#1d2436}
+body.light #toTop,body.light #themeBtn{background:rgba(250,248,242,.88);color:#1d2436}
+body.light .tb,body.light .ft{background:rgba(28,38,66,.05);color:#47526e}
+body.light .tb:hover,body.light .ft:hover{background:rgba(28,38,66,.1);color:#1d2436}
+body.light .chip,body.light .mt{background:rgba(28,38,66,.06);color:#47526e}
+body.light .big-quote{background:linear-gradient(140deg,rgba(34,211,238,.10),rgba(167,139,250,.09));border-color:rgba(34,211,238,.32)}
+body.light .lab-picks select option{background:#fff;color:#1d2436}
+body.light .lab-btn:hover{color:#1d2436;background:rgba(28,38,66,.09);border-color:var(--cyan)}
+body.light #phylo .link{stroke:rgba(28,38,66,.30)}
+body.light #brain .grid line,body.light #popchart .pgrid line{stroke:rgba(28,38,66,.10)}
+body.light #cnmap .reglabel{fill:rgba(28,38,66,.15)}
+body.light .pb .track,body.light .bar,body.light .accbar{background:rgba(28,38,66,.09)}
+body.light .sp-search{background:rgba(255,255,255,.7)}
+
+/* —— 亮色主题 · 图表与细节精修 —— */
+/* 谱系树时间轴竖线（浅色下原白色不可见） */
+body.light .axis line{stroke:rgba(28,38,66,.18)}
+/* 甘特图刻度线（JS 中带 .gtick 类） */
+body.light #gantt .gtick{stroke:rgba(28,38,66,.13)}
+/* 脑容量图纵向网格（.ax 组内 line）与参考线标注 */
+#brain .ax line{stroke:rgba(255,255,255,.06)}
+body.light #brain .ax line{stroke:rgba(28,38,66,.10)}
+#brain .bref{fill:#fda4af}
+body.light #brain .bref{fill:#e11d48}
+/* 人口图时代分隔线与峰值标注 */
+#popchart .ppeak{fill:#6ee7b7}
+body.light #popchart .ppeak{fill:#047857}
+body.light #popchart .era-band line{stroke:rgba(28,38,66,.12)}
+/* 谱系树：存疑物种名、选中态、悬停白色文字与存续条浓度 */
+body.light #phylo .node.ext text{fill:#67718e}
+body.light #phylo .node.sel text,
+body.light #gantt .g-row:hover text.nm,
+body.light #brain .pt:hover text,body.light #brain .pt.on text,
+body.light #cnmap .siteg:hover text,body.light #cnmap .siteg.on text{fill:#141b2e}
+body.light #phylo .node.sel circle.dot{stroke:#1d2436}
+body.light #phylo .range{opacity:.22}
+body.light #phylo .range.hl{opacity:.5}
+/* 状态徽章与标签：粉彩 → 深色系 */
+body.light .st.live,body.light .badge.live{color:#047857;background:rgba(16,185,129,.16);border-color:rgba(4,120,87,.35)}
+body.light .st.dead,body.light .badge.dead{color:#be123c;background:rgba(244,63,94,.12);border-color:rgba(190,18,60,.3)}
+body.light .st.cont,body.light .badge.cont{color:#b45309;background:rgba(245,158,11,.16);border-color:rgba(180,83,9,.32)}
+body.light .tagx{color:#b45309;background:rgba(251,191,36,.2);border-color:rgba(180,83,9,.3)}
+/* 青色系小字 → 深青 */
+body.light .sec-num,body.light .gl dt,body.light .mile span{color:#0e7490}
+/* 共存实验室判定条 */
+body.light .cmp-verdict.yes{color:#0e7490;background:rgba(6,182,212,.1);border-color:rgba(14,116,144,.35)}
+body.light .cmp-verdict.no{color:#be123c;background:rgba(244,63,94,.08);border-color:rgba(190,18,60,.3)}
+/* 以强调色作文字的元素：整体压暗提饱和，保留色相 */
+body.light .flow .pct,body.light .tech .yr,body.light .rate .rv,
+body.light .acc .cmp .b,body.light .cnsite-panel .badge,
+body.light .cmp-col h5,body.light .hero-sub b{filter:brightness(.62) saturate(1.35)}
+/* 渐变文字（统计数字 / 标题强调）微调深度 */
+body.light .hs .v{filter:brightness(.75) saturate(1.3)}
+body.light .sec-title em,body.light .bq em,body.light .hero h1 .l2{filter:brightness(.72) saturate(1.35)}
+/* 技术卡片背景水印数字 */
+body.light .tech .n{color:rgba(28,38,66,.07)}
+
+/* 打印：输出当前主题，隐藏交互部件 */
+@media print{
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #stars,#dna,.nav,.progress,#toTop,#themeBtn,.scroll-hint,.tree-toolbar,.tip{display:none!important}
+  .reveal{opacity:1!important;transform:none!important;transition:none!important}
+  .sp-card{animation:none!important}
+  #brain .trend{stroke-dashoffset:0!important}
+  #popchart .hist{stroke-dashoffset:0!important}
+  #popchart .proj{opacity:1!important}
+  #popchart .pfill{opacity:.55!important}
+  .bar i,.pb .fill,.acc .accbar i{width:var(--w)!important}
+  section{padding:30px 0}
+  .glass,.kp,.sp-card,.flow,.fr,.tech,.mile,.bf,.gl,.acc,.rate,.cnli{break-inside:avoid}
+}
+
+/* ============ 响应式 ============ */
+@media(max-width:1080px){
+  .tree-shell{grid-template-columns:1fr}
+  .detail{position:static}
+  .brain-wrap{grid-template-columns:1fr}
+  .unity{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  section{padding:64px 0}
+  .hero-stats .hs{min-width:120px;padding:13px 16px}
+  .sec-title{font-size:1.7rem}
+  .detail-top h3{font-size:1.18rem}
+  .nav-logo{display:none}
+}
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+<div class="progress" id="prog"></div>
+
+<nav class="nav" id="nav">
+  <div class="nav-in">
+    <span class="nav-logo">HOMO · 演化全景</span>
+    <div class="nav-links" id="navlinks"></div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <canvas id="dna" aria-hidden="true"></canvas>
+  <div class="hero-badge"><span class="dot"></span>人族演化 · 700 万年的分支与汇流</div>
+  <h1>
+    <span class="l1">人类演化</span>
+    <span class="l2">全景图</span>
+  </h1>
+  <p class="hero-sub">
+    从乍得沙漠的一具颅骨，到今天 80 亿人构成的文明网络——<b>人族</b>曾是一个热闹的大家族，
+    至少有 <b>20 余个物种</b>先后登场、共存、杂交、灭绝。而今天，只剩下我们：
+    <b>智人（Homo sapiens）</b>。这不是一条直线，而是一棵不断分叉又被砍去枝条的树。
+  </p>
+  <div class="hero-stats">
+    <div class="hs"><div class="v" data-count="700">0</div><div class="k">万年 · 人族历史长度</div></div>
+    <div class="hs"><div class="v" data-count="20" data-suffix="+">0</div><div class="k">个已命名人族物种</div></div>
+    <div class="hs"><div class="v" data-count="1">0</div><div class="k">个幸存至今的人种</div></div>
+    <div class="hs"><div class="v" data-count="99.9" data-dec="1" data-suffix="%">0</div><div class="k">全人类基因组相似度</div></div>
+    <div class="hs"><div class="v" data-count="2" data-dec="1" data-suffix="%">0</div><div class="k">非洲外人群的尼人基因</div></div>
+  </div>
+  <div class="scroll-hint"><span class="mouse"></span>SCROLL</div>
+</header>
+
+<!-- ============ 01 关键认知 ============ -->
+<section id="s1">
+<div class="wrap">
+  <div class="sec-head reveal">
+    <div class="sec-num">Chapter 01 · 破除误解</div>
+    <h2 class="sec-title">演化不是<em>一条 ladder</em>，而是一丛灌木</h2>
+    <p class="sec-desc">
+      教科书上的"猿→人"直线插图深入人心，但它是错的。真实的化石记录显示：
+      在距今 400 万到 2 万年前的绝大多数时间里，地球上同时生活着<b>多个不同的人类物种</b>。
+      我们是唯一活下来的那一支，不是演化的"终点"。
+    </p>
+  </div>
+  <div class="kp-grid">
+    <div class="kp reveal" style="--c:var(--cyan)"><span class="ico">🌿</span>
+      <h4>多物种共存是常态</h4>
+      <p>约 300 万年前的东非，至少有 4 个不同人族支系在同一片土地上活动（早期人属、傍人属、南方古猿属多个种）。2025 年发表于《自然》的两项研究进一步确认了这一点。</p></div>
+    <div class="kp reveal" style="--c:var(--violet)"><span class="ico">🔥</span>
+      <h4>直立行走早于大脑</h4>
+      <p>直立行走在 700 万年前就已出现（2026 年 1 月《科学进展》为乍得沙赫人提供了迄今最强证据），而脑容量的爆发要等到 200 万年前人属登场——足足晚了 500 万年。</p></div>
+    <div class="kp reveal" style="--c:var(--amber)"><span class="ico">🧬</span>
+      <h4>我们是"混血"的产物</h4>
+      <p>非洲以外的现代人基因组中约有 1.8%–2.6% 来自尼安德特人；大洋洲与东亚人群还携带 0.2%–6% 的丹尼索瓦人基因。人类的故事里，"融合"和"替代"同样重要。</p></div>
+    <div class="kp reveal" style="--c:var(--emerald)"><span class="ico">🌏</span>
+      <h4>东亚不是演化的"边缘"</h4>
+      <p>2026 年 2 月，中国科学院古脊椎动物与古人类研究所在《自然》发表成果，系统论证了过去 200 万年间东亚在人属演化中扮演的核心角色——多谱系共存、连续演化、附带杂交。</p></div>
+    <div class="kp reveal" style="--c:var(--rose)"><span class="ico">🏝️</span>
+      <h4>岛屿会造出"霍比特人"</h4>
+      <p>在弗洛勒斯岛和吕宋岛，孤立环境让人族发生"岛屿矮化"：佛罗勒斯人身高仅约 1.06 米、脑容量约 420 毫升，却存活到距今约 5 万年前——与我们同时代。</p></div>
+    <div class="kp reveal" style="--c:var(--blue)"><span class="ico">🧑‍🤝‍🧑</span>
+      <h4>全人类同属一个物种</h4>
+      <p>现代遗传学证实：所有活着的人都属智人种，彼此间不存在生殖隔离，基因组相似度 99.9%。人群之间的外形差异只是对局地环境的适应性表型，由极少数基因位点控制。</p></div>
+  </div>
+
+  <div class="glass pad reveal" style="margin-top:26px">
+    <h4 style="font-size:1.05rem;margin-bottom:16px">📐 先厘清几个容易混淆的概念</h4>
+    <div style="overflow-x:auto">
+    <table class="gene-table">
+      <thead><tr><th>阶元 / 术语</th><th>学名</th><th>包含什么</th><th>存续年代</th></tr></thead>
+      <tbody>
+        <tr><td><b>人科</b></td><td style="font-style:italic">Hominidae</td><td>猩猩、大猩猩、黑猩猩，以及人类全部支系</td><td>约 2000 万年前至今</td></tr>
+        <tr><td><b>人亚科</b></td><td style="font-style:italic">Homininae</td><td>大猩猩族、人族（含黑猩猩属与人类支系）</td><td>约 1200 万年前至今</td></tr>
+        <tr><td><b>人族</b></td><td style="font-style:italic">Hominini</td><td>黑猩猩支系 + 人类支系（人亚族）</td><td>约 700 万年前至今</td></tr>
+        <tr><td><b>人亚族</b>（"人族成员/hominin"）</td><td style="font-style:italic">Hominina</td><td>人类支系：南方古猿属、傍人属、肯尼亚人属、人属等</td><td>约 700 万年前至今</td></tr>
+        <tr><td><b>人属</b></td><td style="font-style:italic">Homo</td><td>脑容量显著增大、工具制造常态化的一类人族</td><td>约 280 万年前至今</td></tr>
+        <tr><td><b>智人种</b></td><td style="font-style:italic">Homo sapiens</td><td>你我，以及所有解剖学意义上的现代人</td><td>约 31.5 万年前至今</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note" style="margin-top:14px">
+      注：中文语境里"人族"一词在不同文献中可能指 Hominini 或 Hominina，阅读时需注意；英文 <i>hominin</i> 严格对应人亚族（人类支系），<i>hominid</i> 对应人科。
+      2026 年 8 月，澳大利亚莫纳什大学 Ian Towle 在《美国体质人类学杂志》提出：鉴于南方古猿属与傍人属同样具备复杂行为、且分支关系并不清晰，应把它们一并并入人属——该提议争议很大，尚未被学界普遍接受。
+    </p>
+  </div>
+</div>
+</section>
+
+<!-- ============ 02 谱系树 ============ -->
+<section id="s2">
+<div class="wrap">
+  <div class="sec-head reveal">
+    <div class="sec-num">Chapter 02 · 演化谱系树</div>
+    <h2 class="sec-title">人族<em>家族树</em>：谁是谁的亲戚</h2>
+    <p class="sec-desc">
+      下面这棵树整合了化石形态学与古 DNA／古蛋白证据。横轴是<b>分化时间</b>（非线性压缩，越往右越接近今天），
+      每条水平"暗带"表示该物种在地球上存续的时间跨度。<b>点击任意节点</b>查看它的档案。
+    </p>
+  </div>
+
+  <div class="tree-shell">
+    <div class="tree-box reveal">
+      <div class="tree-toolbar">
+        <span class="tb on" data-f="all" tabindex="0" role="button">全部</span>
+        <span class="tb" data-f="pre" tabindex="0" role="button">早期人族</span>
+        <span class="tb" data-f="aus" tabindex="0" role="button">南方古猿类</span>
+        <span class="tb" data-f="par" tabindex="0" role="button">傍人属</span>
+        <span class="tb" data-f="homo" tabindex="0" role="button">人属</span>
+        <span class="tb-sep"></span>
+        <span class="tb" id="tgRange" tabindex="0" role="button">存续条：开</span>
+        <span class="tb" id="tgLabel" tabindex="0" role="button">学名：开</span>
+        <span class="tb-sep"></span>
+        <span class="tb" id="tgReset" tabindex="0" role="button">重置</span>
+      </div>
+      <div class="tree-scroll"><svg id="phylo" viewBox="0 0 1200 1040" preserveAspectRatio="xMinYMin meet"></svg></div>
+      <div class="legend">
+        <span class="lg"><i style="background:#64748b"></i>早期人族（存疑基干类群）</span>
+        <span class="lg"><i style="background:#fbbf24"></i>南方古猿属</span>
+        <span class="lg"><i style="background:#fb923c"></i>傍人属（灭绝旁支）</span>
+        <span class="lg"><i style="background:#34d399"></i>早期人属</span>
+        <span class="lg"><i style="background:#60a5fa"></i>中期人属</span>
+        <span class="lg"><i style="background:#a78bfa"></i>晚期人属（古老型）</span>
+        <span class="lg"><i style="background:#fb7185"></i>智人</span>
+        <span class="lg" style="margin-left:auto;color:var(--tx3)">虚线框 = 分类位置存疑</span>
+      </div>
+    </div>
+
+    <aside class="detail reveal" id="detail"></aside>
+  </div>
+  <p class="note reveal" style="margin-top:16px">
+    <b style="color:var(--tx2)">关于这棵树的诚实说明：</b>它是一幅<b>综合假说示意图</b>，不是定论。
+    其中"智人—龙人（丹尼索瓦人）互为姐妹群、尼安德特人为外类群"的拓扑，依据 2025 年郧县人 2 号头骨数字重建研究
+    （Feng 等）提出的"深分化"假说，把三者的分化时间推前至 <b>100 万年以上</b>——这与传统"海德堡人作为共同祖先"的模型显著不同，
+    目前学界仍有激烈争论。纳勒迪人、佛罗勒斯人、吕宋人的确切位置同样悬而未决。
+  </p>
+</div>
+</section>
+
+<!-- ============ 03 存续时间 ============ -->
+<section id="s3">
+<div class="wrap">
+  <div class="sec-head reveal">
+    <div class="sec-num">Chapter 03 · 时空共存</div>
+    <h2 class="sec-title">谁和谁<em>活在同一时期</em></h2>
+    <p class="sec-desc">
+      把每个物种的存续时间画成横条，"演化的灌木丛"就一目了然了。
+      注意距今 30 万至 4 万年前那段：地球上至少有 <b>6 个</b>人属物种同时存在——智人、尼安德特人、丹尼索瓦人（龙人）、
+      巨颅人、佛罗勒斯人、吕宋人，外加南非的纳勒迪人。那是人类史上最拥挤的时代。
+    </p>
+  </div>
+  <div class="gantt-box reveal">
+    <div class="gantt-scroll"><svg id="gantt" viewBox="0 0 1120 720" preserveAspectRatio="xMinYMin meet"></svg></div>
+    <div class="legend">
+      <span class="lg"><i style="background:#64748b"></i>早期人族</span>
+      <span class="lg"><i style="background:#fbbf24"></i>南方古猿属</span>
+      <span class="lg"><i style="background:#fb923c"></i>傍人属</span>
+      <span class="lg"><i style="background:#34d399"></i>人属·早期</span>
+      <span class="lg"><i style="background:#60a5fa"></i>人属·中期</span>
+      <span class="lg"><i style="background:#a78bfa"></i>人属·晚期</span>
+      <span class="lg"><i style="background:#fb7185"></i>智人</span>
+      <span class="lg" style="margin-left:auto;color:var(--tx3)">鼠标悬停查看细节</span>
+    </div>
+  </div>
+
+  <div class="lab glass pad reveal" style="margin-top:20px">
+    <h4 style="font-size:1.05rem;margin-bottom:4px">🧪 共存实验室</h4>
+    <p class="note" style="margin-bottom:14px">任选两个人族物种，看看他们是否真的在地球上打过照面——这是理解"演化灌木"最直观的方式。</p>
+    <div class="lab-picks">
+      <label for="cmpA">物种 A</label>
+      <select id="cmpA" aria-label="选择物种 A"></select>
+      <span style="color:var(--tx3)">vs</span>
+      <label for="cmpB">物种 B</label>
+      <select id="cmpB" aria-label="选择物种 B"></select>
+      <button class="lab-btn" id="cmpRnd" type="button">🎲 随机一对</button>
+    </div>
+    <div id="cmpOut" style="margin-top:16px"></div>
+  </div>
+</div>
+</section>
+
+<!-- ============ 03b 中国化石地图 ============ -->
+<section id="s3b">
+<div class="wrap">
+  <div class="sec-head reveal">
+    <div class="sec-num">Chapter 03b · 东亚现场</div>
+    <h2 class="sec-title">中国古人类遗址<em>分布图</em></h2>
+    <p class="sec-desc">
+      中国境内保存了全球<b>最连续、材料最丰富</b>的古人类化石序列之一：从 170 万年前的元谋人，
+      到 3 万年前的山口店山顶洞人，跨度近 200 万年且几乎没有断档。
+      铲形门齿、突出颧骨、下颌圆枕等体质特征在这条序列中反复出现，构成了"连续演化附带杂交"模型的形态学基础。
+      下图标注了 17 处关键遗址，<b>悬停或点击圆点</b>查看详情。
+    </p>
+  </div>
+
+  <div class="cnmap-grid">
+    <div class="map-box cnbg reveal">
+      <svg id="cnmap" viewBox="0 0 1000 800" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="map-legend">
+        <span class="ml"><i style="background:#60a5fa"></i>早期（直立人阶段）</span>
+        <span class="ml"><i style="background:#a78bfa"></i>中晚期（过渡型 / 巨颅人）</span>
+        <span class="ml"><i style="background:#22d3ee"></i>丹尼索瓦—龙人支系</span>
+        <span class="ml"><i style="background:#fb7185"></i>早期现代人</span>
+        <span class="ml" style="margin-left:auto;color:var(--tx3)">底图为示意，非精确国界</span>
+      </div>
+    </div>
+    <aside class="cnsite-panel reveal" id="cnPanel"></aside>
+  </div>
+
+  <div class="cnmap-note glass pad reveal">
+    <h4 style="font-size:1.02rem;margin-bottom:8px">🧭 这张图在说什么</h4>
+    <p class="note" style="line-height:1.85">
+      三个值得注意的格局：<b>其一</b>，早期遗址（元谋、蓝田、郧县）沿第二、三级阶梯的河谷与盆地分布，
+      显示早期人群偏好温暖的南方与中部；<b>其二</b>，中更新世之后遗址数量激增、分布北扩至哈尔滨（北纬 45.8°，
+      青藏高原东北缘 16 万年前就有丹尼索瓦人），说明人类对高寒环境的适应能力显著增强；
+      <b>其三</b>，丹尼索瓦—龙人支系的发现地（夏河、哈尔滨、郧县）与早期现代人遗址（田园洞、山顶洞）在地理上高度重叠，
+      暗示东亚可能是多个人群<b>长期共存与互动</b>的舞台，而非单一人群的连续替换。
+    </p>
+  </div>
+</div>
+</section>
+
+<!-- ============ 04 脑容量 ============ -->
+<section id="s4">
+<div class="wrap">
+  <div class="sec-head reveal">
+    <div class="sec-num">Chapter 04 · 脑的扩张</div>
+    <h2 class="sec-title">从 350 毫升到<em>1350 毫升</em></h2>
+    <p class="sec-desc">
+      脑容量不是匀速增长的。最初 400 万年几乎停滞在 400 毫升左右；进入人属后开始加速；
+      距今 80 万至 20 万年间出现最陡的爬升。而巨颅人的 1700–1800 毫升提醒我们：
+      <b>脑更大 ≠ 更聪明</b>——它们灭绝了，我们留下了。
+    </p>
+  </div>
+  <div class="brain-wrap">
+    <div class="glass pad reveal" style="position:relative">
+      <svg id="brain" viewBox="0 0 900 480" preserveAspectRatio="xMinYMin meet"></svg>
+      <div class="tip" id="btip"></div>
+    </div>
+    <div class="brain-facts">
+      <div class="bf reveal" style="--c:var(--cyan)">
+        <h5>🥩 昂贵的组织假说</h5>
+        <p>大脑只占体重 2%，却消耗 20% 的能量（婴儿高达 60%）。学界主流解释是：肉食增加 + 烹饪 + 用火，
+          让肠道缩短、能量重新分配给大脑。直立人掌握用火后，脑容量的爬升曲线明显变陡。</p>
+      </div>
+      <div class="bf reveal" style="--c:var(--violet)">
+        <h5>📉 近 1 万年反而变小了</h5>
+        <p>智人的平均脑容量在约 3 万年前达到峰值（约 1500 毫升），此后下降了约 10%，现代平均约 1350 毫升。
+          主流解释包括体型变小、能量预算优化，以及社会分工带来的<strong>群体层面</strong>智能。</p>
+      </div>
+      <div class="bf reveal" style="--c:var(--amber)">
+        <h5>🏝️ 岛屿法则：反向演化</h5>
+        <p>佛罗勒斯人（约 420 毫升）与吕宋人展示了"岛屿矮化"：资源有限、缺乏天敌的孤立环境中，
+          大型动物变小、小型动物变大。它们的脑虽然小，却制作工具、猎捕剑齿象，行为复杂程度远超体积暗示。</p>
+      </div>
+      <div class="bf reveal" style="--c:var(--emerald)">
+        <h5>🧠 结构比体积更重要</h5>
+        <p>尼安德特人的脑容量（平均约 1450 毫升）比现代人更大，但顶叶与小脑的比例不同：
+          现代人更发达的是与<b>社会认知、语言、长程规划</b>相关的区域。体积只是粗糙的代理指标。</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ 05 迁徙 ============ -->
+<section id="s5">
+<div class="wrap">
+  <div class="sec-head reveal">
+    <div class="sec-num">Chapter 05 · 走出非洲</div>
+    <h2 class="sec-title">人类的<em>三次大扩散</em></h2>
+    <p class="sec-desc">
+      人族至少有三次重要的"走出非洲"：第一次是 <b>直立人</b>（约 180 万年前），
+      第二次是 <b>海德堡人／古老型智人</b>的后代（约 70 万年前，其中一支演化为尼安德特人与丹尼索瓦人），
+      第三次才是<b>我们</b>——解剖学意义上的现代人（约 7 万–5 万年前）。
+    </p>
+  </div>
+  <div class="map-box reveal">
+    <canvas id="globe" aria-label="可旋转的三维地球，展示人类迁徙路线"></canvas>
+    <div class="map-legend">
+      <span class="ml"><i style="background:#fbbf24"></i>① 直立人扩散 · 约 180 万年前</span>
+      <span class="ml"><i style="background:#a78bfa"></i>② 古老型人类扩散 · 约 70 万–20 万年前</span>
+      <span class="ml"><i style="background:#22d3ee"></i>③ 现代人南方路线 · 约 7 万–5 万年前</span>
+      <span class="ml"><i style="background:#34d399"></i>③ 现代人北方路线 · 约 5 万–4 万年前</span>
+      <span class="ml"><i style="background:#fb7185"></i>④ 进入美洲 · 约 2 万–1.5 万年前</span>
+      <span class="ml" style="margin-left:auto;color:var(--tx3)">🖱️ 拖动地球可自由旋转</span>
+    </div>
+  </div>
+  <div class="mile-grid">
+    <div class="mile reveal"><span class="mi">🦶</span><div><h5>德马尼西人</h5><span>约 180 万年前 · 格鲁吉亚</span>
+      <p>非洲以外最早的确凿人属化石，脑容量仅约 600–780 毫升，证明"走出非洲"发生在大脑变大之前。</p></div></div>
+    <div class="mile reveal"><span class="mi">🔥</span><div><h5>用火与狩猎</h5><span>约 100 万–40 万年前</span>
+      <p>德国舍宁根出土约 30 万年前的木质标枪，证明系统化狩猎大型猎物；用火让高纬度地区得以殖民。</p></div></div>
+    <div class="mile reveal"><span class="mi">⛵</span><div><h5>跨越海洋</h5><span>约 65 万–5 万年前</span>
+      <p>弗洛勒斯岛、吕宋岛的化石证明，某些人族在极早年代就具备了跨越深海海峡的能力（可能是漂流或简易筏）。</p></div></div>
+    <div class="mile reveal"><span class="mi">🎨</span><div><h5>象征性思维爆发</h5><span>约 7 万–4 万年前</span>
+      <p>南非布隆伯斯洞窟的刻纹赭石（约 7.3 万年）、欧洲洞穴壁画（约 4 万年）、最早的骨笛与雕塑，标志着"现代行为"的出现。</p></div></div>
+    <div class="mile reveal"><span class="mi">🌾</span><div><h5>新石器革命</h5><span>约 1.2 万年前</span>
+      <p>从新月沃地、中国长江黄河流域、中美洲等多个中心独立起源的农业，让人类的种群规模呈指数级增长。</p></div></div>
+    <div class="mile reveal"><span class="mi">🗿</span><div><h5>全球殖民完成</h5><span>约 1 万年前 – 近代</span>
+      <p>从太平洋岛屿到北极圈，智人成为唯一遍布全球的人属物种——上一次有多个人属共存，还是 4 万年前的事。</p></div></div>
+  </div>
+</div>
+</section>
+
+<!-- ============ 06 基因交流 ============ -->
+<section id="s6">
+<div class="wrap">
+  <div class="sec-head reveal">
+    <div class="sec-num">Chapter 06 · 融合而非替代</div>
+    <h2 class="sec-title">你身体里<em>住着几个古人类</em></h2>
+    <p class="sec-desc">
+      2010 年以来，古基因组学彻底改写了"现代人完全取代古老人群"的叙事。
+      斯万特·帕博（Svante Pääbo）因在古 DNA 领域的开创性工作获得 2022 年诺贝尔生理学或医学奖。
+      我们不是纯粹的智人——我们是<b>杂交的产物</b>。
+    </p>
+  </div>
+  <div class="flow-grid">
+    <div class="flow reveal" style="--c:#fb7185">
+      <div class="pct">1.8–2.6%</div>
+      <h4>尼安德特人基因</h4>
+      <p>所有非洲以外的现代人群都携带。非洲人群几乎为零（少量来自近代回流）。
+        估计尼安德特人基因组的约 <b>20%</b> 至今仍以片段形式散落在全球人类群体中。</p>
+      <div class="bar"><i data-w="26" style="--w:26%"></i></div>
+    </div>
+    <div class="flow reveal" style="--c:#a78bfa">
+      <div class="pct">0.2–6%</div>
+      <h4>丹尼索瓦人基因</h4>
+      <p>巴布亚新几内亚、澳大利亚原住民与部分菲律宾人群最高（约 4%–6%）；
+        东亚人群普遍携带 0.2% 左右，欧洲人群极低。至少发生过 4 次独立的渗入事件。</p>
+      <div class="bar"><i data-w="60" style="--w:60%"></i></div>
+    </div>
+    <div class="flow reveal" style="--c:#fbbf24">
+      <div class="pct">约 2–19%</div>
+      <h4>非洲的"幽灵"古人类</h4>
+      <p>2020 年研究显示，四个西非人群基因组中约 6.6%–7.0% 来自一支尚未发现化石的古老型人类，
+        它在约 36 万–102 万年前与人类／尼安德特人的共同祖先分道扬镳。</p>
+      <div class="bar"><i data-w="70" style="--w:70%"></i></div>
+    </div>
+    <div class="flow reveal" style="--c:#34d399">
+      <div class="pct">3 次 + 4 次</div>
+      <h4>已知的渗入事件</h4>
+      <p>遗传学证据显示：至少 3 次尼安德特人向现代人、4 次丹尼索瓦人向现代人的独立基因渗入。
+        智人与这些古老型人类在欧亚大陆可能共存并互动了长达 5000 年。</p>
+      <div class="bar"><i data-w="45" style="--w:45%"></i></div>
+    </div>
+  </div>
+
+  <div class="glass pad reveal" style="margin-top:22px">
+    <h4 style="font-size:1.05rem;margin-bottom:6px">🎁 它们留给我们的"礼物"：适应性渗入</h4>
+    <p class="note" style="margin-bottom:14px">这些来自古人类的基因并非中性乘客，其中一部分被自然选择保留下来，帮助我们的祖先快速适应非洲以外的新环境。</p>
+    <div style="overflow-x:auto">
+    <table class="gene-table">
+      <thead><tr><th>基因／位点</th><th>来源</th><th>带给我们的能力</th><th>主要分布人群</th></tr></thead>
+      <tbody>
+        <tr><td><b>EPAS1</b></td><td>丹尼索瓦人</td><td>高原低氧适应——这是藏族人群适应青藏高原的关键基因</td><td>藏族及部分高原人群</td></tr>
+        <tr><td><b>HLA 免疫基因</b></td><td>尼安德特人 / 丹尼索瓦人</td><td>增强对当地病原体的免疫识别能力</td><td>欧亚人群广泛</td></tr>
+        <tr><td><b>皮肤与毛发相关位点</b></td><td>尼安德特人</td><td>紫外线适应、角质化与皮肤屏障功能</td><td>东亚人群（约 4.5 万年前起受选择）</td></tr>
+        <tr><td><b>TBX15 / WARS2</b></td><td>丹尼索瓦人</td><td>脂肪分布与产热（棕色脂肪）调节，利于寒冷适应</td><td>格陵兰因纽特人高频</td></tr>
+        <tr><td><b>凝血相关位点</b></td><td>尼安德特人</td><td>加快伤口愈合（同时也提高血栓风险）</td><td>欧亚人群</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note" style="margin-top:14px">
+      反过来，基因流动也是双向的：约 27 万年前的一次杂交，让早期智人的线粒体 DNA 与 Y 染色体<b>取代了</b>尼安德特人原有的版本。
+      此外，2022 年研究显示东部尼安德特人基因组中高达 2% 来自约 10 万年前走出非洲的早期现代人。
+    </p>
+  </div>
+</div>
+</section>
+
+<!-- ============ 07 物种档案 ============ -->
+<section id="s7">
+<div class="wrap">
+  <div class="sec-head reveal">
+    <div class="sec-num">Chapter 07 · 物种档案库</div>
+    <h2 class="sec-title">人族名录：<em>26 个</em>登场者</h2>
+    <p class="sec-desc">
+      从 700 万年前的乍得沙赫人到今天的智人。点击上方标签筛选，卡片按出现年代从早到晚排列。
+      标注 <span class="st cont" style="display:inline-block">存疑</span> 的条目表示其物种地位或分类位置仍在争论中；
+      卡片左侧头像为按脑容量与类群特征参数化生成的<b>示意线稿</b>，并非精确科学复原图。
+    </p>
+  </div>
+  <div class="filters reveal" id="filters"></div>
+  <div class="cards" id="cards"></div>
+</div>
+</section>
+
+<!-- ============ 08 技术与文化 ============ -->
+<section id="s8">
+<div class="wrap">
+  <div class="sec-head reveal">
+    <div class="sec-num">Chapter 08 · 技术与文化</div>
+    <h2 class="sec-title">石头、火焰与<em>符号</em></h2>
+    <p class="sec-desc">
+      生物演化塑造了我们的身体，技术演化塑造了我们的世界。下面这条时间带横跨 330 万年，
+      记录了人类如何一步步从"使用工具"走向"创造意义"。
+    </p>
+  </div>
+  <div class="tech-strip reveal" id="techStrip"></div>
+  <h4 style="font-size:1.06rem;margin:38px 0 4px" class="reveal">🔑 关键转折点</h4>
+  <div class="mile-grid" id="mileGrid"></div>
+</div>
+</section>
+
+<!-- ============ 08b 人类世 ============ -->
+<section id="s8b">
+<div class="wrap">
+  <div class="sec-head reveal">
+    <div class="sec-num">Chapter 08b · 农业之后</div>
+    <h2 class="sec-title">人口曲线与<em>人类世</em></h2>
+    <p class="sec-desc">
+      在此前的 700 万年里，人口曲线几乎是贴着地平线的一条直线。
+      农业改变了斜率，工业革命把它掰成直角，而 1950 年之后——它变成了一堵墙。
+      这就是<b>"大加速"</b>：人类不再只是生活在地球上，而是开始成为塑造地球的主要地质力量。
+    </p>
+  </div>
+
+  <!-- 人口曲线 -->
+  <div class="glass pad reveal" style="position:relative">
+    <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:baseline;justify-content:space-between;margin-bottom:6px">
+      <h4 style="font-size:1.05rem">📈 世界人口：1.2 万年前 → 2100 年</h4>
+      <span class="note">数据基于联合国《世界人口展望 2024 修订版》中方案 · 单位：亿人</span>
+    </div>
+    <div class="pop-scroll"><svg id="popchart" viewBox="0 0 1000 430" preserveAspectRatio="xMinYMin meet"></svg></div>
+    <div class="tip" id="ptip"></div>
+    <p class="note" style="margin-top:10px">
+      注意横轴是<b>分段压缩</b>的——否则最近 200 年会被挤成一条竖线，而此前一万年则空空荡荡。
+      即便如此，图表的绝大部分面积依然是空的：这正是曲棍球棒曲线要表达的东西。
+    </p>
+  </div>
+
+  <!-- 里程碑 -->
+  <div class="pop-duo">
+    <div class="glass pad reveal">
+      <h4 style="font-size:1.02rem;margin-bottom:4px">⏱️ 每增加 10 亿人，用了多久</h4>
+      <p class="note" style="margin-bottom:16px">间隔时间从 123 年骤降到约 12 年，随后又开始回升——曲线正在重新弯折。</p>
+      <div id="popBars"></div>
+    </div>
+    <div class="glass pad reveal">
+      <h4 style="font-size:1.02rem;margin-bottom:4px">🌡️ 三条关键增长率</h4>
+      <p class="note" style="margin-bottom:16px">年增长率在 1963 年前后达到历史峰值，此后一路下行。</p>
+      <div class="rate-row">
+        <div class="rate"><div class="rv" style="color:var(--amber)">~0.03%</div><div class="rk">新石器革命前的狩猎采集时代</div></div>
+        <div class="rate"><div class="rv" style="color:var(--rose)">2.14%</div><div class="rk">1963 年 · 历史峰值</div></div>
+        <div class="rate"><div class="rv" style="color:var(--emerald)">0.85%</div><div class="rk">2025 年 · 数十年来最低</div></div>
+      </div>
+      <p class="note" style="margin-top:16px;padding-top:14px;border-top:1px solid var(--line)">
+        全球总和生育率已从 1950 年的约 5.0 降至约 2.3，逼近 2.1 的更替水平。
+        目前已有 <b>20 多个国家</b>进入人口负增长，包括中国、日本、德国、俄罗斯、意大利等主要经济体。
+        联合国预计全球人口将在 <b>2084 年前后</b>达到约 <b>102.9 亿</b>的峰值，随后缓慢回落至 2100 年的约 101.9 亿。
+      </p>
+    </div>
+  </div>
+
+  <!-- 人类世专题 -->
+  <div class="sec-head reveal" style="margin-top:64px">
+    <div class="sec-num">Anthropocene · 一个被否决的名字</div>
+    <h2 class="sec-title">我们该给这个时代<em>起什么名字</em></h2>
+    <p class="sec-desc">
+      2000 年，大气化学家保罗·克鲁岑（Paul Crutzen）在一次会议上脱口而出：
+      "别再说全新世了，我们现在处在<b>人类世</b>。" 二十四年后，这个提议被正式投票否决了——
+      但这个词早已走出地层学，成为我们理解自身处境的核心概念。
+    </p>
+  </div>
+
+  <div class="anthro-grid">
+    <div class="glass pad reveal" style="border-color:rgba(251,191,36,.3)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <span style="font-size:1.5rem">📌</span>
+        <h4 style="font-size:1.05rem">金钉子方案：克劳福德湖 1952</h4>
+      </div>
+      <p class="note" style="font-size:.85rem;line-height:1.8">
+        地层学要确立一个"代/世"，必须找到一枚"金钉子"（GSSP）——全球同步、物理可辨的标志层。
+        人类世工作组（AWG）评估了 12 处候选地，2023 年 7 月选定加拿大安大略省的<b>克劳福德湖</b>：
+        这是一个小型深水湖，底部水体不循环，沉积物形成完好的年纹层（类似树轮）。
+        <b>1952 年的纹层里出现了钚-239 的尖锐峰值</b>——来自氢弹试验的全球性放射性沉降；
+        同时还有化石燃料高温燃烧产生的球形碳质颗粒（飞灰），以及化肥工业化带来的氮同位素偏移。
+      </p>
+    </div>
+    <div class="glass pad reveal" style="border-color:rgba(251,113,133,.3)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <span style="font-size:1.5rem">🗳️</span>
+        <h4 style="font-size:1.05rem">2024 年 3 月：12 比 4，被否决</h4>
+      </div>
+      <p class="note" style="font-size:.85rem;line-height:1.8">
+        国际地层委员会第四纪地层分委会以 <b>12 票反对、4 票支持、2 票弃权</b>否决了 AWG 的提案，
+        国际地质科学联合会（IUGS）执行委员会同月维持该决定。
+        关键分歧在于：反对者（如 Philip Gibbard、Stanley Finney）认为人类世是<b>穿时的</b>（diachronous）——
+        它在不同地区、不同时间发生，无法钉死在 1952 年这一个瞬间；而几十年的湖泥在地层记录中薄得近乎不存在。
+        <b>需要强调的是：否决的是"地层学命名"，不是"人类正在改变地球"这一事实本身。</b>
+        IUGS 在声明中承认人类活动的影响是"巨大的"且"破坏性的"。
+      </p>
+    </div>
+  </div>
+
+  <h4 style="font-size:1.06rem;margin:32px 0 4px" class="reveal">🕰️ 起点之争：四个候选时刻</h4>
+  <div class="mile-grid" id="anthroStarts"></div>
+
+  <h4 style="font-size:1.06rem;margin:38px 0 4px" class="reveal">📊 大加速：1750 → 今天</h4>
+  <p class="note reveal" style="margin-bottom:16px">
+    环境史学家把 1950 年之后社会经济与地球系统指标的同步暴涨称为"大加速"（Great Acceleration）——
+    它们的曲线形状几乎都是曲棍球棒。以下是其中几条最具代表性的。
+  </p>
+  <div class="accel-grid reveal" id="accelGrid"></div>
+
+  <div class="big-quote reveal" style="margin-top:32px">
+    <div class="bq">
+      地缘政治、经济模型、法律体系，都还没有学会处理一个事实：
+      我们是一个<em>能够改变整个行星运行方式的物种</em>。
+      演化给了我们这个能力，却没有给我们配套的审慎。
+    </div>
+    <div class="bq-src">—— 从这个意义上说，"人类世"与其说是一个地质年代单位，不如说是一次哲学上的警钟</div>
+  </div>
+</div>
+</section>
+
+<!-- ============ 09 统一与多样 ============ -->
+<section id="s9">
+<div class="wrap">
+  <div class="sec-head reveal">
+    <div class="sec-num">Chapter 09 · 我们是谁</div>
+    <h2 class="sec-title">同一个物种，<em>万千种面貌</em></h2>
+    <p class="sec-desc">
+      这是整个演化故事里最反直觉、也最重要的一课：人类看起来差异巨大，基因层面却高度统一。
+      而那些看得见的差异，讲述的是一段关于阳光、气候与迁徙的适应史。
+    </p>
+  </div>
+
+  <div class="unity">
+    <div class="big-quote reveal">
+      <div class="bq">
+        生物学上，<em>人类只有一个物种，没有亚种，更没有"人种"之分。</em>
+        所有活着的人都属于智人种，彼此之间不存在生殖隔离，
+        任意两个人的基因组相似度高达 <em>99.9%</em>。
+      </div>
+      <div class="bq-src">—— 现代进化生物学与人类遗传学的共识立场</div>
+      <div class="cline">
+        <div style="font-size:.82rem;color:var(--tx2);margin-bottom:8px">
+          肤色差异是随纬度<b>连续渐变</b>的适应性表型，没有清晰的分界线：
+        </div>
+        <div class="cline-bar"><span>赤道 · 强紫外线</span><span>高纬度 · 弱紫外线</span></div>
+        <p class="note" style="margin-top:8px">
+          深色皮肤保护叶酸不被紫外线破坏、防止晒伤；浅色皮肤则保障在弱紫外线地区合成足量维生素 D。
+          这是一种精妙的平衡，而非"等级"差异。
+        </p>
+      </div>
+    </div>
+
+    <div class="dna-vis reveal">
+      <h4 style="font-size:1.02rem">🧬 人类遗传变异的分布</h4>
+      <p class="note" style="margin:8px 0 4px">
+        经典的群体遗传学分析（Lewontin 1972）及后续大规模基因组研究都指向同一结论：
+        人类绝大部分遗传变异存在于<b>人群内部</b>，而非人群之间。
+      </p>
+      <div class="dna-strip">
+        <div style="flex:88;background:linear-gradient(90deg,#22d3ee,#60a5fa)" title="人群内部变异"></div>
+        <div style="flex:12;background:linear-gradient(90deg,#fbbf24,#fb7185)" title="人群之间变异"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:.74rem;color:var(--tx3)">
+        <span>◀ 群体内部差异 ≈ 85–90%</span><span>群体之间 ≈ 10–15% ▶</span>
+      </div>
+      <div style="margin-top:22px;padding-top:18px;border-top:1px solid var(--line)">
+        <h4 style="font-size:1.02rem;margin-bottom:10px">📍 多样性的起源：奠基者效应</h4>
+        <p class="note">
+          遗传多样性随<b>距非洲的迁徙距离</b>递减——因为每一次"一小群人分家走出去"，
+          都只能带走母群体基因库的一部分样本。非洲人群保留了最高的人类遗传多样性，
+          这与"现代人起源于非洲"的分子证据高度吻合。<br><br>
+          换言之：人类外表差异的绝大部分，是过去 7 万年里<b>不同人群对局地环境适应</b>的结果，
+          其分子基础只涉及基因组中极少数的位点。
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ 10 前沿 ============ -->
+<section id="s10">
+<div class="wrap">
+  <div class="sec-head reveal">
+    <div class="sec-num">Chapter 10 · 进行时</div>
+    <h2 class="sec-title">教科书的<em>下一次修订</em></h2>
+    <p class="sec-desc">
+      这页里写下的每一条"常识"，都可能在下一个化石出土那天被推翻。以下是近两三年真正震动学界的进展。
+    </p>
+  </div>
+  <div class="fr-grid">
+    <div class="fr reveal"><span class="yr">2025 · 6月 & 7月</span><h4>丹尼索瓦人终于有了"脸"</h4>
+      <p>付巧妹团队分别通过古蛋白组与牙结石中的线粒体 DNA 分析，确认 1933 年出土于黑龙江哈尔滨、
+        2021 年被命名为"龙人"（<i>Homo longi</i>）的近完整头骨属于丹尼索瓦人。
+        这是人类第一次看到丹尼索瓦人的完整面部形态。</p><span class="tagx">突破</span></div>
+    <div class="fr reveal"><span class="yr">2025 · 4月</span><h4>台湾海峡的丹尼索瓦下颌骨</h4>
+      <p>2008 年从澎湖水道打捞出的"澎湖 1 号"下颌骨，经形态与蛋白质序列双重比对确认为丹尼索瓦人（男性个体），
+        把该人群的已知分布大幅向东南推进到湿热的亚热带海域。</p><span class="tagx">分布扩展</span></div>
+    <div class="fr reveal"><span class="yr">2025 · 9月</span><h4>郧县人 2 号：100 万年前的"深分化"</h4>
+      <p>湖北郧县出土、严重变形的头骨经高精度 CT 与上万次模拟完成数字重建，脑容量超过 1100 毫升。
+        系统发育分析认为它属于<b>龙人支系的早期代表</b>，意味着智人、龙人、尼安德特人的分化
+        可能发生于 100 万年前甚至更早——比传统认知早数倍。</p><span class="tagx">颠覆性</span></div>
+    <div class="fr reveal"><span class="yr">2026 · 2月</span><h4>东亚不再是演化的"边缘"</h4>
+      <p>中国科学院古脊椎动物与古人类研究所在《自然》发表成果，综合中国境内数十处遗址的化石、年代学与古环境数据，
+        论证过去 200 万年间东亚在人属演化中扮演核心角色，支持"多中心、多路径"的演化图景，
+        而非非洲单一起源后的简单扩散。</p><span class="tagx">范式修正</span></div>
+    <div class="fr reveal"><span class="yr">2026 · 1月</span><h4>乍得沙赫人真的直立行走</h4>
+      <p>纽约大学 Scott Williams 团队在《科学进展》发表对乍得沙赫人股骨的三维分析，
+        识别出人族特有的股骨结节（髂股韧带附着点）与股骨前倾，为 700 万年前的两足行走提供了迄今最强证据。</p><span class="tagx">起源问题</span></div>
+    <div class="fr reveal"><span class="yr">2025 · 古DNA</span><h4>青藏高原"幽灵祖先"被找到</h4>
+      <p>历时 9 年对云南 17 处遗址 127 例古代基因组测序，发现距今 7100 年的兴义遗址个体携带
+        一种深度分化的亚洲遗传成分——"亚洲基部兴义祖先"，它正是长期困扰学界的青藏高原人群
+        约 20% 未知遗传成分的来源之一，并保留在现代藏族基因组中。</p><span class="tagx">中国发现</span></div>
+    <div class="fr reveal"><span class="yr">2024 · 11月</span><h4>"巨颅人"横空出世</h4>
+      <p>吴秀杰与 Christopher Bae 在《自然·通讯》提议命名新物种 <i>Homo juluensis</i>（巨颅人），
+        以许家窑为正模、许昌为副模，并将其涵盖夏河下颌骨、澎湖 1 号乃至丹尼索瓦人。
+        颅容量估计 1700–1800 毫升，超过现代人平均。该命名<b>争议极大</b>。</p><span class="tagx">存争议</span></div>
+    <div class="fr reveal"><span class="yr">2026 · 8月</span><h4>人属要不要"扩容"？</h4>
+      <p>莫纳什大学 Ian Towle 在《美国体质人类学杂志》提出：由于南方古猿属与傍人属同样具备复杂行为，
+        且三者的分支关系并不清晰，应把过去 400 万–500 万年的人族<b>全部并入人属</b>。
+        这是一次激进的分类学重构提案。</p><span class="tagx">存争议</span></div>
+    <div class="fr reveal"><span class="yr">未解之谜</span><h4>"祖先 X" 究竟是谁</h4>
+      <p>如果郧县人研究成立，那么智人、龙人、尼安德特人的共同祖先（学界戏称 Ancestor X）
+        必须生活在 100 万年以上之前——但那个年代的关键化石在哪里？欧洲的 <i>Homo antecessor</i>、
+        非洲的 <i>Homo bodoensis</i> 都只是候选者之一。</p><span class="tagx">待解</span></div>
+    <div class="fr reveal"><span class="yr">未解之谜</span><h4>纳勒迪人埋葬了死者吗</h4>
+      <p>2023 年研究称南非"新星洞"深处（需复杂路径进入）的纳勒迪人遗骸可能是<b>有意的仪式性埋葬</b>，
+        并伴随岩壁刻画。但这需要脑容量仅 560 毫升的物种具备象征性思维，学界质疑声很强。</p><span class="tagx">待解</span></div>
+    <div class="fr reveal"><span class="yr">未解之谜</span><h4>语言从何时开始</h4>
+      <p>FOXP2 基因、舌骨形态、听觉结构、象征性行为的考古证据……每一条线索都只能给出间接推断。
+        语言的起点可能在 200 万年前，也可能晚至 10 万年前——我们至今无法确定。</p><span class="tagx">待解</span></div>
+    <div class="fr reveal"><span class="yr">未解之谜</span><h4>还有多少物种没被发现</h4>
+      <p>丹尼索瓦人完全靠一段指骨的 DNA 才被人类知晓。这意味着：
+        还有多少古老人群只留下基因片段，而从未留下可辨认的化石？</p><span class="tagx">待解</span></div>
+  </div>
+</div>
+</section>
+
+<!-- ============ 术语 & 参考 ============ -->
+<section id="s11">
+<div class="wrap">
+  <div class="sec-head reveal">
+    <div class="sec-num">Appendix · 附录</div>
+    <h2 class="sec-title">术语表与<em>延伸阅读</em></h2>
+  </div>
+  <dl class="glossary reveal">
+    <div class="gl"><dt>两足行走（Bipedalism）</dt><dd>习惯性以双足直立行走，是人族区别于其他灵长类的首要特征，早于脑容量增大约 500 万年出现。</dd></div>
+    <div class="gl"><dt>人亚族 / hominin</dt><dd>人类支系——即人与黑猩猩分道扬镳之后的所有物种，包含南方古猿属、傍人属、人属等。</dd></div>
+    <div class="gl"><dt>岛屿矮化（Insular dwarfism）</dt><dd>孤立岛屿环境中，大型动物体型趋向缩小的演化现象，典型如佛罗勒斯人与吕宋人。</dd></div>
+    <div class="gl"><dt>奥杜威工业（Oldowan）</dt><dd>约 260 万年前出现的最早系统性石器技术，以打制的砍砸器与石片为主。</dd></div>
+    <div class="gl"><dt>阿舍利工业（Acheulean）</dt><dd>约 176 万年前由直立人开创，以对称的"手斧"为标志，体现抽象规划能力。</dd></div>
+    <div class="gl"><dt>莫斯特工业（Mousterian）</dt><dd>与尼安德特人紧密相关的旧石器中期技术，采用预制石核的勒瓦娄哇技法。</dd></div>
+    <div class="gl"><dt>渗入（Introgression）</dt><dd>两个种群杂交后，一方的基因通过回交进入另一方基因库并长期保留的过程。</dd></div>
+    <div class="gl"><dt>奠基者效应（Founder effect）</dt><dd>少数个体从大群体分离建立新种群时，只携带部分遗传多样性，导致新群体基因库变窄。</dd></div>
+    <div class="gl"><dt>古蛋白组学（Palaeoproteomics）</dt><dd>从古老化石中提取并测序蛋白质。比古 DNA 更耐久，可在热带与极古老样本中获得信息。</dd></div>
+    <div class="gl"><dt>系统发生树（Phylogeny）</dt><dd>描述物种间亲缘与分化次序的树状图。分支节点代表共同祖先。</dd></div>
+    <div class="gl"><dt>单倍群（Haplogroup）</dt><dd>共享同一突变祖先的线粒体 DNA 或 Y 染色体类型，用于追踪母系／父系迁徙路线。</dd></div>
+    <div class="gl"><dt>更新世 / 全新世</dt><dd>更新世约 258 万–1.17 万年前，以反复冰期为特征；全新世自 1.17 万年前至今，是人类文明展开的地质时代。</dd></div>
+  </dl>
+
+  <div class="glass pad reveal" style="margin-top:26px">
+    <h4 style="font-size:1.02rem;margin-bottom:12px">📚 主要资料来源</h4>
+    <div class="refs">
+      · 新华社《中国化石重塑人类进化史认知》（2026 年 4 月），综述中科院古脊椎所 2026 年 2 月《自然》成果<br>
+      · 新华社《改写生命演化史：2025 年我国古生物学研究在多领域取得突破》（2025 年 12 月）<br>
+      · New Scientist《2025 was chock full of exciting discoveries in human evolution》（2025 年 12 月）<br>
+      · PLOS SciComm《Top Stories in Human Evolution of 2025》——哈尔滨头骨、澎湖 1 号、郧县人 2 号研究综述<br>
+      · Britannica《Denisovan》——丹尼索瓦人化石、分布与年代<br>
+      · Stringer, C. 等《Recent progress in studies of the last million years of human physical and behavioural evolution》，<i>JRAI</i>（2025）<br>
+      · 自然史博物馆（NHM, London）《When and how did modern humans spread out of Africa and around the world?》<br>
+      · Wikipedia《Recent African origin of modern humans》《Homo juluensis》《Xujiayao》物种数据汇编<br>
+      · 新华网《古基因组学这样讲述人类起源故事》——尼安德特人／丹尼索瓦人渗入比例<br>
+      · Wu &amp; Bae (2024), <i>Nature Communications</i> —— 巨颅人 <i>Homo juluensis</i> 命名<br>
+      · Towle, I. (2026), <i>American Journal of Biological Anthropology</i> —— 人属分类修订提案<br>
+      · Williams, S. 等 (2026), <i>Science Advances</i> —— 乍得沙赫人两足行走的新证据
+    </div>
+    <p class="note" style="margin-top:16px;border-top:1px solid var(--line);padding-top:14px">
+      本页中的年代与脑容量数据为学界常用区间值，不同研究给出的测年结果可能存在差异；
+      涉及分类学争议的内容已在相应位置明确标注。数据截至 2026 年 9 月。
+    </p>
+  </div>
+</div>
+</section>
+
+<footer>
+  <div class="fg">🧬</div>
+  <p style="max-width:60ch;margin:0 auto 10px;font-size:.9rem;color:var(--tx2)">
+    演化没有目标，也没有终点。我们只是众多分支中，恰好活到今天的那一根。
+  </p>
+  <p>人类演化全景图 · 科普用途 · 内容基于公开发表的科学研究 · 2026 · 键盘 ←/→ 可切换章节</p>
+</footer>
+<button id="toTop" aria-label="返回顶部" title="返回顶部">↑</button>
+<button id="themeBtn" aria-label="切换亮色/暗色主题" title="切换主题">☀️</button>
+
+<script>
+/* =========================================================
+   数据层：人族物种档案
+   ========================================================= */
+const SP = [
+  // ---- 早期人族（基干类群） ----
+  {id:'sahel',cn:'乍得沙赫人',sci:'Sahelanthropus tchadensis',grp:'pre',c:'#64748b',
+   start:7.0,end:6.0,brain:350,height:'—',region:'乍得（托罗斯-梅纳拉）',
+   desc:'已知最古老的可能人族成员之一，俗称"图迈"（Toumaï，意为"生命的希望"）。脑容量与黑猩猩相当，但枕骨大孔位置与面部形态提示其可能直立行走。2026 年 1 月《科学进展》发表的股骨三维分析（识别出人族特有的股骨结节）为两足行走提供了迄今最有力的证据。',
+   tags:['最古老候选','两足行走存证','2026新证据'],status:'灭绝',certain:1},
+  {id:'orrorin',cn:'图根原人',sci:'Orrorin tugenensis',grp:'pre',c:'#64748b',
+   start:6.1,end:5.8,brain:'—',height:'约 1.4 m',region:'肯尼亚（图根山）',
+   desc:'又称"千禧人"。化石以股骨为主，股骨颈形态被认为是明确的直立行走证据；同时保留适应攀爬的肱骨与弯曲的指骨，呈现"树栖 + 两足"的镶嵌状态。牙齿釉质较厚，接近后期人族。',
+   tags:['镶嵌演化','树栖兼两足'],status:'灭绝',certain:1},
+  {id:'ardi',cn:'始祖地猿（拉密达地猿）',sci:'Ardipithecus ramidus',grp:'pre',c:'#64748b',
+   start:4.5,end:4.3,brain:'300–350',height:'约 1.2 m',region:'埃塞俄比亚（阿拉米斯）',
+   desc:'1994 年发现的"阿尔迪"（Ardi）是其中最著名的个体。它生活在森林环境，能在地面直立行走，但保留可对握的大脚趾用于攀爬。这一发现推翻了"直立行走诞生于稀树草原"的经典假设。另有更早的卡达巴地猿（约 580 万–520 万年前）。',
+   tags:['Ardi','森林两足行走','推翻草原假说'],status:'灭绝',certain:1},
+
+  // ---- 南方古猿属 ----
+  {id:'anamensis',cn:'湖畔南方古猿',sci:'Australopithecus anamensis',grp:'aus',c:'#fbbf24',
+   start:4.2,end:3.9,brain:'—',height:'—',region:'肯尼亚、埃塞俄比亚',
+   desc:'目前公认最古老的南方古猿。胫骨形态显示已具备完全的两足行走能力，而牙齿与颌骨仍相当原始，呈现典型的"上下半身演化不同步"。',
+   tags:['最早的南方古猿','完全直立'],status:'灭绝',certain:1},
+  {id:'afarensis',cn:'阿法南方古猿',sci:'Australopithecus afarensis',grp:'aus',c:'#fbbf24',
+   start:3.9,end:2.9,brain:'380–430',height:'1.0–1.5 m',region:'埃塞俄比亚、坦桑尼亚、肯尼亚',
+   desc:'"露西"（Lucy，约 320 万年前）所属的物种，是研究最透彻的早期人族。坦桑尼亚莱托里（Laetoli）遗址 366 万年前的火山灰脚印，证明其步态已与现代人接近——足弓形成、大脚趾不再对握。脑容量仅约为现代人的三分之一。',
+   tags:['露西','莱托里脚印','完全两足行走'],status:'灭绝',certain:1},
+  {id:'garhi',cn:'惊奇南方古猿',sci:'Australopithecus garhi',grp:'aus',c:'#fbbf24',
+   start:2.5,end:2.5,brain:'约 450',height:'—',region:'埃塞俄比亚（中阿瓦什）',
+   desc:'发现于 1999 年，与距今约 250 万年前最早一批带切割痕迹的动物骨骼同层出土，被视为"最早使用石器、获取肉类"的候选者之一。股骨较长，步态可能更接近人属。',
+   tags:['最早用工具候选','肉食证据'],status:'灭绝',certain:1},
+  {id:'africanus',cn:'非洲南方古猿',sci:'Australopithecus africanus',grp:'aus',c:'#fbbf24',
+   start:3.0,end:2.1,brain:'420–500',height:'1.1–1.4 m',region:'南非（汤恩、斯泰克方丹）',
+   desc:'1924 年"汤恩幼儿"化石是非洲出土的第一具早期人族化石，也是人类起源研究重心从亚洲转向非洲的转折点。脑容量略大于阿法种，面部较为平扁，牙齿更接近人属。',
+   tags:['汤恩幼儿','南非'],status:'灭绝',certain:1},
+  {id:'sediba',cn:'源泉南方古猿',sci:'Australopithecus sediba',grp:'aus',c:'#fbbf24',
+   start:1.98,end:1.98,brain:'约 420',height:'约 1.3 m',region:'南非（马拉帕）',
+   desc:'2008 年发现，保存极为完好。它的手兼具精确抓握能力与人族的短手指，骨盆已接近人属。命名者认为它可能是人属的祖先或近亲——但年代偏晚（约 198 万年前），比已知最早的人属化石还要晚，这让它更像是一支"迟到的旁系"。',
+   tags:['过渡形态','人属候选祖先'],status:'灭绝',certain:1},
+  {id:'kenya',cn:'平脸肯尼亚人',sci:'Kenyanthropus platyops',grp:'aus',c:'#fbbf24',
+   start:3.5,end:3.2,brain:'—',height:'—',region:'肯尼亚（图尔卡纳湖西岸）',
+   desc:'1999 年命名，意为"平脸的人"。面部异常扁平，与后来的人属有相似之处，一度被用来挑战"阿法种是唯一祖先"的观点。化石因严重碎裂变形，其有效性长期存在争议。',
+   tags:['扁平脸','分类存疑'],status:'灭绝',certain:0},
+
+  // ---- 傍人属 ----
+  {id:'paethiopicus',cn:'埃塞俄比亚傍人',sci:'Paranthropus aethiopicus',grp:'par',c:'#fb923c',
+   start:2.7,end:2.3,brain:'约 410',height:'—',region:'埃塞俄比亚、肯尼亚',
+   desc:'最古老的傍人。以 1985 年发现的"黑头骨"（KNM-WT 17000）闻名——因骨骼中锰质浸染而呈深色。拥有巨大的矢状脊与极度前突的面部。',
+   tags:['黑头骨','粗壮型开端'],status:'灭绝',certain:1},
+  {id:'pboisei',cn:'鲍氏傍人',sci:'Paranthropus boisei',grp:'par',c:'#fb923c',
+   start:2.3,end:1.2,brain:'约 510',height:'约 1.3 m',region:'坦桑尼亚、埃塞俄比亚、肯尼亚',
+   desc:'咀嚼机器的极致：拥有人族中最大的臼齿（面积约为现代人的 4 倍）、厚重的下颌与巨大的矢状脊，俗称"胡桃夹子人"。早期被认为是硬壳食物专家，但牙齿微痕与同位素分析显示它其实更多以芦苇、莎草等湿地植物为食。与早期人属共存超过 100 万年。',
+   tags:['胡桃夹子人','共生 100 万年','灭绝旁支'],status:'灭绝',certain:1},
+  {id:'probustus',cn:'粗壮傍人',sci:'Paranthropus robustus',grp:'par',c:'#fb923c',
+   start:1.8,end:1.2,brain:'约 530',height:'约 1.2 m',region:'南非（斯瓦特克朗斯等）',
+   desc:'南非的粗壮型人族。骨骼同位素显示其为杂食性；部分标本的肢骨尖端有磨损，被推测可能用于挖掘块茎。2025 年《人类演化杂志》报道了首例关联的髋骨—股骨—胫骨标本，为复原其步态提供了关键材料。',
+   tags:['南非','杂食','灭绝旁支'],status:'灭绝',certain:1},
+
+  // ---- 人属 · 早期 ----
+  {id:'habilis',cn:'能人',sci:'Homo habilis',grp:'homo',c:'#34d399',
+   start:2.4,end:1.6,brain:'510–690',height:'1.0–1.35 m',region:'坦桑尼亚、肯尼亚、埃塞俄比亚、南非',
+   desc:'意为"手巧的人"，1960 年由路易斯与玛丽·利基夫妇在奥杜威峡谷发现。脑容量首次显著超过南方古猿，牙齿变小，手指具备精确抓握能力。与奥杜威石器工业（约 260 万年前起）密切相关。其归属长期争论——有学者主张将其部分标本移入南方古猿属。',
+   tags:['最早的人属','奥杜威石器','分类存疑'],status:'灭绝',certain:0},
+  {id:'rudolfensis',cn:'鲁道夫人',sci:'Homo rudolfensis',grp:'homo',c:'#34d399',
+   start:1.9,end:1.8,brain:'约 750',height:'—',region:'肯尼亚（图尔卡纳湖东岸）',
+   desc:'以 1972 年发现的 KNM-ER 1470 号头骨为代表：脑容量约 750 毫升，面部宽大而扁平。其与能人的关系以及是否应独立成种，学界长期没有定论。',
+   tags:['1470号头骨','分类存疑'],status:'灭绝',certain:0},
+  {id:'ergaster',cn:'匠人',sci:'Homo ergaster',grp:'homo',c:'#34d399',
+   start:1.9,end:1.4,brain:'700–900',height:'1.5–1.8 m',region:'东非、南部非洲',
+   desc:'常被视作非洲的早期直立人。以"图尔卡纳男孩"（KNM-WT 15000，约 160 万年前）为代表：一具保存近完整的少年骨架，身高已达现代水平，四肢修长——完全适应了开阔热带稀树草原上的长距离行走与奔跑。阿舍利手斧的主要使用者。',
+   tags:['图尔卡纳男孩','阿舍利手斧','现代人体型'],status:'灭绝',certain:1},
+  {id:'erectus',cn:'直立人',sci:'Homo erectus',grp:'homo',c:'#60a5fa',
+   start:1.9,end:0.11,brain:'850–1100',height:'1.45–1.85 m',region:'非洲、格鲁吉亚、印尼、中国',
+   desc:'人属中延续时间最长（近 180 万年）、分布最广的物种，也是第一个走出非洲的人族。掌握用火、制作阿舍利手斧、可能已有初步的群体协作狩猎。亚洲代表包括爪哇人（1891 年发现）与北京猿人（周口店）；格鲁吉亚德马尼西的 5 具头骨（约 180 万年前）展示了惊人的个体变异。',
+   tags:['走出非洲第一波','用火','阿舍利','北京猿人','爪哇人','德马尼西'],status:'灭绝',certain:1},
+
+  // ---- 人属 · 中期 ----
+  {id:'antecessor',cn:'先驱人',sci:'Homo antecessor',grp:'homo',c:'#60a5fa',
+   start:0.85,end:0.8,brain:'约 1000',height:'1.6–1.8 m',region:'西班牙（阿塔普埃卡）',
+   desc:'1994 年命名于西班牙格兰多利纳洞穴，曾被认为是尼安德特人与现代人的共同祖先候选。面部中份与现代人相似，而牙齿较为原始。同层出土的骨骼带有切割痕迹，是欧洲最早的同类相食（可能属仪式性或生存性）证据之一。',
+   tags:['欧洲最早人属','共同祖先候选'],status:'灭绝',certain:1},
+  {id:'bodoensis',cn:'博多人',sci:'Homo bodoensis',grp:'homo',c:'#60a5fa',
+   start:0.6,end:0.4,brain:'约 1250',height:'—',region:'埃塞俄比亚（博多）、赞比亚',
+   desc:'2021 年新提出的命名，用于归类中更新世非洲一批此前被杂乱地贴上"海德堡人／罗得西亚人／古老型智人"标签的化石。博多颅骨兼具原始眉脊与现代式的面部结构，表面还有疑似人工切割痕迹。该命名尚未被广泛采纳。',
+   tags:['2021新命名','中更新世非洲','存争议'],status:'灭绝',certain:0},
+  {id:'heidelbergensis',cn:'海德堡人',sci:'Homo heidelbergensis',grp:'homo',c:'#60a5fa',
+   start:0.7,end:0.2,brain:'1100–1400',height:'约 1.75 m',region:'非洲、欧洲（德国海德堡等）',
+   desc:'传统模型中被视为尼安德特人与现代人的共同祖先。脑容量已进入现代人下限，是已知最早系统狩猎大型动物、建造居所、并可能进行仪式性埋葬的人属之一（西班牙"骨坑"遗址出土 28 具个体）。2025 年郧县人研究对这一地位提出了挑战。',
+   tags:['共同祖先候选','大型狩猎','地位受挑战'],status:'灭绝',certain:1},
+
+  // ---- 人属 · 晚期 ----
+  {id:'neander',cn:'尼安德特人',sci:'Homo neanderthalensis',grp:'homo',c:'#a78bfa',
+   start:0.43,end:0.04,brain:'1200–1750（均约 1450）',height:'约 1.65 m',region:'欧洲、西亚、中亚至阿尔泰山',
+   desc:'被研究得最透彻的古人类。适应冰期气候的粗壮体型、超大脑容量、莫斯特石器、可能的墓葬与照顾伤病个体行为、赭石与颜料使用、甚至可能制作简单的象征物。约 4 万年前消失，但 1.8%–2.6% 的基因留存在所有非洲以外的现代人身上。',
+   tags:['莫斯特工业','墓葬行为','与我们杂交','冰期适应'],status:'灭绝',certain:1},
+  {id:'longi',cn:'龙人 / 丹尼索瓦人',sci:'Homo longi（Denisovan）',grp:'homo',c:'#a78bfa',
+   start:1.0,end:0.03,brain:'约 1420',height:'—',region:'西伯利亚、中国（哈尔滨、夏河）、老挝、台湾海域',
+   desc:'人类演化研究中最传奇的一支：先由 DNA 被"发现"，十余年后才见到真容。2010 年，西伯利亚丹尼索瓦洞一块指骨的基因组揭示了一个全新的古老人群。此后化石陆续现身——甘肃夏河下颌骨（约 16 万年前）、澎湖 1 号下颌骨、老挝眼镜蛇洞牙齿。2025 年，古蛋白与牙结石 mtDNA 双重证据确认哈尔滨"龙人"头骨即丹尼索瓦人，人类终于看到了它们的脸。2025 年 9 月，郧县人 2 号头骨的数字重建更把该支系的起源推至约 100 万年前。',
+   tags:['DNA先行','2025确认真容','EPAS1高原基因','2025突破'],status:'灭绝',certain:0},
+  {id:'juluensis',cn:'巨颅人',sci:'Homo juluensis',grp:'homo',c:'#a78bfa',
+   start:0.3,end:0.1,brain:'1700–1800',height:'—',region:'中国（许家窑、许昌）',
+   desc:'2024 年 11 月由吴秀杰与 Christopher Bae 在《自然·通讯》提议命名的新物种，以山西—河北交界的许家窑遗址为正模、河南许昌为副模。颅容量可达 1700–1800 毫升，超过现代人平均；头骨低而宽、顶骨独特膨胀，并具有此前被视为尼安德特人特有的内耳迷路模式。许家窑出土 5000 余件动物标本，以普氏野马为主，暗示高度组织化的群体狩猎。作者主张将丹尼索瓦人也归入该种——此说争议极大。',
+   tags:['2024新命名','最大脑容量','内耳迷路','存争议'],status:'灭绝',certain:0},
+  {id:'naledi',cn:'纳勒迪人',sci:'Homo naledi',grp:'homo',c:'#a78bfa',
+   start:0.335,end:0.236,brain:'465–610',height:'约 1.45 m',region:'南非（新星洞，Rising Star Cave）',
+   desc:'2013 年发现、2015 年命名，是非洲出土的最丰富单一人族化石集合（1500 余件标本，代表至少 15 个个体）。奇特之处在于：脑容量极小（与现代人相差 3 倍），但手部与足部却相当进步。年代测定为距今约 33.5 万–23.6 万年——远晚于人们预期。2023 年研究声称其存在仪式性埋葬与岩壁刻画，引发轩然大波。',
+   tags:['小脑+进步手足','晚更新世','埋葬行为之争'],status:'灭绝',certain:1},
+  {id:'floresiensis',cn:'佛罗勒斯人',sci:'Homo floresiensis',grp:'homo',c:'#a78bfa',
+   start:0.7,end:0.05,brain:'约 420',height:'约 1.06 m',region:'印度尼西亚（弗洛勒斯岛·梁布亚洞）',
+   desc:'2003 年出土的"霍比特人"。身高约 1.06 米、脑容量约 420 毫升，却制作石器、猎捕矮剑齿象与巨蜥（科莫多龙）。它存活到距今约 5 万年前，与智人、尼安德特人同时代。这是"岛屿矮化"最著名的案例——学界主流认为其源自一支早期直立人（或更早的人属）在孤岛上的长期小型化。',
+   tags:['霍比特人','岛屿矮化','与智人同时代'],status:'灭绝',certain:1},
+  {id:'luzonensis',cn:'吕宋人',sci:'Homo luzonensis',grp:'homo',c:'#a78bfa',
+   start:0.134,end:0.05,brain:'—',height:'小型',region:'菲律宾（吕宋岛·卡劳洞）',
+   desc:'2019 年命名。牙齿极小，手骨与足骨却保留了南方古猿式的攀爬适应特征——一种令人费解的"镶嵌"组合。年代至少早于 13.4 万年前。更惊人的是：吕宋岛卡林加遗址出土了与剑齿象骨骼直接共存的石器（约 77.7 万–63.1 万年前），暗示该岛的人类史远比化石记录更古老。',
+   tags:['2019命名','镶嵌特征','跨越华莱士线'],status:'灭绝',certain:1},
+
+  // ---- 智人 ----
+  {id:'sapiens',cn:'智人',sci:'Homo sapiens',grp:'homo',c:'#fb7185',
+   start:0.315,end:0,brain:'1100–1900（均约 1350）',height:'约 1.55–1.8 m',region:'全球',
+   desc:'"有智慧的人"。目前已知最早的化石来自摩洛哥杰贝尔·伊尔胡德（约 31.5 万年前，面部已相当现代但脑壳仍较原始）；埃塞俄比亚奥莫·基比什的奥莫一号（约 23.3 万年前）是最古老的解剖学现代人骨架。约 7 万–5 万年前的一次大扩散，让我们在数万年内遍布全球，成为人属唯一的幸存者。2023 年一篇基于 300 余个基因组的分析提出，智人可能源自非洲多个远古人群的长期融合（"弱结构主干"模型），而非单一起源点。',
+   tags:['唯一幸存者','象征性思维','全球分布','语言与艺术'],status:'现存',certain:1}
+];
+
+
+// 技术/文化阶段
+const TECH = [
+  {yr:'约 330 万年前',n:'01',t:'最早的打制石器',c:'#94a3b8',
+   d:'肯尼亚洛梅奎遗址出土的石器早于人属出现，说明工具使用并非人类专属——早期人族已经开始利用锋利的石片。'},
+  {yr:'260 万年前',n:'02',t:'奥杜威工业',c:'#34d399',
+   d:'砍砸器与石片：简单，却要求制作者理解岩石的断裂角度并预先选择原料。与能人／早期人属密切相关。'},
+  {yr:'176 万年前',n:'03',t:'阿舍利手斧',c:'#22d3ee',
+   d:'对称的泪滴形手斧，沿用超过 100 万年。它体现了"心中先有形状，再动手去实现"的抽象规划能力。'},
+  {yr:'约 100 万年前',n:'04',t:'控制用火',c:'#fbbf24',
+   d:'烹饪让食物更易消化、释放更多热量，是人类大脑得以扩张的关键能量前提，也让寒冷地区的殖民成为可能。'},
+  {yr:'50 万年前',n:'05',t:'复合工具与木矛',c:'#fb923c',
+   d:'德国舍宁根出土的木质标枪（约 30 万年前）证明系统化狩猎大型猎物；装柄技术让工具效率倍增。'},
+  {yr:'30 万年前',n:'06',t:'勒瓦娄哇技法',c:'#a78bfa',
+   d:'先修整石核、再打下预定形状的石片——这是一种"两步走"的思维，认知复杂度远超此前的直接打制。'},
+  {yr:'约 10 万年前',n:'07',t:'颜料与装饰',c:'#f472b6',
+   d:'南非布隆伯斯洞窟的刻纹赭石（约 7.3 万年前）与穿孔贝壳，是最早的"我思故我在"痕迹。'},
+  {yr:'7 万–4 万年前',n:'08',t:'行为现代性大爆发',c:'#fb7185',
+   d:'洞穴壁画、骨笛、雕塑、复杂的墓葬、远距离贸易网络——象征性思维全面展开，语言很可能已高度发达。'},
+  {yr:'约 1.2 万年前',n:'09',t:'农业与新石器革命',c:'#4ade80',
+   d:'新月沃地、中国长江黄河流域、中美洲等多中心独立起源。人类从"适应环境"转向"改造环境"。'},
+  {yr:'约 5000 年前',n:'10',t:'文字与城市',c:'#60a5fa',
+   d:'信息可以脱离个体记忆而储存——累积性文化演化由此加速，文明成为超越生物演化的第二套传承系统。'},
+  {yr:'约 250 年前',n:'11',t:'工业革命',c:'#818cf8',
+   d:'化石能源的利用让人类的能量获取突破了生物量的上限，人口与影响力呈指数级增长。'},
+  {yr:'约 70 年前',n:'12',t:'信息时代',c:'#e879f9',
+   d:'从计算机到人工智能。我们正在用自己创造的符号系统，反过来理解创造了我们的那套系统。'}
+];
+
+const MILESTONES = [
+  {i:'🦴',t:'约 700 万年前',h:'直立行走的开端',p:'人族与黑猩猩支系分道扬镳。两足行走是这场分手的第一个标志。'},
+  {i:'🪨',t:'260 万年前',h:'系统性制造工具',p:'从"偶然使用"到"按规格制作"，认知能力的第一次质变。'},
+  {i:'🌍',t:'180 万年前',h:'第一次走出非洲',p:'直立人扩散至格鲁吉亚、印尼与中国，人属首次成为跨大陆物种。'},
+  {i:'🔥',t:'约 100 万年前',h:'掌握火',p:'烹饪扩展了可食资源，也延长了白昼——夜晚从此属于社交与故事。'},
+  {i:'🧠',t:'80 万–20 万年前',h:'脑容量爆发',p:'曲线最陡的一段。群体协作、生态位扩张与技术积累形成正反馈。'},
+  {i:'👤',t:'31.5 万年前',h:'智人出现',p:'摩洛哥杰贝尔·伊尔胡德——目前已知最早的解剖学现代人化石。'},
+  {i:'🤝',t:'约 6 万年前',h:'与古人类杂交',p:'走出非洲的智人与尼安德特人、丹尼索瓦人相遇并留下后代。'},
+  {i:'🎭',t:'7 万–4 万年前',h:'象征性行为革命',p:'艺术、宗教、复杂语言——"文化爆炸"让智人彻底区别于其他物种。'},
+  {i:'🧊',t:'约 4 万年前',h:'尼安德特人消失',p:'最后一个与我们有直接亲缘关系的物种退场，人属只剩一支。'},
+  {i:'🌾',t:'1.17 万年前',h:'全新世与农业',p:'末次冰期结束，农业在多个中心独立起源，人口开始指数增长。'},
+  {i:'🚀',t:'今天',h:'唯一的幸存者',p:'80 亿人，遍布七大洲——以及，正在把目光投向更远的地方。'}
+];
+
+/* =========================================================
+   工具函数
+   ========================================================= */
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const SVGNS='http://www.w3.org/2000/svg';
+function el(t,at={}){const e=document.createElementNS(SVGNS,t);for(const k in at)e.setAttribute(k,at[k]);return e;}
+// 时间→x 的非线性映射（0 = 700万年前，1160 = 今天）
+function tx(t,W=1160){const r=Math.max(0,Math.min(1,t/7));return W*(1-Math.pow(r,0.45));}
+function fmtMa(t,compact){
+  if(t===0)return '至今';
+  const y=t*1e6;
+  if(y>=1e4){const w=y/1e4;const n=w>=100?Math.round(w):(+w.toFixed(1));
+    return (compact?'':'约 ')+n+' 万年前';}
+  return (compact?'':'约 ')+Math.round(y).toLocaleString()+' 年前';
+}
+// 从 brain 字段解析代表值："850–1100"→975，"约 420"→420，"1200–1750（均约 1450）"→1450
+function brainNum(s){
+  const m=(String(s.brain).match(/\d+/g)||[]).map(Number);
+  return m.length===0?null:m.length===1?m[0]:m.length>=3?m[2]:Math.round((m[0]+m[1])/2);
+}
+/* 参数化"复原头像"：侧影线稿按脑容量、眉骨、颌部、颏部与矢状脊生成，风格统一且不引入外部图片 */
+const AVA={pre:{b:1,m:1,c:0,cr:0},aus:{b:.85,m:.8,c:.05,cr:0},par:{b:1,m:.9,c:0,cr:1},
+  '#34d399':{b:.6,m:.5,c:.25,cr:0},'#60a5fa':{b:.48,m:.32,c:.55,cr:0},
+  '#a78bfa':{b:.38,m:.18,c:.85,cr:0},'#fb7185':{b:.22,m:.04,c:1,cr:0}};
+function avatarSVG(s){
+  const n=Math.min(1,Math.max(.12,(brainNum(s)||450)/1800));
+  const F=AVA[s.grp==='homo'?s.c:s.grp]||AVA.pre;
+  const topY=24+(1-n)*12, fhY=42+(1-n)*16;
+  const d=`M36,112
+    C24,104 22,${topY+34} 30,${topY+10}
+    C36,${topY-8} 52,${topY-2} 62,${topY}
+    C76,${topY+1} 88,${fhY-10} 89,${fhY+8}
+    L${89+F.b*3},${fhY+15}
+    L84,${fhY+21}
+    C${86+F.m*4},${fhY+30} ${86+F.m*6},${fhY+36} 78,${fhY+40}
+    C${82+F.m*6},${fhY+48} ${80+F.m*5},${fhY+52} 74,${fhY+55}
+    ${F.c>0.4?`C${78+F.c*8},${fhY+62} ${76+F.c*8},${fhY+68} 68,${fhY+66}`
+              :`C70,${fhY+62} 66,${fhY+68} 60,${fhY+68}`}
+    C52,${fhY+74} 44,${fhY+82} 44,100
+    C44,106 40,110 36,112 Z`;
+  return `<svg viewBox="0 0 120 128" role="img" aria-label="${s.cn} 复原头像示意">
+    <circle cx="60" cy="62" r="55" fill="${s.c}" fill-opacity=".05"/>
+    <circle cx="60" cy="62" r="55" fill="none" stroke="${s.c}" stroke-opacity=".3" stroke-width="1.2"/>
+    <path d="${d}" fill="${s.c}" fill-opacity=".10" stroke="${s.c}" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+    <ellipse cx="70" cy="${fhY+17}" rx="4.6" ry="5.6" fill="none" stroke="${s.c}" stroke-width="1.6" stroke-opacity=".85"/>
+    <path d="M40,${topY+26} C42,${topY+2} 58,${topY+8} 74,${topY+16}" fill="none" stroke="${s.c}" stroke-width="1.4" stroke-opacity=".45" stroke-dasharray="3 4"/>
+    ${F.cr?`<path d="M40,${topY+16} Q50,${topY-8} 62,${topY+2}" fill="none" stroke="${s.c}" stroke-width="2" stroke-opacity=".7"/>`:''}
+  </svg>`;
+}
+
+/* =========================================================
+   星空背景
+   ========================================================= */
+(function starfield(){
+  const cv=$('#stars'),ctx=cv.getContext('2d');
+  let W,H,stars=[],raf;
+  function init(){
+    W=cv.width=innerWidth;H=cv.height=innerHeight;
+    stars=[];const n=Math.min(240,Math.round(W*H/7000));
+    for(let i=0;i<n;i++)stars.push({
+      x:Math.random()*W,y:Math.random()*H,
+      r:Math.random()*1.35+.25,a:Math.random(),
+      s:Math.random()*.010+.002,
+      hue:[190,260,45,330][Math.floor(Math.random()*4)]
+    });
+  }
+  const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    for(const s of stars){
+      s.a+=s.s;const al=(Math.sin(s.a)*.5+.5)*.75+.12;
+      ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,6.283);
+      ctx.fillStyle=`hsla(${s.hue},90%,78%,${al})`;ctx.fill();
+      if(!RM){s.y-=.045;if(s.y<-2){s.y=H+2;s.x=Math.random()*W;}}
+    }
+    if(!RM)raf=requestAnimationFrame(draw);
+  }
+  function start(){cancelAnimationFrame(raf);init();draw();}
+  start();
+  addEventListener('resize',start);
+})();
+
+/* =========================================================
+   HERO 双螺旋背景
+   ========================================================= */
+(function helix(){
+  const cv=$('#dna');if(!cv)return;
+  const ctx=cv.getContext('2d');
+  const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W,H,raf,t=0;
+  const C=[[34,211,238],[167,139,250],[251,113,133]];
+  function size(){
+    const r=cv.parentElement.getBoundingClientRect();
+    W=cv.width=Math.max(320,Math.round(r.width));
+    H=cv.height=Math.max(320,Math.round(r.height));
+  }
+  function col(x,a){
+    const f=Math.min(.999,Math.max(0,x/W))*2,k=f-Math.floor(f),i=Math.floor(f);
+    const A=C[i],B=C[i+1];
+    return `rgba(${Math.round(A[0]+(B[0]-A[0])*k)},${Math.round(A[1]+(B[1]-A[1])*k)},${Math.round(A[2]+(B[2]-A[2])*k)},${a})`;
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    const amp=Math.min(H*.2,105),step=Math.max(24,W/46),wl=Math.max(180,W/6);
+    const cy=H*.58,off=t*.8;
+    for(let x=0;x<=W+step;x+=step){
+      const ph=(x+off)/wl*6.2832;
+      const y1=cy+Math.sin(ph)*amp,y2=cy+Math.sin(ph+Math.PI)*amp;
+      ctx.strokeStyle=col(x,.09);ctx.lineWidth=1.1;
+      ctx.beginPath();ctx.moveTo(x,y1);ctx.lineTo(x,y2);ctx.stroke();
+      ctx.fillStyle=col(x,.34);
+      ctx.beginPath();ctx.arc(x,y1,2.1,0,6.2832);ctx.fill();
+      ctx.beginPath();ctx.arc(x,y2,2.1,0,6.2832);ctx.fill();
+    }
+  }
+  function loop(){draw();t++;raf=requestAnimationFrame(loop);}
+  function start(){cancelAnimationFrame(raf);size();RM?draw():loop();}
+  start();addEventListener('resize',start);
+})();
+
+/* =========================================================
+   导航
+   ========================================================= */
+(function nav(){
+  const secs=[['s1','核心认知'],['s2','谱系树'],['s3','时空共存'],['s3b','中国遗址'],['s4','脑容量'],
+              ['s5','走出非洲'],['s6','基因交流'],['s7','物种档案'],['s8','技术文化'],
+              ['s8b','人类世'],['s9','我们是谁'],['s10','前沿进展'],['s11','附录']];
+  const box=$('#navlinks'),nav=$('#nav'),prog=$('#prog');
+  secs.forEach(([id,label])=>{
+    const a=document.createElement('a');a.href='#'+id;a.textContent=label;
+    a.dataset.id=id;box.appendChild(a);
+  });
+  const links=$$('a',box);
+  let ticking=false;
+  function upd(){
+    const y=scrollY,h=document.body.scrollHeight-innerHeight;
+    prog.style.width=(Math.min(1,y/Math.max(1,h))*100)+'%';
+    nav.classList.toggle('show',y>innerHeight*.6);
+    let cur='s1';
+    for(const [id] of secs){const s=document.getElementById(id);
+      if(s&&s.getBoundingClientRect().top<innerHeight*.35)cur=id;}
+    links.forEach(a=>a.classList.toggle('active',a.dataset.id===cur));
+    ticking=false;
+  }
+  addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(upd);}},{passive:true});
+  upd();
+})();
+
+/* =========================================================
+   页面小控件：返回顶部 / 键盘章节导航 / 横向滚动提示
+   ========================================================= */
+(function chrome(){
+  const top=$('#toTop');
+  addEventListener('scroll',()=>{top&&top.classList.toggle('show',scrollY>innerHeight*1.2);},{passive:true});
+  if(top)top.onclick=()=>scrollTo({top:0,behavior:'smooth'});
+  // 明暗主题切换（localStorage 记忆）
+  const tbtn=$('#themeBtn'),mc=document.querySelector('meta[name="theme-color"]');
+  function applyTheme(t){
+    document.body.classList.toggle('light',t==='light');
+    if(tbtn){tbtn.textContent=t==='light'?'🌙':'☀️';
+      tbtn.title=t==='light'?'切换到暗色主题':'切换到亮色主题';}
+    if(mc)mc.setAttribute('content',t==='light'?'#f5f3ec':'#04060f');
+    try{localStorage.setItem('evo-theme',t)}catch(e){}
+  }
+  let theme='dark';
+  try{theme=localStorage.getItem('evo-theme')||'dark'}catch(e){}
+  applyTheme(theme);
+  if(tbtn)tbtn.onclick=()=>applyTheme(document.body.classList.contains('light')?'dark':'light');
+  const ids=['s1','s2','s3','s3b','s4','s5','s6','s7','s8','s8b','s9','s10','s11'];
+  addEventListener('keydown',e=>{
+    const tg=e.target.tagName;
+    if(tg==='INPUT'||tg==='SELECT'||tg==='TEXTAREA'||e.metaKey||e.ctrlKey||e.altKey)return;
+    if(e.key==='Enter'||e.key===' '){
+      if(e.target.matches&&e.target.matches('.tb,.ft,.cnli')){e.preventDefault();e.target.click();}
+      return;
+    }
+    if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;
+    let i=0;
+    ids.forEach((id,k)=>{const s=document.getElementById(id);
+      if(s&&s.getBoundingClientRect().top<=innerHeight*.4)i=k;});
+    const n=Math.max(0,Math.min(ids.length-1,i+(e.key==='ArrowRight'?1:-1)));
+    const s=document.getElementById(ids[n]);
+    s&&s.scrollIntoView({behavior:'smooth'});
+  });
+  // 横向可滚动区域加边缘渐隐，提示可滑动
+  $$('.tree-scroll,.gantt-scroll,.pop-scroll,.tech-strip').forEach(elm=>{
+    const f=()=>elm.classList.toggle('xsmask',elm.scrollWidth>elm.clientWidth+4);
+    f();addEventListener('resize',f);
+  });
+})();
+
+/* =========================================================
+   滚动揭示 + 数字滚动
+   ========================================================= */
+(function reveal(){
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.12,rootMargin:'0px 0px -60px 0px'});
+  document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
+
+  const io2=new IntersectionObserver((es)=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting)return;
+      const t=e.target;io2.unobserve(t);
+      const end=parseFloat(t.dataset.count),dec=+(t.dataset.dec||0),suf=t.dataset.suffix||'';
+      const dur=1500,t0=performance.now();
+      (function step(now){
+        const p=Math.min(1,(now-t0)/dur),v=end*(1-Math.pow(1-p,3));
+        t.textContent=(dec?v.toFixed(dec):Math.round(v).toLocaleString())+suf;
+        if(p<1)requestAnimationFrame(step);
+      })(t0);
+    });
+  },{threshold:.5});
+  document.querySelectorAll('[data-count]').forEach(e=>io2.observe(e));
+})();
+
+/* =========================================================
+   谱系树
+   ========================================================= */
+const TREE={id:'root',t:7.0,kids:[
+  {id:'sahel',t:7.0},
+  {id:'n1',t:6.2,kids:[
+    {id:'orrorin',t:6.1},
+    {id:'n2',t:5.0,kids:[
+      {id:'ardi',t:4.5},
+      {id:'n3',t:4.2,kids:[
+        {id:'kenya',t:3.5},
+        {id:'n4',t:4.0,kids:[
+          {id:'anamensis',t:3.9},
+          {id:'n5',t:3.7,kids:[
+            {id:'afarensis',t:3.7},
+            {id:'n6',t:3.2,kids:[
+              {id:'africanus',t:3.0},
+              {id:'n7',t:2.9,kids:[
+                {id:'garhi',t:2.5},
+                {id:'n8',t:2.8,kids:[
+                  {id:'sediba',t:1.98},
+                  {id:'n9',t:2.7,kids:[
+                    {id:'npar',t:2.6,kids:[
+                      {id:'paethiopicus',t:2.7},
+                      {id:'n10',t:2.4,kids:[
+                        {id:'pboisei',t:2.3},
+                        {id:'probustus',t:1.8}
+                      ]}
+                    ]},
+                    {id:'nhomo',t:2.5,kids:[
+                      {id:'habilis',t:2.4},
+                      {id:'n11',t:2.0,kids:[
+                        {id:'rudolfensis',t:1.9},
+                        {id:'n12',t:1.95,kids:[
+                          {id:'ergaster',t:1.9},
+                          {id:'n13',t:1.9,kids:[
+                            {id:'erectus',t:1.9},
+                            {id:'n14',t:1.6,kids:[
+                              {id:'naledi',t:0.335},
+                              {id:'nflo',t:1.0,kids:[
+                                {id:'floresiensis',t:0.7},
+                                {id:'luzonensis',t:0.134}
+                              ]},
+                              {id:'n15',t:1.2,kids:[
+                                {id:'antecessor',t:0.85},
+                                {id:'n16',t:1.1,kids:[
+                                  {id:'heidelbergensis',t:0.7},
+                                  {id:'n17',t:1.05,kids:[
+                                    {id:'nneo',t:0.45,kids:[{id:'neander',t:0.43}]},
+                                    {id:'n18',t:1.0,kids:[
+                                      {id:'nlongi',t:1.0,kids:[
+                                        {id:'longi',t:1.0},
+                                        {id:'juluensis',t:0.3}
+                                      ]},
+                                      {id:'sapiens',t:0.315}
+                                    ]}
+                                  ]}
+                                ]}
+                              ]}
+                            ]}
+                          ]}
+                        ]}
+                      ]}
+                    ]}
+                  ]}
+                ]}
+              ]}
+            ]}
+          ]}
+        ]}
+      ]}
+    ]}
+  ]}
+]};
+
+(function phylo(){
+  const svg=$('#phylo');if(!svg)return;
+  const W=1200,X=t=>tx(t,1160)+22;
+  const H=1040;
+  const meta={};SP.forEach(s=>meta[s.id]=s);
+  const isLeaf=n=>!n.kids;
+  let yc=32;
+  // 分配 y：叶子按序递增，内部节点取子节点均值
+  (function lay(n){
+    if(isLeaf(n)){n.y=yc;yc+=38;return;}
+    n.kids.forEach(lay);
+    n.y=(n.kids[0].y+n.kids[n.kids.length-1].y)/2;
+  })(TREE);
+  const off={};
+
+  const gLink=el('g'),gRange=el('g'),gNode=el('g'),gAxis=el('g',{class:'axis'});
+  svg.append(gAxis,gRange,gLink,gNode);
+
+  // 时间轴刻度
+  [7,6,5,4,3,2,1,0.5,0.2,0].forEach(t=>{
+    const x=X(t);
+    gAxis.appendChild(el('line',{x1:x,y1:8,x2:x,y2:H-6}));
+    const tx2=el('text',{x:x+4,y:18});tx2.textContent=t>=1?t+' Ma':(t*1000)+' ka';
+    gAxis.appendChild(tx2);
+  });
+
+  const nodes=[];
+  (function collect(n,par){
+    nodes.push(n);
+    if(par){
+      const x1=X(par.t),y1=par.y,x2=X(n.t),y2=n.y,mx=(x1+x2)/2;
+      const d=`M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}`;
+      const p=el('path',{class:'link',d});
+      p.dataset.id=n.id;gLink.appendChild(p);
+    }
+    if(n.kids)n.kids.forEach(k=>collect(k,n));
+  })(TREE,null);
+
+  // 叶子节点：存续条 + 标签
+  SP.forEach(s=>{
+    const n=nodes.find(x=>x.id===s.id);if(!n)return;
+    const x1=X(s.start),x2=X(s.end);
+    const r=el('rect',{class:'range',x:x1,y:n.y-8,width:Math.max(3,x2-x1),height:16,fill:s.c,rx:3});
+    gRange.appendChild(r);
+    const sp=meta[s.id];
+    const g=el('g',{class:'node'+((sp&&sp.certain===0)?' ext':''),'data-id':s.id});
+    g.style.color=s.c;
+    const dot=el('circle',{class:'dot',cx:x1+2,cy:n.y,r:5.5,fill:s.c});
+    const t1=el('text',{x:x1+13,y:n.y-1});t1.textContent=s.cn;
+    const t2=el('text',{class:'sci',x:x1+13,y:n.y+11});t2.textContent=s.sci.replace(/（.*?）/g,'');
+    g.append(dot,t1,t2);
+    gNode.appendChild(g);
+  });
+
+  // 交互
+  let cur='sapiens',showRange=true,showSci=true;
+  function hl(id){
+    const s=SP.find(x=>x.id===id);
+    $$('.range',gRange).forEach(r=>r.classList.toggle('hl',!!s&&r.getAttribute('fill')===s.c));
+  }
+  function paint(){
+    $$('.node',svg).forEach(g=>g.classList.toggle('sel',g.dataset.id===cur));
+    $$('.link',svg).forEach(p=>p.classList.toggle('hl',p.dataset.id===cur));
+    hl(cur);
+    renderDetail(SP.find(x=>x.id===cur)||SP[0]);
+  }
+  gNode.addEventListener('click',e=>{
+    const g=e.target.closest('.node');if(!g)return;
+    cur=g.dataset.id;paint();
+  });
+  gNode.addEventListener('mouseenter',e=>{
+    const g=e.target.closest('.node');if(!g)return;
+    const s=SP.find(x=>x.id===g.dataset.id);if(!s)return;
+    $$('.range',gRange).forEach(r=>r.classList.toggle('hl',r.getAttribute('fill')===s.c));
+  },true);
+  gNode.addEventListener('mouseleave',()=>hl(cur),true);
+  // 供其他图表调用：选中某物种并平滑跳转到谱系树
+  window.__pickSpecies=function(id,scroll){
+    if(!SP.some(x=>x.id===id))return;
+    cur=id;paint();
+    if(scroll===false)return;
+    document.getElementById('s2').scrollIntoView({behavior:'smooth'});
+    const d=$('#detail');
+    d.classList.remove('flash');void d.offsetWidth;d.classList.add('flash');
+  };
+
+  function renderDetail(s){
+    if(!s)return;
+    const st=s.status==='现存'?'live':(s.certain===0?'cont':'dead');
+    const stTxt=s.status==='现存'?'现存':(s.certain===0?'灭绝（分类存疑）':'灭绝');
+    $('#detail').innerHTML=`
+      <div class="detail-top">
+        <div style="display:flex;gap:14px;align-items:center">
+          <div style="flex:1;min-width:0">
+            <h3>${s.cn}</h3>
+            <div class="sci">${s.sci}</div>
+            <span class="badge ${st}">${stTxt}</span>
+          </div>
+          <span class="sp-av lg">${avatarSVG(s)}</span>
+        </div>
+      </div>
+      <div class="detail-body">
+        <div class="drow"><span class="k">存续</span><span class="v">${fmtMa(s.start)} — ${s.end===0?'至今':fmtMa(s.end).replace('约 ','')}</span></div>
+        <div class="drow"><span class="k">脑容量</span><span class="v">${s.brain} 毫升</span></div>
+        <div class="drow"><span class="k">身高</span><span class="v">${s.height}</span></div>
+        <div class="drow"><span class="k">分布</span><span class="v">${s.region}</span></div>
+        <div class="detail-desc">${s.desc}</div>
+        <div class="chips">${s.tags.map(t=>`<span class="chip">${t}</span>`).join('')}</div>
+        <button class="dlink" data-id="${s.id}" type="button">🗂 在物种档案库中查看 →</button>
+      </div>`;
+  }
+
+  $('#tgRange').onclick=e=>{showRange=!showRange;gRange.style.display=showRange?'':'none';
+    e.target.textContent='存续条：'+(showRange?'开':'关');e.target.classList.toggle('on',showRange);};
+  $('#tgLabel').onclick=e=>{showSci=!showSci;
+    $$('.sci',svg).forEach(t=>t.style.opacity=showSci?1:0);
+    e.target.textContent='学名：'+(showSci?'开':'关');e.target.classList.toggle('on',showSci);};
+  $('#tgReset').onclick=()=>{cur='sapiens';paint();};
+  const GRPSET={pre:['sahel','orrorin','ardi'],aus:['anamensis','afarensis','garhi','africanus','sediba','kenya'],
+                par:['paethiopicus','pboisei','probustus']};
+  function inFilter(s,f){
+    if(f==='all')return true;
+    if(f==='homo')return s.grp==='homo';
+    return (GRPSET[f]||[]).includes(s.id);
+  }
+  $$('.tree-toolbar .tb[data-f]').forEach(b=>b.onclick=()=>{
+    $$('.tree-toolbar .tb[data-f]').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+    const f=b.dataset.f;
+    $$('.node',svg).forEach(g=>{
+      const s=SP.find(x=>x.id===g.dataset.id);
+      g.style.opacity=(!s||inFilter(s,f))?1:.16;
+    });
+    const shown=SP.filter(s=>inFilter(s,f));
+    $$('.range',gRange).forEach(r=>r.style.opacity=shown.some(s=>s.c===r.getAttribute('fill'))?1:.08);
+  });
+  paint();
+})();
+
+/* =========================================================
+   存续甘特图
+   ========================================================= */
+(function gantt(){
+  const svg=$('#gantt');if(!svg)return;
+  const W=1120,X=t=>tx(t,880)+150,rowH=25,top=54;
+  const data=[...SP].sort((a,b)=>b.start-a.start);
+  const H=top+data.length*rowH+30;
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  const g=el('g');svg.appendChild(g);
+
+  // 地质年代带
+  const eras=[[7,5.333,'中新世','rgba(251,191,36,.09)'],[5.333,2.58,'上新世','rgba(52,211,153,.08)'],
+              [2.58,0.0117,'更新世','rgba(96,165,250,.09)'],[0.0117,0,'全新世','rgba(251,113,133,.12)']];
+  eras.forEach(([a,b,n,c])=>{
+    const x1=X(a),x2=X(b);
+    g.appendChild(el('rect',{x:x1,y:26,width:x2-x1,height:H-26-24,fill:c}));
+    const t=el('text',{class:'era-t',x:(x1+x2)/2,y:42,'text-anchor':'middle'});
+    t.textContent=n;g.appendChild(t);
+  });
+  // 刻度
+  [7,6,5,4,3,2,1,0.5,0.2,0].forEach(t=>{
+    g.appendChild(el('line',{class:'gtick',x1:X(t),y1:46,x2:X(t),y2:H-24,stroke:'rgba(255,255,255,.07)'}));
+    const te=el('text',{class:'era-t',x:X(t)+3,y:H-10});te.textContent=t>=1?t+'Ma':(t*1000)+'ka';g.appendChild(te);
+  });
+
+  data.forEach((s,i)=>{
+    const y=top+i*rowH;
+    const rg=el('g',{class:'g-row'});
+    rg.appendChild(el('rect',{x:0,y:y-9,width:W,height:rowH-4,fill:i%2?'rgba(255,255,255,.018)':'transparent'}));
+    const nm=el('text',{class:'nm',x:6,y:y+4});nm.textContent=s.cn;rg.appendChild(nm);
+    const x1=X(s.start),x2=X(s.end);
+    const bar=el('rect',{class:'bar',x:x1,y:y-7,width:Math.max(4,x2-x1),height:14,fill:s.c});
+    rg.appendChild(bar);
+    const tm=el('text',{class:'tm',x:x2+7,y:y+4});
+    tm.textContent=fmtMa(s.start,1)+' → '+(s.end===0?'今':fmtMa(s.end,1));
+    rg.appendChild(tm);
+    const tt=el('title');tt.textContent=`${s.cn}（${s.sci}）　${fmtMa(s.start)}–${s.end===0?'至今':fmtMa(s.end)}　脑容量 ${s.brain} ml（点击在谱系树中查看）`;
+    rg.appendChild(tt);
+    rg.addEventListener('click',()=>window.__pickSpecies&&window.__pickSpecies(s.id));
+    g.appendChild(rg);
+  });
+  // 共存高亮：距今 30万–4万年
+  const cx1=X(0.3),cx2=X(0.04);
+  const hl=el('rect',{x:cx1,y:26,width:cx2-cx1,height:H-50,fill:'rgba(251,113,133,.07)',
+    stroke:'rgba(251,113,133,.3)','pointer-events':'none'});
+  g.appendChild(hl);
+  const lt=el('text',{x:(cx1+cx2)/2,y:20,'text-anchor':'middle',class:'era-t',fill:'#fda4af'});
+  lt.textContent='最拥挤的 30 万年';g.appendChild(lt);
+})();
+
+/* =========================================================
+   共存实验室：任选两物种，检验是否同时代
+   ========================================================= */
+(function cmpLab(){
+  const A=$('#cmpA'),B=$('#cmpB'),out=$('#cmpOut'),rnd=$('#cmpRnd');
+  if(!A||!B||!out)return;
+  [...SP].sort((a,b)=>b.start-a.start).forEach(s=>{
+    A.add(new Option(s.cn,s.id));B.add(new Option(s.cn,s.id));
+  });
+  A.value='neander';B.value='sapiens';
+  // 与全站一致的非线性时间映射，返回百分比
+  const pc=t=>(1-Math.pow(Math.max(0,Math.min(1,t/7)),.45))*100;
+  const span=v=>{const w=v*100;
+    if(w<1)return Math.round(w*1e4).toLocaleString()+' 年';
+    return (w>=10?Math.round(w):+w.toFixed(1))+' 万年';};
+  function draw(){
+    const s1=SP.find(x=>x.id===A.value),s2=SP.find(x=>x.id===B.value);
+    if(!s1||!s2||s1===s2){out.innerHTML='';return;}
+    const ov=Math.min(s1.start,s2.start)-Math.max(s1.end,s2.end);
+    const yes=ov>0;
+    const grid=[7,6,5,4,3,2,1,.5,0].map(t=>
+      `<i style="position:absolute;top:0;bottom:24px;left:${pc(t)}%;width:1px;background:rgba(255,255,255,.06)"></i>`).join('');
+    const axis=[[7,'700万年前'],[5,'500万'],[3,'300万'],[1,'100万'],[0,'今天']].map(([t,n])=>
+      `<span style="position:absolute;bottom:4px;left:${pc(t)}%;transform:translateX(-50%);
+        font-size:.66rem;color:var(--tx3);font-family:var(--mono);white-space:nowrap">${n}</span>`).join('');
+    const band=yes?
+      `<i style="position:absolute;top:0;bottom:24px;left:${pc(Math.min(s1.start,s2.start))}%;
+        width:${pc(Math.max(s1.end,s2.end))-pc(Math.min(s1.start,s2.start))}%;
+        background:rgba(251,113,133,.10);border-left:1px dashed rgba(251,113,133,.45);border-right:1px dashed rgba(251,113,133,.45)"></i>`:'';
+    const bar=(s,top)=>{
+      const l=pc(s.start),r=pc(s.end),w=Math.max(.6,r-l),inside=w>24;
+      return `<i style="position:absolute;top:${top}px;left:${l}%;width:${w}%;height:13px;border-radius:7px;
+          background:${s.c};box-shadow:0 0 10px ${s.c}66"></i>
+        <span style="position:absolute;top:${top+1}px;${inside?`left:${l+1}%;color:#04060f`:`left:${Math.min(97,r+.8)}%;color:${s.c}`};
+          font-size:.7rem;font-weight:700;line-height:16px;white-space:nowrap">${s.cn}</span>`;
+    };
+    const col=s=>{
+      const n=brainNum(s);
+      return `<div class="cmp-col" style="--c:${s.c}">
+        <div style="display:flex;gap:10px;align-items:center;margin-bottom:8px">
+          <span class="sp-av sm">${avatarSVG(s)}</span>
+          <h5 style="color:${s.c};margin:0">${s.cn}<br>
+            <span style="font-weight:400;font-style:italic;font-size:.68rem;color:var(--tx3)">${s.sci}</span></h5>
+        </div>
+        <div class="r"><span>存续</span><b>${fmtMa(s.start)} — ${s.end===0?'至今':fmtMa(s.end)}</b></div>
+        <div class="r"><span>脑容量</span><b>${s.brain} ml</b></div>
+        ${n!=null?`<div class="cmp-brain"><i style="width:${Math.round(n/1800*100)}%"></i></div>`:''}
+        <div class="r"><span>身高</span><b>${s.height||'—'}</b></div>
+        <div class="r"><span>分布</span><b>${s.region}</b></div>
+      </div>`;
+    };
+    out.innerHTML=`
+      <div class="cmp-verdict ${yes?'yes':'no'}">${yes
+        ?`✅ 同时代 —— 两者在地球上共存约 ${span(ov)}`
+        :`💤 擦肩而过 —— 时间上至少相隔 ${span(-ov)}`}</div>
+      <div class="cmp-tl">${grid}${band}${bar(s1,32)}${bar(s2,62)}${axis}</div>
+      <div class="cmp-stats">${col(s1)}${col(s2)}</div>`;
+  }
+  A.onchange=B.onchange=draw;
+  if(rnd)rnd.onclick=()=>{
+    const pick=()=>SP[Math.floor(Math.random()*SP.length)].id;
+    let a=pick(),b=pick();while(b===a)b=pick();
+    A.value=a;B.value=b;draw();
+  };
+  draw();
+})();
+
+/* =========================================================
+   脑容量演化图
+   ========================================================= */
+(function brainChart(){
+  const svg=$('#brain');if(!svg)return;
+  const W=900,H=480,L=58,R=24,T=26,B=48;
+  const X=t=>L+tx(t,W-L-R-10);
+  const Y=v=>H-B-((v-250)/(1850-250))*(H-T-B);
+  const pts=[
+    {id:'sahel',t:6.8,v:350},{id:'ardi',t:4.4,v:330},{id:'afarensis',t:3.2,v:420},
+    {id:'pboisei',t:1.8,v:510},{id:'probustus',t:1.5,v:530},{id:'habilis',t:2.0,v:640},
+    {id:'rudolfensis',t:1.85,v:750},{id:'ergaster',t:1.6,v:880},{id:'erectus',t:1.0,v:950},
+    {id:'antecessor',t:0.8,v:1000},{id:'heidelbergensis',t:0.5,v:1250},
+    {id:'naledi',t:0.3,v:560},{id:'floresiensis',t:0.1,v:420},
+    {id:'neander',t:0.1,v:1450},{id:'longi',t:0.15,v:1420},{id:'juluensis',t:0.18,v:1750},
+    {id:'sapiens',t:0.05,v:1350}
+  ];
+  const meta={};SP.forEach(s=>meta[s.id]=s);
+  const defs=el('defs');
+  defs.innerHTML=`<linearGradient id="bgrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity=".55"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/></linearGradient>
+    <linearGradient id="lgrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#fbbf24"/><stop offset="50%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#fb7185"/></linearGradient>`;
+  svg.appendChild(defs);
+
+  // 网格
+  const gg=el('g',{class:'grid'});
+  for(let v=250;v<=1750;v+=250){
+    gg.appendChild(el('line',{x1:L,y1:Y(v),x2:W-R,y2:Y(v)}));
+    const t=el('text',{x:L-8,y:Y(v)+4,'text-anchor':'end',class:'ax'});
+    t.setAttribute('fill','#6f7fa3');t.textContent=v;gg.appendChild(t);
+  }
+  svg.appendChild(gg);
+  const gx=el('g',{class:'ax'});
+  [7,6,5,4,3,2,1,0.5,0.2,0].forEach(t=>{
+    gx.appendChild(el('line',{x1:X(t),y1:T,x2:X(t),y2:H-B,stroke:'rgba(255,255,255,.06)'}));
+    const te=el('text',{x:X(t),y:H-B+18,'text-anchor':'middle'});
+    te.setAttribute('fill','#6f7fa3');
+    te.textContent=t>=1?t+' Ma':(t===0?'今':(t*1000)+' ka');gx.appendChild(te);
+  });
+  const yl=el('text',{x:14,y:(H-B+T)/2,'text-anchor':'middle',transform:`rotate(-90 14 ${(H-B+T)/2})`});
+  yl.setAttribute('fill','#6f7fa3');yl.setAttribute('font-size','10');yl.textContent='脑容量 (ml)';
+  gx.appendChild(yl);svg.appendChild(gx);
+
+  // 趋势带
+  const tl=[[7,340],[4.5,335],[3.5,400],[2.4,620],[1.9,780],[1.5,900],[1.0,960],[0.7,1050],[0.5,1200],[0.3,1300],[0.15,1420],[0,1350]];
+  const dLine='M'+tl.map(p=>`${X(p[0])},${Y(p[1])}`).join(' L ');
+  svg.appendChild(el('path',{class:'area',d:dLine+` L ${X(0)},${Y(250)} L ${X(7)},${Y(250)} Z`}));
+  svg.appendChild(el('path',{class:'trend',d:dLine}));
+
+  const tip=$('#btip');
+  pts.forEach(p=>{
+    const s=meta[p.id];if(!s)return;
+    const g=el('g',{class:'pt'});
+    g.style.color=s.c;
+    g.appendChild(el('circle',{cx:X(p.t),cy:Y(p.v),r:5.5,fill:s.c}));
+    const t=el('text',{x:X(p.t)+9,y:Y(p.v)+4});t.textContent=s.cn;g.appendChild(t);
+    g.addEventListener('mousemove',e=>{
+      const r=svg.getBoundingClientRect();
+      tip.style.left=(e.clientX-r.left+14)+'px';
+      tip.style.top=(e.clientY-r.top-10)+'px';
+      tip.innerHTML=`<b>${s.cn}</b>　${s.brain} ml<br><span style="color:#6f7fa3">${fmtMa(p.t)} · 点击在谱系树中查看 →</span>`;
+      tip.classList.add('on');
+    });
+    g.addEventListener('mouseleave',()=>tip.classList.remove('on'));
+    g.addEventListener('click',()=>window.__pickSpecies&&window.__pickSpecies(p.id));
+    svg.appendChild(g);
+  });
+  // 现代人参考线
+  svg.appendChild(el('line',{x1:L,y1:Y(1350),x2:W-R,y2:Y(1350),
+    stroke:'rgba(251,113,133,.5)','stroke-dasharray':'5 5'}));
+  const rl=el('text',{class:'bref',x:W-R-4,y:Y(1350)-7,'text-anchor':'end',fill:'#fda4af','font-size':'10'});
+  rl.textContent='现代人平均约 1350 ml';svg.appendChild(rl);
+
+  new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)svg.classList.add('on');}),{threshold:.3}).observe(svg);
+})();
+
+/* =========================================================
+   迁徙地图
+   ========================================================= */
+(function globe(){
+  const cv=$('#globe');if(!cv)return;
+  const ctx=cv.getContext('2d');
+  const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const D2R=Math.PI/180;
+  let W,H,R,cx,cy;
+  let lam=15,phi=18;               // 视角中心经纬度
+  function size(){
+    const bw=Math.max(320,cv.parentElement.getBoundingClientRect().width);
+    W=Math.round(bw);H=Math.round(Math.min(W*.58,560));
+    const dpr=Math.min(2,devicePixelRatio||1);
+    cv.width=W*dpr;cv.height=H*dpr;cv.style.height=H+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    R=Math.min(W,H)*.44;cx=W/2;cy=H/2;
+  }
+  const pal=()=>document.body.classList.contains('light')
+    ?{o1:'#dcecfb',o2:'#bcd9f7',rim:'rgba(37,99,235,.5)',grat:'rgba(30,58,138,.12)',
+      landF:'rgba(96,165,250,.15)',landS:'rgba(37,99,235,.6)',txt:'#3f4a66',halo:'rgba(250,248,242,.9)'}
+    :{o1:'#0d2b52',o2:'#071634',rim:'rgba(56,189,248,.5)',grat:'rgba(255,255,255,.07)',
+      landF:'rgba(120,170,255,.15)',landS:'rgba(150,200,255,.5)',txt:'#c3cfe8',halo:'rgba(4,6,15,.85)'};
+  // 正交投影：返回屏幕坐标与可见性 z
+  function proj(lo,la,alt=0){
+    const l=(lo-lam)*D2R,f=la*D2R,f0=phi*D2R,r=1+alt;
+    const cf=Math.cos(f);
+    const x=cf*Math.sin(l)*r;
+    const y=(Math.cos(f0)*Math.sin(f)-Math.sin(f0)*cf*Math.cos(l))*r;
+    const z=(Math.sin(f0)*Math.sin(f)+Math.cos(f0)*cf*Math.cos(l))*r;
+    return{x:cx+x*R,y:cy-y*R,z};
+  }
+  function projClamp(lo,la){
+    const p=proj(lo,la);
+    if(p.z>=0)return p;
+    const dx=p.x-cx,dy=p.y-cy,d=Math.hypot(dx,dy)||1;
+    return{x:cx+dx/d*R,y:cy+dy/d*R};
+  }
+  const lands=[
+    // 非洲
+    [[-17,14],[-16,20],[-12,28],[-9,32],[-5,36],[10,37],[20,32],[25,32],[32,31],[35,28],[38,22],[43,12],[51,12],[51,4],[42,-2],[40,-10],[35,-18],[33,-26],[27,-34],[20,-35],[17,-29],[12,-18],[9,-1],[9,4],[3,6],[-8,4],[-13,8]],
+    // 欧亚
+    [[-9,43],[-9,37],[-6,36],[0,39],[3,42],[8,44],[12,45],[16,42],[19,40],[23,38],[27,40],[29,41],[35,36],[36,36],[35,31],[38,22],[43,12],[52,17],[58,23],[62,25],[68,25],[72,20],[73,16],[77,8],[80,10],[80,16],[84,19],[88,22],[92,21],[95,16],[98,9],[103,1],[105,10],[108,15],[106,20],[110,20],[118,24],[121,30],[122,37],[126,40],[129,43],[135,48],[142,53],[143,59],[152,59],[160,60],[170,60],[178,65],[170,68],[160,70],[150,72],[140,73],[130,73],[110,76],[100,77],[80,73],[70,73],[60,70],[50,68],[40,66],[30,70],[25,71],[20,70],[15,68],[10,63],[5,60],[8,58],[10,55],[8,54],[4,52],[-2,49],[-5,48],[-1,46],[-2,44]],
+    // 北美
+    [[-168,66],[-165,60],[-158,57],[-152,59],[-146,60],[-140,60],[-135,57],[-130,52],[-125,49],[-124,42],[-120,34],[-117,32],[-110,23],[-106,23],[-97,26],[-95,18],[-88,16],[-84,10],[-79,9],[-81,23],[-80,26],[-81,32],[-76,35],[-70,42],[-66,45],[-60,47],[-56,51],[-64,60],[-78,62],[-95,68],[-115,70],[-130,70],[-140,70],[-156,71]],
+    // 南美
+    [[-81,8],[-77,8],[-72,11],[-62,10],[-52,5],[-50,0],[-44,-2],[-38,-6],[-35,-8],[-39,-14],[-40,-20],[-48,-25],[-53,-34],[-58,-38],[-62,-40],[-65,-45],[-68,-50],[-70,-55],[-74,-52],[-73,-45],[-75,-38],[-71,-30],[-70,-20],[-76,-14],[-81,-6],[-80,0],[-78,2]],
+    // 澳大利亚
+    [[113,-22],[114,-26],[115,-34],[118,-35],[123,-34],[129,-32],[134,-33],[138,-35],[141,-38],[147,-38],[150,-37],[153,-32],[153,-27],[146,-19],[142,-11],[136,-12],[131,-11],[126,-14],[122,-17]],
+    // 格陵兰
+    [[-45,60],[-52,64],[-53,68],[-58,72],[-55,76],[-45,80],[-30,82],[-20,78],[-22,72],[-32,68],[-40,64]],
+    // 南极
+    [[-180,-68],[-120,-73],[-60,-70],[0,-69],[60,-67],[120,-66],[180,-68],[180,-84],[-180,-84]],
+    // 岛屿
+    [[44,-12],[50,-15],[50,-25],[45,-25],[43,-17]],
+    [[130,31],[135,34],[140,36],[142,40],[145,44],[141,45],[138,37],[133,34]],
+    [[131,-1],[141,-3],[147,-6],[150,-10],[143,-9],[137,-8],[132,-5]],
+    [[-6,50],[-5,54],[-3,58],[0,54],[1,52],[-2,50]],
+    [[95,5],[104,-2],[106,-6],[103,-5],[97,2]],
+    [[109,2],[117,4],[119,-1],[116,-4],[110,-3]],
+    [[105,-6],[114,-8],[114,-9],[105,-7]],
+    [[120,18],[124,13],[126,7],[122,6],[120,12]],
+    [[172,-34],[174,-38],[178,-38],[177,-40],[173,-42],[170,-45],[167,-46],[170,-42]]
+  ];
+  const routes=[
+    {c:'#fbbf24',p:[[36,2],[38,15],[36,30],[44,41],[58,35],[73,25],[90,22],[105,10],[110,-7],[116,40]]},
+    {c:'#a78bfa',p:[[20,10],[30,30],[44,41],[60,45],[90,45],[115,35]]},
+    {c:'#22d3ee',p:[[40,-2],[44,12],[55,18],[70,12],[85,8],[98,6],[105,0],[115,-3],[125,-12],[140,-20],[143,-38]]},
+    {c:'#34d399',p:[[44,12],[45,30],[35,38],[20,45],[5,50],[28,55],[60,58],[95,55],[115,35]]},
+    {c:'#fb7185',p:[[130,50],[155,62],[175,66],[-165,65],[-140,60],[-110,45],[-85,20],[-60,-10]]}
+  ];
+  const sites=[
+    {n:'东非（起源地）',p:[38,-2],c:'#fbbf24'},
+    {n:'德马尼西 180万年',p:[44,41],c:'#fbbf24'},
+    {n:'周口店·北京猿人',p:[116,40],c:'#60a5fa'},
+    {n:'丹尼索瓦洞',p:[85,51],c:'#a78bfa'},
+    {n:'哈尔滨·龙人',p:[126,45],c:'#a78bfa'},
+    {n:'澳洲 约6.5万年',p:[140,-25],c:'#22d3ee'}
+  ];
+  // 大圆插值 + 高度弧：把折线航段变成贴球面的飞行弧
+  function slerp(a,b,t){
+    const f1=a[1]*D2R,l1=a[0]*D2R,f2=b[1]*D2R,l2=b[0]*D2R;
+    const d=Math.acos(Math.min(1,Math.sin(f1)*Math.sin(f2)+Math.cos(f1)*Math.cos(f2)*Math.cos(l2-l1)));
+    if(d<1e-6)return{lo:a[0],la:a[1]};
+    const A=Math.sin((1-t)*d)/Math.sin(d),B=Math.sin(t*d)/Math.sin(d);
+    const x=A*Math.cos(f1)*Math.cos(l1)+B*Math.cos(f2)*Math.cos(l2);
+    const y=A*Math.cos(f1)*Math.sin(l1)+B*Math.cos(f2)*Math.sin(l2);
+    const z=A*Math.sin(f1)+B*Math.sin(f2);
+    return{lo:Math.atan2(y,x)/D2R,la:Math.atan2(z,Math.hypot(x,y))/D2R};
+  }
+  const RTS=routes.map((r,i)=>{
+    const pts=[];
+    for(let k=0;k<r.p.length-1;k++){
+      const a=r.p[k],b=r.p[k+1];
+      const dd=Math.hypot((b[0]-a[0]+540)%360-180,b[1]-a[1]);
+      const steps=Math.max(6,Math.round(dd/9)),h=.028+Math.min(.09,dd/180*.10);
+      for(let s=0;s<steps;s++){
+        const t=s/steps,q=slerp(a,b,t);
+        pts.push({lo:q.lo,la:q.la,alt:Math.sin(Math.PI*t)*h});
+      }
+    }
+    const last=r.p[r.p.length-1];
+    pts.push({lo:last[0],la:last[1],alt:0});
+    return{c:r.c,pts,phase:i*.19};
+  });
+
+  // 拖拽旋转
+  let drag=null,resume=0;
+  cv.addEventListener('pointerdown',e=>{
+    drag={x:e.clientX,y:e.clientY,lam,phi};
+    cv.setPointerCapture(e.pointerId);cv.classList.add('drag');
+  });
+  cv.addEventListener('pointermove',e=>{
+    if(!drag)return;
+    lam=drag.lam-(e.clientX-drag.x)*.3;
+    phi=Math.max(-62,Math.min(62,drag.phi+(e.clientY-drag.y)*.24));
+    resume=performance.now()+2400;
+  });
+  const endDrag=()=>{drag=null;cv.classList.remove('drag');resume=performance.now()+2400;};
+  cv.addEventListener('pointerup',endDrag);
+  cv.addEventListener('pointercancel',endDrag);
+
+  function draw(ts){
+    const P=pal();
+    ctx.clearRect(0,0,W,H);
+    // 海洋
+    const og=ctx.createRadialGradient(cx-R*.45,cy-R*.5,R*.1,cx,cy,R);
+    og.addColorStop(0,P.o1);og.addColorStop(1,P.o2);
+    ctx.beginPath();ctx.arc(cx,cy,R,0,6.2832);ctx.fillStyle=og;ctx.fill();
+    // 经纬网
+    ctx.strokeStyle=P.grat;ctx.lineWidth=1;ctx.beginPath();
+    for(let la=-60;la<=60;la+=30){
+      let pen=false;
+      for(let lo=-180;lo<=180;lo+=5){const p=proj(lo,la);
+        if(p.z>0){pen?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y);pen=true;}else pen=false;}
+    }
+    for(let lo=-180;lo<180;lo+=30){
+      let pen=false;
+      for(let la=-85;la<=85;la+=5){const p=proj(lo,la);
+        if(p.z>0){pen?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y);pen=true;}else pen=false;}
+    }
+    ctx.stroke();
+    // 陆地：填充（背面点钳制到地平线）+ 描边（仅可见段）
+    lands.forEach(a=>{
+      ctx.beginPath();
+      a.forEach(([lo,la],i)=>{const p=projClamp(lo,la);i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y);});
+      ctx.closePath();ctx.fillStyle=P.landF;ctx.fill();
+      ctx.beginPath();let pen=false;
+      a.forEach(([lo,la])=>{const p=proj(lo,la);
+        if(p.z>-.02){pen?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y);pen=true;}else pen=false;});
+      ctx.strokeStyle=P.landS;ctx.lineWidth=.9;ctx.stroke();
+    });
+    // 迁徙路线：底线 + 流动彗尾 + 发光头部
+    RTS.forEach(rt=>{
+      const N=rt.pts.length;
+      const head=RM?1:((ts/9000+rt.phase)%1);
+      const hi=Math.max(1,Math.round(head*(N-1)));
+      const from=Math.max(1,hi-Math.max(10,Math.round(N*.34)));
+      ctx.lineCap='round';
+      for(let j=from;j<=hi;j++){
+        const a=proj(rt.pts[j-1].lo,rt.pts[j-1].la,rt.pts[j-1].alt);
+        const b=proj(rt.pts[j].lo,rt.pts[j].la,rt.pts[j].alt);
+        if(a.z<-.05&&b.z<-.05)continue;
+        const k=(j-from)/(hi-from||1);
+        ctx.strokeStyle=rt.c;
+        ctx.globalAlpha=RM?.75:(.08+k*.85);
+        ctx.lineWidth=RM?2:(1+k*2.4);
+        ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
+      }
+      ctx.globalAlpha=1;
+      if(!RM){
+        const hp=rt.pts[hi],q=proj(hp.lo,hp.la,hp.alt);
+        if(q.z>-.05){
+          const gg=ctx.createRadialGradient(q.x,q.y,0,q.x,q.y,7);
+          gg.addColorStop(0,rt.c);gg.addColorStop(1,'rgba(0,0,0,0)');
+          ctx.fillStyle=gg;ctx.beginPath();ctx.arc(q.x,q.y,7,0,6.2832);ctx.fill();
+        }
+      }
+    });
+    // 关键遗址
+    sites.forEach((s,i)=>{
+      const p=proj(s.p[0],s.p[1]);
+      if(p.z<=.02)return;
+      ctx.fillStyle=s.c;ctx.strokeStyle=P.halo;ctx.lineWidth=1.4;
+      ctx.beginPath();ctx.arc(p.x,p.y,3.4,0,6.2832);ctx.fill();ctx.stroke();
+      if(!RM){
+        const ph=((ts/2600)+i*.4)%1;
+        ctx.strokeStyle=s.c;ctx.globalAlpha=(1-ph)*.6;
+        ctx.beginPath();ctx.arc(p.x,p.y,3+ph*11,0,6.2832);ctx.stroke();
+        ctx.globalAlpha=1;
+      }
+      ctx.font='600 10px system-ui,-apple-system,sans-serif';
+      ctx.strokeStyle=P.halo;ctx.lineWidth=3;ctx.lineJoin='round';
+      ctx.strokeText(s.n,p.x+7,p.y+3);
+      ctx.fillStyle=P.txt;ctx.fillText(s.n,p.x+7,p.y+3);
+    });
+    // 球体光影 + 轮廓
+    const sg=ctx.createRadialGradient(cx-R*.4,cy-R*.45,R*.2,cx,cy,R);
+    sg.addColorStop(0,'rgba(255,255,255,.10)');sg.addColorStop(.72,'rgba(0,0,0,0)');sg.addColorStop(1,'rgba(0,0,10,.32)');
+    ctx.beginPath();ctx.arc(cx,cy,R,0,6.2832);ctx.fillStyle=sg;ctx.fill();
+    ctx.strokeStyle=P.rim;ctx.lineWidth=1.2;
+    ctx.beginPath();ctx.arc(cx,cy,R,0,6.2832);ctx.stroke();
+  }
+
+  let run=false,raf2=0;
+  function loop(ts){
+    if(!run)return;
+    draw(ts);
+    if(!drag&&performance.now()>resume)lam-=.09;   // 自动自转
+    raf2=requestAnimationFrame(loop);
+  }
+  new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting&&!run){run=true;
+      RM?draw(0):raf2=requestAnimationFrame(loop);}
+    else if(!e.isIntersecting&&run){run=false;cancelAnimationFrame(raf2);}
+  }),{threshold:.12}).observe(cv);
+  addEventListener('resize',()=>{size();draw(0);});
+  size();draw(0);
+})();
+
+/* =========================================================
+   物种档案卡片
+   ========================================================= */
+(function cards(){
+  const box=$('#cards');if(!box)return;
+  const fbox=$('#filters');
+  const F=[['all','全部'],['pre','早期人族'],['aus','南方古猿类'],['par','傍人属'],
+           ['homo','人属'],['live','仅现存'],['cont','分类存疑']];
+  F.forEach(([k,l])=>{
+    const b=document.createElement('span');b.className='ft'+(k==='all'?' on':'');
+    b.textContent=l;b.dataset.f=k;b.tabIndex=0;b.setAttribute('role','button');fbox.appendChild(b);
+  });
+  const cnt=document.createElement('span');cnt.className='fcount';fbox.appendChild(cnt);
+  const si=document.createElement('input');si.type='search';si.className='sp-search';
+  si.placeholder='🔍 搜索物种 / 学名 / 标签…';si.setAttribute('aria-label','搜索物种');
+  fbox.insertBefore(si,cnt);
+
+  let curF='all';
+  const sorted=[...SP].sort((a,b)=>b.start-a.start);
+  function render(f,q){
+    const ql=(q||'').trim().toLowerCase();
+    let list=f==='all'?sorted:f==='live'?sorted.filter(s=>s.status==='现存')
+      :f==='cont'?sorted.filter(s=>s.certain===0):sorted.filter(s=>s.grp===f);
+    if(ql)list=list.filter(s=>(s.cn+s.sci+s.desc+s.tags.join(' ')+s.region).toLowerCase().includes(ql));
+    box.innerHTML='';
+    list.forEach((s,i)=>{
+      const st=s.status==='现存'?'live':(s.certain===0?'cont':'dead');
+      const stTxt=s.status==='现存'?'现存':(s.certain===0?'存疑':'灭绝');
+      const d=document.createElement('article');
+      d.className='sp-card reveal in';d.style.setProperty('--c',s.c);
+      d.style.animationDelay=Math.min(i*40,600)+'ms';
+      d.dataset.sid=s.id;
+      d.innerHTML=`
+        <div class="hd"><div class="avwrap"><span class="sp-av">${avatarSVG(s)}</span><h4>${s.cn}</h4></div><span class="st ${st}">${stTxt}</span></div>
+        <div class="sci">${s.sci}</div>
+        <div class="sp-meta">
+          <span class="mt">${fmtMa(s.start)}</span>
+          <span class="mt">🧠 ${s.brain} ml</span>
+          <span class="mt">📏 ${s.height||'—'}</span>
+        </div>
+        <p>${s.desc}</p>
+        <div class="loc">📍 ${s.region}</div>
+        <button class="clink" data-id="${s.id}" type="button">🌳 在谱系树中定位</button>`;
+      box.appendChild(d);
+    });
+    if(!list.length)box.innerHTML='<p class="note" style="padding:20px 4px">没有匹配的物种，换个关键词试试。</p>';
+    cnt.textContent=`${list.length} / ${SP.length} 个物种`;
+  }
+  fbox.addEventListener('click',e=>{
+    const b=e.target.closest('.ft');if(!b)return;
+    $$('.ft',fbox).forEach(x=>x.classList.remove('on'));b.classList.add('on');
+    curF=b.dataset.f;render(curF,si.value);
+  });
+  si.addEventListener('input',()=>render(curF,si.value));
+  // 卡片 → 谱系树
+  box.addEventListener('click',e=>{
+    const b=e.target.closest('.clink');if(!b)return;
+    window.__pickSpecies&&window.__pickSpecies(b.dataset.id);
+  });
+  // 谱系树详情面板 → 物种卡片
+  const det=$('#detail');
+  det&&det.addEventListener('click',e=>{
+    const b=e.target.closest('.dlink');if(!b)return;
+    const id=b.dataset.id;
+    document.getElementById('s7').scrollIntoView({behavior:'smooth'});
+    setTimeout(()=>{
+      const all=fbox.querySelector('.ft[data-f="all"]');if(all)all.click();
+      si.value='';render('all','');
+      const c=box.querySelector(`[data-sid="${id}"]`);
+      if(c){c.scrollIntoView({block:'center',behavior:'smooth'});
+        c.classList.add('flash-card');setTimeout(()=>c.classList.remove('flash-card'),1800);}
+    },560);
+  });
+  render('all','');
+})();
+
+/* =========================================================
+   技术时间带 + 里程碑
+   ========================================================= */
+(function tech(){
+  const strip=$('#techStrip');
+  TECH.forEach(t=>{
+    const d=document.createElement('div');d.className='tech';d.style.setProperty('--c',t.c);
+    d.innerHTML=`<span class="n">${t.n}</span><div class="yr">${t.yr}</div><h4>${t.t}</h4><p>${t.d}</p>`;
+    strip.appendChild(d);
+  });
+  const mg=$('#mileGrid');
+  MILESTONES.forEach(m=>{
+    const d=document.createElement('div');d.className='mile reveal';
+    d.innerHTML=`<span class="mi">${m.i}</span><div><h5>${m.h}</h5><span>${m.t}</span><p>${m.p}</p></div>`;
+    mg.appendChild(d);
+  });
+})();
+
+/* =========================================================
+   基因条动画
+   ========================================================= */
+(function bars(){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(!e.isIntersecting)return;io.unobserve(e.target);
+    $$('.bar i',e.target).forEach(i=>i.style.width=i.dataset.w+'%');
+  }),{threshold:.4});
+  $$('.flow').forEach(f=>io.observe(f));
+})();
+
+/* =========================================================
+   中国古人类遗址地图
+   ========================================================= */
+(function cnMap(){
+  const svg=$('#cnmap'),panel=$('#cnPanel');if(!svg)return;
+  const LON0=73,LON1=136,LAT0=17,LAT1=54.5;
+  // 按中纬度 cos 校正经度比例，还原中国地图真实长宽比
+  const COSL=Math.cos((LAT0+LAT1)/2*Math.PI/180);
+  const K=1000/((LON1-LON0)*COSL);
+  const W=Math.round((LON1-LON0)*K*COSL),H=Math.round((LAT1-LAT0)*K);
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  const px=lo=>(lo-LON0)*K*COSL, py=la=>(LAT1-la)*K;
+
+  // 简化中国轮廓（示意，非精确国界）
+  const CN=[[122.5,53.5],[124.5,53.2],[126.5,52.5],[127.5,50.2],[130.7,48.9],[134.3,48.4],[135.1,48.2],
+    [133.5,45.5],[131.3,44.9],[131.3,43.4],[130.2,42.7],[128.1,42.0],[126.0,40.9],[124.4,40.0],
+    [122.1,39.4],[121.2,40.8],[118.0,39.0],[119.0,37.0],[120.8,37.8],[122.7,37.4],[120.3,36.0],
+    [119.2,35.0],[120.3,34.0],[121.8,31.9],[121.5,29.9],[120.0,27.0],[119.3,26.0],[118.1,24.4],
+    [116.7,23.3],[114.2,22.5],[113.0,22.0],[111.0,21.5],[109.8,21.4],[108.5,21.6],[108.0,20.3],
+    [107.9,21.5],[106.7,22.0],[105.3,23.3],[103.5,22.6],[102.5,22.4],[101.8,21.2],[101.1,21.2],
+    [100.1,21.5],[99.2,22.1],[98.9,23.2],[97.5,23.9],[97.8,25.0],[98.7,27.5],[98.4,28.4],
+    [97.4,28.5],[96.2,29.0],[95.3,28.3],[93.5,28.8],[91.7,27.9],[89.1,27.5],[88.9,27.3],
+    [87.9,27.5],[86.9,27.9],[85.8,28.3],[84.2,28.9],[82.1,30.1],[81.2,30.4],[79.0,30.9],
+    [78.7,31.5],[78.9,32.5],[79.1,33.0],[78.2,34.5],[77.8,35.5],[76.0,35.9],[74.9,36.8],
+    [75.0,37.4],[74.5,38.5],[73.6,39.2],[74.9,40.5],[76.5,41.0],[78.0,41.4],[80.2,42.2],
+    [80.5,43.0],[82.5,45.0],[83.0,47.2],[85.7,48.4],[87.3,49.1],[88.0,48.0],[90.0,47.9],
+    [91.0,46.0],[93.5,44.9],[95.4,44.0],[96.4,42.7],[99.5,42.6],[102.0,42.2],[105.0,41.7],
+    [107.5,42.4],[110.5,43.3],[111.9,43.7],[114.5,45.4],[116.7,46.3],[117.8,47.9],[119.7,47.0],
+    [115.6,47.9],[117.8,49.5],[119.7,50.3],[120.7,51.4],[120.1,52.6],[121.0,53.3],[122.5,53.5]];
+  const TAIWAN=[[120.1,25.3],[121.9,25.1],[121.5,22.6],[120.9,21.9],[120.1,23.0]];
+  const HAINAN=[[108.6,19.3],[110.0,18.2],[110.6,19.9],[109.2,20.1]];
+  const HUANGHE=[[96.5,35.0],[100.0,34.9],[102.0,35.9],[103.8,36.1],[106.2,38.5],[107.5,40.5],[110.0,40.0],[110.4,37.5],[110.5,35.0],[111.5,34.8],[113.6,34.8],[115.5,35.5],[117.5,36.5],[119.0,37.8]];
+  const CHANGJIANG=[[91.0,33.5],[96.0,32.0],[99.0,28.0],[100.2,26.9],[102.0,27.5],[104.0,28.8],[106.5,29.6],[108.5,30.8],[111.0,30.5],[113.0,30.5],[115.8,29.7],[117.8,30.9],[119.5,32.0],[121.5,31.5]];
+
+  const SITES=[
+    {n:'元谋人',lo:101.87,la:25.72,yr:'约 170 万年前',era:'early',prov:'云南元谋',
+     d:'中国已知最早的古人类化石之一（两枚门齿），属直立人。同期还出土了炭屑与烧骨，一度被认为是中国最早的用火证据（尚存争议）。',
+     tags:['直立人','最早','用火争议']},
+    {n:'蓝田人',lo:109.32,la:34.15,yr:'约 115 万年前',era:'early',prov:'陕西蓝田',
+     d:'发现头盖骨、鼻骨、上颌骨与下颌骨。脑容量约 780 毫升，眉脊粗壮，形态比北京猿人更为原始，是华北地区早期直立人的重要代表。',
+     tags:['直立人','脑容量 780ml','华北']},
+    {n:'郧县人',lo:110.80,la:32.83,yr:'约 100 万年前',era:'early',prov:'湖北十堰郧阳',
+     d:'1990 年出土的 2 号头骨因破碎变形，最初被暂归直立人。2025 年经高精度 CT 与上万次模拟完成数字重建：脑容量超 1100 毫升，兼具原始与进步特征，被提出为龙人支系的早期代表——这一结论把人属主要支系的分化时间大幅推前。',
+     tags:['2025 数字重建','脑容量 >1100ml','龙人支系','颠覆性']},
+    {n:'北京猿人（周口店）',lo:115.92,la:39.69,yr:'约 70 万–20 万年前',era:'early',prov:'北京房山周口店',
+     d:'中国最著名的古人类遗址，出土 6 具较完整头盖骨及大量石制品、用火遗迹。铲形门齿、突出颧骨、下颌圆枕等特征在此后的中国化石中反复出现，是"连续演化"的关键证据。',
+     tags:['直立人','用火','体质特征连续性','世界遗产']},
+    {n:'南京人',lo:119.05,la:32.05,yr:'约 60 万年前',era:'early',prov:'江苏南京汤山',
+     d:'出土两具直立人头骨，其中一号头骨保存较完整，鼻梁高耸，兼具直立人与早期智人的混合特征，显示长江下游地区在中更新世已有人群活动。',
+     tags:['直立人','长江下游','混合特征']},
+    {n:'和县人',lo:118.36,la:31.71,yr:'约 40 万年前',era:'early',prov:'安徽马鞍山和县',
+     d:'出土一具近乎完整的直立人头盖骨，脑容量约 1025 毫升，为长江流域中更新世直立人提供了重要标本。',
+     tags:['直立人','完整头盖骨','长江流域']},
+    {n:'大荔人',lo:109.94,la:34.79,yr:'约 30 万–25 万年前',era:'mid',prov:'陕西渭南大荔',
+     d:'一具近乎完整的头骨，脑容量约 1120 毫升。面部扁平、颧骨突出，兼具直立人的原始性与早期智人的进步性，是中更新世东亚人类多样性的关键标本。',
+     tags:['中更新世','过渡型','面部扁平']},
+    {n:'金牛山人',lo:122.24,la:40.66,yr:'约 28 万年前',era:'mid',prov:'辽宁营口',
+     d:'出土包括完整头骨、脊椎、肋骨、髋骨与四肢骨在内的罕见完整骨架，脑容量约 1335 毫升——已落入现代人范围。是东亚中更新世最完整的古人类骨架之一。',
+     tags:['完整骨架','脑容量 1335ml','东北']},
+    {n:'华龙洞人',lo:117.02,la:30.10,yr:'约 30 万年前',era:'mid',prov:'安徽池州东至',
+     d:'出土人类牙齿、头骨等化石。对 21 颗牙齿的分析显示：前臼齿与臼齿根部粗壮（接近古老型人类），而牙齿尺寸小、第三臼齿退化、颊面平滑（接近现代人），且不具尼安德特人特征。被认为是东亚呈现现代人特征最多、年代最早的过渡群体。',
+     tags:['2024 重点发现','牙齿镶嵌特征','向智人过渡']},
+    {n:'马坝人',lo:113.60,la:24.68,yr:'约 13 万年前',era:'mid',prov:'广东韶关曲江',
+     d:'出土一具早期智人头盖骨，眉脊粗壮、颅骨较厚，同时具有较现代人化的眶上形态，是华南地区早期智人的代表。',
+     tags:['早期智人','华南']},
+    {n:'许家窑人',lo:114.15,la:40.30,yr:'约 20 万–16 万年前',era:'mid',prov:'山西阳高 / 河北阳原交界',
+     d:'巨颅人（Homo juluensis）的正模标本。出土 20 余件化石代表约 16 个个体，颅容量估计约 1700 毫升；遗址出土 1.4 万余件石制品与大量动物化石（以普氏野马为主，约 5000 件标本），暗示高度组织化的群体狩猎。',
+     tags:['巨颅人正模','脑容量约 1700ml','野马猎场']},
+    {n:'许昌人',lo:113.85,la:34.03,yr:'约 12.5 万–10.5 万年前',era:'mid',prov:'河南许昌灵井',
+     d:'巨颅人的副模标本，颅容量可达 1800 毫升，头骨低而宽、顶骨独特膨胀（平均膨胀度约 12.7%）。与许家窑人共有此前被视为尼安德特人特有的内耳迷路模式。',
+     tags:['巨颅人副模','脑容量约 1800ml','内耳迷路']},
+    {n:'夏河人（丹尼索瓦）',lo:102.50,la:35.12,yr:'约 16 万年前',era:'deni',prov:'甘肃甘南夏河白石崖溶洞',
+     d:'1980 年发现的下颌骨化石，2019 年经古蛋白分析确认为丹尼索瓦人。这块标本把青藏高原史前人类最早活动时间由距今 4 万年大幅推早至 16 万年前——意味着丹尼索瓦人很早就适应了高海拔低氧环境。',
+     tags:['丹尼索瓦人','青藏高原','古蛋白','高海拔适应']},
+    {n:'哈尔滨龙人',lo:126.53,la:45.80,yr:'至少 14.6 万年前',era:'deni',prov:'黑龙江哈尔滨',
+     d:'1933 年出土、长期被秘藏的近完整头骨，2021 年被命名为新物种"龙人"（Homo longi）。2025 年，古蛋白组与牙结石中提取的线粒体 DNA 双重证据确认它属于丹尼索瓦人——人类第一次看到丹尼索瓦人的完整面部。脑容量约 1420 毫升。',
+     tags:['龙人 Homo longi','2025 确证','丹尼索瓦人的脸']},
+    {n:'田园洞人',lo:115.60,la:39.65,yr:'约 4 万年前',era:'modern',prov:'北京房山',
+     d:'中国第一例成功获取核基因组数据的早期现代人。基因组分析显示它已属东亚现代人人群，但与后来定居东亚的许多人群并不存在直接的祖裔关系，暗示早期现代人在该地区经历过复杂的种群更替。',
+     tags:['古 DNA','东亚最早基因组','种群更替']},
+    {n:'山顶洞人',lo:115.98,la:39.72,yr:'约 3.4 万–2.7 万年前',era:'modern',prov:'北京周口店',
+     d:'出土 8 具个体化石及大量装饰品（穿孔兽牙、石珠、骨针）与墓葬遗迹，是东亚晚期智人象征性行为的重要证据。',
+     tags:['晚期智人','装饰品','墓葬']},
+    {n:'柳江人',lo:109.43,la:24.25,yr:'约 3.3 万–2.3 万年前',era:'modern',prov:'广西柳州柳江',
+     d:'一具相当完整的晚期智人骨架，面部具有明显的现代东亚人群特征，是华南地区晚期智人的关键标本，年代长期存在争议。',
+     tags:['晚期智人','华南','年代存争议']}
+  ];
+  const EC={early:{c:'#60a5fa',n:'早期·直立人阶段'},mid:{c:'#a78bfa',n:'中晚期·过渡型 / 巨颅人'},
+            deni:{c:'#22d3ee',n:'丹尼索瓦—龙人支系'},modern:{c:'#fb7185',n:'早期现代人'}};
+
+  const g=el('g');svg.appendChild(g);
+  for(let lo=80;lo<=135;lo+=10)g.appendChild(el('line',{class:'cngrid',x1:px(lo),y1:0,x2:px(lo),y2:H}));
+  for(let la=20;la<=50;la+=10)g.appendChild(el('line',{class:'cngrid',x1:0,y1:py(la),x2:W,y2:py(la)}));
+
+  [CN,TAIWAN,HAINAN].forEach(a=>{
+    g.appendChild(el('polygon',{class:'cnland',points:a.map(([lo,la])=>`${px(lo)},${py(la)}`).join(' ')}));
+  });
+  [[HUANGHE,'w1','黄河'],[CHANGJIANG,'w2','长江']].forEach(([r,cls,nm])=>{
+    g.appendChild(el('path',{class:'cnriver '+cls,d:'M'+r.map(([lo,la])=>`${px(lo)},${py(la)}`).join(' L ')}));
+    const t=el('text',{class:'cnrivlabel '+(cls==='w1'?'w1l':'w2l'),x:px(r[Math.floor(r.length*0.62)][0])+8,
+      y:py(r[Math.floor(r.length*0.62)][1])-6,fill:cls==='w1'?'rgba(96,165,250,.6)':'rgba(52,211,153,.55)'});
+    t.textContent=nm;g.appendChild(t);
+  });
+
+  // 遗址点
+  const siteG=[];
+  SITES.forEach((s,i)=>{
+    const x=px(s.lo),y=py(s.la),c=EC[s.era].c;
+    const gg=el('g',{class:'siteg'});
+    gg.style.color=c;
+    gg.appendChild(el('circle',{class:'hit',cx:x,cy:y,r:15}));
+    gg.appendChild(el('circle',{class:'halo',cx:x,cy:y,r:5,style:`animation-delay:${(i%6)*0.55}s`}));
+    gg.appendChild(el('circle',{class:'core',cx:x,cy:y,r:5.5,fill:c}));
+    const flip = x>W*0.68;
+    const t=el('text',{x:flip?x-11:x+11,y:y+4,'text-anchor':flip?'end':'start'});
+    t.textContent=s.n;gg.appendChild(t);
+    gg.addEventListener('click',()=>select(i));
+    gg.addEventListener('mouseenter',()=>{if(st!==i)select(i);});
+    g.appendChild(gg);siteG.push(gg);
+  });
+  // 区域标注
+  [['青 藏 高 原',90,32],['黄 土 高 原',110,37.5],['东 北 平 原',124,47.5]].forEach(([t,lo,la])=>{
+    const tx=el('text',{class:'reglabel',x:px(lo),y:py(la),'text-anchor':'middle'});
+    tx.textContent=t;g.appendChild(tx);
+  });
+
+  let st=0;
+  function select(i){
+    st=i;const s=SITES[i],c=EC[s.era].c;
+    siteG.forEach((gg,k)=>gg.classList.toggle('on',k===i));
+    panel.innerHTML=`
+      <div class="top" style="background:linear-gradient(150deg,${c}22,rgba(167,139,250,.05))">
+        <h3>${s.n}</h3>
+        <div class="yr">${s.yr}</div>
+        <span class="badge" style="margin-top:10px;display:inline-block;padding:3px 11px;border-radius:20px;
+          font-size:.7rem;font-weight:700;background:${c}22;color:${c};border:1px solid ${c}55">${EC[s.era].n}</span>
+      </div>
+      <div class="body">
+        <div style="font-size:.78rem;color:var(--tx3);margin-bottom:10px">📍 ${s.prov}</div>
+        <p>${s.d}</p>
+        <div class="chips">${s.tags.map(t=>`<span class="chip">${t}</span>`).join('')}</div>
+        <div class="cnlist">${SITES.map((x,k)=>`<div class="cnli${k===i?' on':''}" data-k="${k}">
+            <i style="background:${EC[x.era].c}"></i>
+            <span class="nm">${x.n}</span><span class="yr">${x.yr}</span></div>`).join('')}</div>
+      </div>`;
+    $$('.cnli',panel).forEach(li=>li.onclick=()=>select(+li.dataset.k));
+  }
+  select(0);
+})();
+
+/* =========================================================
+   世界人口曲线
+   ========================================================= */
+(function popChart(){
+  const svg=$('#popchart');if(!svg)return;
+  const W=1000,H=430,L=56,R=22,T=34,B=46;
+  // 分段压缩的横轴
+  const KN=[[-10000,0],[-5000,.13],[-3000,.19],[-1000,.26],[0,.31],[1000,.37],[1500,.43],
+            [1700,.49],[1800,.545],[1900,.625],[1950,.715],[2000,.815],[2050,.915],[2100,1]];
+  function fx(y){
+    if(y<=KN[0][0])return L;
+    for(let i=1;i<KN.length;i++){
+      const [y0,f0]=KN[i-1],[y1,f1]=KN[i];
+      if(y<=y1)return L+(f0+(y-y0)/(y1-y0)*(f1-f0))*(W-L-R);
+    }
+    return L+(W-L-R);
+  }
+  const YMAX=110, fy=v=>H-B-(v/YMAX)*(H-T-B);
+  const HIST=[[-10000,.04],[-5000,.05],[-3000,.14],[-2000,.27],[-1000,.50],[-500,1.0],[1,1.88],
+    [500,2.06],[1000,2.75],[1200,3.60],[1300,3.90],[1340,4.43],[1400,3.50],[1500,4.61],
+    [1600,5.54],[1650,5.00],[1700,6.03],[1750,7.90],[1800,9.78],[1850,12.62],[1900,16.50],
+    [1920,18.62],[1930,20.70],[1950,25.24],[1960,30.34],[1970,36.82],[1980,44.36],
+    [1990,53.17],[2000,61.43],[2010,69.57],[2020,78.11],[2026,82.70]];
+  const PROJ=[[2026,82.70],[2038,90.0],[2050,96.6],[2060,100.0],[2084,102.9],[2100,101.9]];
+  const MARKS=[[1804,10,'10亿',10],[1927,20,'20亿',14],[1960,30,'30亿',-14],[1974,40,'40亿',12],
+    [1986,50,'50亿',-14],[1998,60,'60亿',12],[2010,70,'70亿',-14],[2022,80,'80亿',12]];
+
+  const defs=el('defs');
+  defs.innerHTML=`<linearGradient id="pgrad" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#fbbf24"/><stop offset="45%" stop-color="#22d3ee"/>
+      <stop offset="78%" stop-color="#60a5fa"/><stop offset="100%" stop-color="#fb7185"/></linearGradient>
+    <linearGradient id="pfill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity=".42"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/></linearGradient>`;
+  svg.appendChild(defs);
+
+  // 网格 + y 轴
+  const gg=el('g',{class:'pgrid'});
+  for(let v=0;v<=100;v+=20){
+    gg.appendChild(el('line',{x1:L,y1:fy(v),x2:W-R,y2:fy(v)}));
+    const t=el('text',{x:L-9,y:fy(v)+4,'text-anchor':'end'});t.textContent=v;gg.appendChild(t);
+  }
+  const yl=el('text',{x:15,y:(H-B+T)/2,'text-anchor':'middle',transform:`rotate(-90 15 ${(H-B+T)/2})`});
+  yl.textContent='亿人';gg.appendChild(yl);svg.appendChild(gg);
+
+  // 时代背景带
+  const bands=[[-10000,-3000,'新石器革命前'],[-3000,1500,'农业文明'],[1500,1760,'近代早期'],
+               [1760,1950,'工业时代'],[1950,2100,'大加速']];
+  const gb=el('g',{class:'era-band'});
+  bands.forEach(([a,b,nm],i)=>{
+    const x1=fx(a),x2=fx(b);
+    if(i%2===0)gb.appendChild(el('rect',{x:x1,y:T,width:x2-x1,height:H-T-B,fill:'rgba(255,255,255,.02)'}));
+    gb.appendChild(el('line',{x1:x2,y1:T,x2:x2,y2:H-B,stroke:'rgba(255,255,255,.07)'}));
+    const t=el('text',{x:(x1+x2)/2,y:T-12,'text-anchor':'middle'});t.textContent=nm;gb.appendChild(t);
+  });
+  svg.appendChild(gb);
+
+  // 曲线
+  const dH='M'+HIST.map(p=>`${fx(p[0])},${fy(p[1])}`).join(' L ');
+  svg.appendChild(el('path',{class:'pfill',d:dH+` L ${fx(2026)},${fy(0)} L ${fx(-10000)},${fy(0)} Z`}));
+  svg.appendChild(el('path',{class:'hist',d:dH}));
+  svg.appendChild(el('path',{class:'proj',d:'M'+PROJ.map(p=>`${fx(p[0])},${fy(p[1])}`).join(' L ')}));
+
+  // 峰值线
+  const pk=fx(2084);
+  svg.appendChild(el('line',{class:'peakline',x1:pk,y1:fy(102.9),x2:pk,y2:H-B}));
+  const pt=el('text',{class:'ppeak',x:pk,y:fy(102.9)-16,'text-anchor':'end',fill:'#6ee7b7','font-size':'11'});
+  pt.textContent='2084 · 峰值 ≈ 102.9 亿';svg.appendChild(pt);
+  svg.appendChild(el('circle',{cx:pk,cy:fy(102.9),r:4.5,fill:'#34d399',stroke:'#04060f','stroke-width':1.5}));
+
+  // x 轴刻度
+  const gx=el('g',{class:'pgrid'});
+  [-10000,-5000,-3000,-1000,0,1000,1500,1800,1900,1950,2000,2050,2100].forEach(y=>{
+    gx.appendChild(el('line',{x1:fx(y),y1:H-B,x2:fx(y),y2:H-B+5,stroke:'rgba(255,255,255,.2)'}));
+    const t=el('text',{x:fx(y),y:H-B+19,'text-anchor':'middle'});
+    t.textContent=y<=0?(y===0?'公元元年':'前'+Math.abs(y)):y;gx.appendChild(t);
+  });
+  svg.appendChild(gx);
+
+  // 里程碑
+  const tip=$('#ptip');
+  const gm=el('g');
+  MARKS.forEach(([y,v,lb,off])=>{
+    const gg2=el('g',{class:'pmk'});
+    gg2.appendChild(el('circle',{cx:fx(y),cy:fy(v),r:4.5,fill:'#fbbf24'}));
+    const t=el('text',{x:fx(y)+6,y:fy(v)+off*0.55+4});t.textContent=`${lb}·${y}`;gg2.appendChild(t);
+    gg2.addEventListener('mousemove',e=>{
+      const r=svg.getBoundingClientRect();
+      tip.style.left=(e.clientX-r.left+14)+'px';tip.style.top=(e.clientY-r.top-10)+'px';
+      tip.innerHTML=`<b>${y} 年</b>　世界人口达到 ${lb}<br><span style="color:#6f7fa3">${v} 亿人</span>`;
+      tip.classList.add('on');
+    });
+    gg2.addEventListener('mouseleave',()=>tip.classList.remove('on'));
+    gm.appendChild(gg2);
+  });
+  svg.appendChild(gm);
+
+  new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)svg.classList.add('on');}),{threshold:.25}).observe(svg);
+})();
+
+/* =========================================================
+   人口里程碑 / 人类世卡片
+   ========================================================= */
+(function anthropocene(){
+  // 每 10 亿人所需年数
+  const DBL=[[1804,1927,'10 → 20 亿',123,'f'],[1927,1960,'20 → 30 亿',33,'f'],
+             [1960,1974,'30 → 40 亿',14,'f'],[1974,1986,'40 → 50 亿',12,'f'],
+             [1986,1998,'50 → 60 亿',12,'f'],[1998,2010,'60 → 70 亿',12,'f'],
+             [2010,2022,'70 → 80 亿',12,'f'],[2022,2038,'80 → 90 亿',16,'p']];
+  const box=$('#popBars');
+  if(box){
+    box.innerHTML=DBL.map(([a,b,lb,n,k])=>`
+      <div class="pb">
+        <span class="lbl">${lb}</span>
+        <span class="track"><span class="fill ${k}" data-w="${Math.max(8,n/123*100)}" style="--w:${Math.max(8,n/123*100)}%"></span></span>
+        <span class="val">${n} 年</span>
+      </div>`).join('');
+    new IntersectionObserver(es=>es.forEach(e=>{
+      if(!e.isIntersecting)return;
+      $$('.fill',e.target).forEach(f=>f.style.width=f.dataset.w+'%');
+    }),{threshold:.4}).observe(box);
+  }
+
+  // 人类世起点之争
+  const STARTS=[
+    {i:'🌾',t:'约 8000–5000 年前',h:'早期农业假说',
+     p:'Ruddiman 提出：新石器农业与森林砍伐使大气 CO₂ 与甲烷在工业革命前数千年就已偏离自然轨道。若采此说，"人类世"的开端几乎与"文明"同义。'},
+    {i:'🌎',t:'1610 年 · Orbis 低谷',h:'殖民与再造林',
+     p:'Lewis 与 Maslin：欧洲殖民美洲导致原住民人口锐减、耕地弃荒、森林恢复固碳，南极冰芯记录到 CO₂ 在 1610 年前后出现约 7–10 ppm 的明显下探。这是"全球化"留在大气中的第一道伤疤。'},
+    {i:'⚙️',t:'约 1760 年',h:'工业革命',
+     p:'克鲁岑最初的提议，也是 IPCC 选定的"工业化前"基准年（1750）。蒸汽机与煤炭让人类第一次大规模释放地质时期封存的太阳能。'},
+    {i:'☢️',t:'1950 年 · 大加速',h:'AWG 推荐方案',
+     p:'钚-239 全球沉降、塑料、混凝土、化肥、CO₂ 陡升——地球系统指标与社会经济指标同步暴涨。克劳福德湖 1952 年纹层被选定为候选金钉子。'}
+  ];
+  const as=$('#anthroStarts');
+  if(as)as.innerHTML=STARTS.map(s=>`<div class="mile reveal"><span class="mi">${s.i}</span>
+      <div><h5>${s.h}</h5><span>${s.t}</span><p>${s.p}</p></div></div>`).join('');
+
+  // 大加速
+  const ACCEL=[
+    {i:'👥',h:'世界人口',a:'约 7.9 亿（1750）',b:'82.7 亿（2026）',w:100,c:'#fb7185',
+     p:'增长约 10.5 倍；但增速自 1963 年峰值起持续放缓，预计 2084 年前后触顶。'},
+    {i:'🫧',h:'大气 CO₂ 浓度',a:'280 ppm（工业化前）',b:'约 424 ppm（2024）',w:96,c:'#fbbf24',
+     p:'增幅超过 50%，为至少两百万年来的最高值，也是地质记录中最陡的一次上升。'},
+    {i:'🧪',h:'化肥（氮）使用',a:'几乎为零（1900）',b:'约 1.1 亿吨/年',w:88,c:'#34d399',
+     p:'人类活动固定的氮已超过所有自然陆地过程之和，彻底改变了全球氮磷循环。'},
+    {i:'🏗️',h:'塑料年产量',a:'0（1950 年前）',b:'约 4 亿吨/年',w:84,c:'#60a5fa',
+     p:'塑料与混凝土、铝正在形成全新的"技术圈"（technosphere）沉积层与新型"岩石"。'},
+    {i:'🌡️',h:'全球平均气温',a:'工业化前基线',b:'升高约 1.3 ℃',w:70,c:'#fb923c',
+     p:'2015—2024 年是有器测记录以来最暖的十年；变暖速率远快于多数自然气候事件。'},
+    {i:'💀',h:'物种灭绝速率',a:'自然背景速率',b:'数十至数百倍',w:92,c:'#a78bfa',
+     p:'学界普遍认为第六次大规模灭绝正在进行——这是人族 700 万年里第一次由单一物种驱动。'}
+  ];
+  const ag=$('#accelGrid');
+  if(ag){
+    ag.innerHTML=ACCEL.map(a=>`<div class="acc" style="--c:${a.c}"><div class="ai">${a.i}</div>
+      <h5>${a.h}</h5>
+      <div class="cmp"><span class="a">${a.a}</span><span class="ar">→</span><span class="b">${a.b}</span></div>
+      <div class="accbar"><i data-w="${a.w}" style="--w:${a.w}%"></i></div>
+      <p>${a.p}</p></div>`).join('');
+    new IntersectionObserver(es=>es.forEach(e=>{
+      if(!e.isIntersecting)return;
+      $$('.accbar i',e.target).forEach(i=>i.style.width=i.dataset.w+'%');
+    }),{threshold:.35}).observe(ag);
+  }
+})();
+</script>
+
+</body>
+</html>
