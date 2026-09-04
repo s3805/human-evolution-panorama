@@ -449,9 +449,19 @@ section{padding:96px 0;position:relative}
 footer{padding:56px 0 40px;border-top:1px solid var(--line);text-align:center;color:var(--tx3);font-size:.82rem}
 footer .fg{font-size:2.4rem;margin-bottom:12px}
 
-/* ============ 增强组件 ============ */
-#heroEvoBg,#dna{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-.hero>*:not(#heroEvoBg):not(#dna):not(.scroll-hint){position:relative;z-index:1}
+/* ============ HERO 媒体背景与10秒电影级视频 (方案B) ============ */
+.hero-media-wrap{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:hidden}
+.hero-video-bg{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;
+  opacity:.46;filter:brightness(.88) contrast(1.15) saturate(1.08);
+  transition:opacity .6s ease;
+}
+.hero-video-overlay{
+  position:absolute;inset:0;width:100%;height:100%;pointer-events:none;
+  background:radial-gradient(ellipse 72% 62% at 50% 45%,rgba(4,6,15,.22) 0%,rgba(4,6,15,.68) 64%,#04060f 100%);
+}
+#heroEvoBg,#dna{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero>*:not(.hero-media-wrap):not(#heroEvoBg):not(#dna):not(.scroll-hint){position:relative;z-index:1}
 .hero .scroll-hint{z-index:1}
 :focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
 .xsmask{
@@ -599,6 +609,14 @@ body.light::before{
     linear-gradient(180deg,#f8f6f0,#fbf9f3 45%,#f4f2ea);
 }
 body.light #stars{display:none}
+body.light .hero-video-bg{
+  opacity:.34;
+  filter:sepia(.34) contrast(1.18) brightness(1.02);
+  mix-blend-mode:multiply;
+}
+body.light .hero-video-overlay{
+  background:radial-gradient(ellipse 72% 62% at 50% 45%,rgba(248,246,240,.18) 0%,rgba(248,246,240,.72) 68%,#f8f6f0 100%);
+}
 body.light #heroEvoBg,body.light #dna{opacity:1}
 body.light .hero h1 .l1{
   background:linear-gradient(120deg,#0f172a 10%,#334155 90%);
@@ -745,7 +763,14 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
 
 <!-- ============ HERO ============ -->
 <header class="hero">
-  <canvas id="heroEvoBg" class="hero-evo-bg" aria-hidden="true"></canvas>
+  <div class="hero-media-wrap" aria-hidden="true">
+    <video id="heroVideo" class="hero-video-bg" autoplay loop muted playsinline preload="auto">
+      <source src="videos/hero-evolution-10s.webm" type="video/webm">
+      <source src="videos/hero-evolution-10s.mp4" type="video/mp4">
+    </video>
+    <div class="hero-video-overlay"></div>
+    <canvas id="heroEvoBg" class="hero-evo-bg"></canvas>
+  </div>
   <div class="hero-badge"><span class="dot"></span>人族演化 · 700 万年的分支与汇流</div>
   <h1>
     <span class="l1">人类演化</span>
@@ -1831,10 +1856,15 @@ function avatarHTML(s){
     ctx.restore();
   }
 
+  const heroVid=$('#heroVideo');
+
   function render(now){
     ctx.clearRect(0,0,W,H);
     const isLight=document.body.classList.contains('light');
-    const elapsed=(now-startTime)%10000; // 10秒无缝循环
+    const isVideoPlaying=heroVid && !heroVid.paused && heroVid.readyState>=2;
+    
+    // 如果视频正在播放，时间轴完全与视频保持帧级同频 (10秒无缝循环)
+    const elapsed=isVideoPlaying ? ((heroVid.currentTime*1000)%10000) : ((now-startTime)%10000);
     const eraDuration=2000; // 每个物种2秒
     const curIdx=Math.floor(elapsed/eraDuration);
     const nextIdx=(curIdx+1)%ERAS.length;
@@ -1850,33 +1880,34 @@ function avatarHTML(s){
     const curEra=ERAS[curIdx];
     const nxtEra=ERAS[nextIdx];
 
-    // 时代氛围柔和径向背光
-    const bgGrad=ctx.createRadialGradient(W*0.5,H*0.42,40,W*0.5,H*0.45,Math.max(W*0.6,400));
-    if(isLight){
-      bgGrad.addColorStop(0,'rgba(255,246,230,0.45)');
-      bgGrad.addColorStop(0.5,'rgba(245,238,222,0.25)');
-      bgGrad.addColorStop(1,'rgba(245,243,236,0)');
-    }else{
-      const c=curEra.col;
-      bgGrad.addColorStop(0,`rgba(${c[0]},${c[1]},${c[2]},0.18)`);
-      bgGrad.addColorStop(0.6,'rgba(15,23,42,0.08)');
-      bgGrad.addColorStop(1,'rgba(4,6,15,0)');
-    }
-    ctx.fillStyle=bgGrad;
-    ctx.fillRect(0,0,W,H);
+    // 如果视频未就绪或受浏览器拦截，无缝降级为 Canvas 离屏羽化肖像过渡
+    if(!isVideoPlaying){
+      const bgGrad=ctx.createRadialGradient(W*0.5,H*0.42,40,W*0.5,H*0.45,Math.max(W*0.6,400));
+      if(isLight){
+        bgGrad.addColorStop(0,'rgba(255,246,230,0.45)');
+        bgGrad.addColorStop(0.5,'rgba(245,238,222,0.25)');
+        bgGrad.addColorStop(1,'rgba(245,243,236,0)');
+      }else{
+        const c=curEra.col;
+        bgGrad.addColorStop(0,`rgba(${c[0]},${c[1]},${c[2]},0.18)`);
+        bgGrad.addColorStop(0.6,'rgba(15,23,42,0.08)');
+        bgGrad.addColorStop(1,'rgba(4,6,15,0)');
+      }
+      ctx.fillStyle=bgGrad;
+      ctx.fillRect(0,0,W,H);
 
-    // 肖像居中缓慢推镜 (Ken Burns)
-    const sz=Math.min(W*0.72,H*0.78,640);
-    const cx=W*0.5+Math.sin(localP*Math.PI)*18;
-    const cy=H*0.44+(localP-0.5)*12;
-    const curScale=1.0+localP*0.06;
-    const nxtScale=1.0+(localP-0.55)*0.06;
+      const sz=Math.min(W*0.72,H*0.78,640);
+      const cx=W*0.5+Math.sin(localP*Math.PI)*18;
+      const cy=H*0.44+(localP-0.5)*12;
+      const curScale=1.0+localP*0.06;
+      const nxtScale=1.0+(localP-0.55)*0.06;
 
-    if(curAlpha>0.01){
-      drawFeathered(imgs[curEra.id],cx,cy,sz,curAlpha,curScale,isLight);
-    }
-    if(nxtAlpha>0.01){
-      drawFeathered(imgs[nxtEra.id],cx,cy,sz,nxtAlpha,nxtScale,isLight);
+      if(curAlpha>0.01){
+        drawFeathered(imgs[curEra.id],cx,cy,sz,curAlpha,curScale,isLight);
+      }
+      if(nxtAlpha>0.01){
+        drawFeathered(imgs[nxtEra.id],cx,cy,sz,nxtAlpha,nxtScale,isLight);
+      }
     }
 
     // 飘逸环境粒子（晨雾光尘/暗夜火星）
@@ -1889,19 +1920,19 @@ function avatarHTML(s){
       const px=p.x*W,py=p.y*H;
       const flicker=Math.sin(now*0.003+p.phase)*0.3+0.7;
       const a=p.alpha*flicker;
-      ctx.fillStyle=isLight?`rgba(180,140,90,${a*0.38})`:`rgba(${curEra.col.join(',')},${a*0.65})`;
+      ctx.fillStyle=isLight?`rgba(180,140,90,${a*0.35})`:`rgba(${curEra.col.join(',')},${a*0.6})`;
       ctx.beginPath();ctx.arc(px,py,p.r,0,Math.PI*2);ctx.fill();
     }
     ctx.restore();
 
-    // 时代微水印标志
+    // 时代微水印标志（与当前视频镜头同频变换）
     ctx.save();
     ctx.font='600 12px ui-monospace, SFMono-Regular, Menlo, monospace';
     ctx.textAlign='center';
-    const textAlpha=(curAlpha>0.5?curAlpha:nxtAlpha)*(isLight?0.42:0.5);
+    const textAlpha=(curAlpha>0.5?curAlpha:nxtAlpha)*(isLight?0.48:0.55);
     ctx.fillStyle=isLight?`rgba(71,82,110,${textAlpha})`:`rgba(125,233,251,${textAlpha})`;
     const activeText=curAlpha>0.5?curEra.eraText:nxtEra.eraText;
-    ctx.fillText(`— ${activeText} —`,W*0.5,H*0.92);
+    ctx.fillText(`— ${activeText} —`,W*0.5,H*0.93);
     ctx.restore();
   }
 
@@ -1924,8 +1955,11 @@ function avatarHTML(s){
     new IntersectionObserver(entries=>{
       entries.forEach(ent=>{
         isVisible=ent.isIntersecting;
-        if(isVisible&&!raf&&!RM){
-          raf=requestAnimationFrame(loop);
+        if(isVisible){
+          if(heroVid && heroVid.paused && !RM) heroVid.play().catch(()=>{});
+          if(!raf&&!RM) raf=requestAnimationFrame(loop);
+        }else{
+          if(heroVid && !heroVid.paused) heroVid.pause();
         }
       });
     },{threshold:0.05}).observe(heroEl);
