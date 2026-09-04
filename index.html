@@ -825,7 +825,7 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
 </nav>
 
 <!-- ============ HERO ============ -->
-<header class="hero">
+<header class="hero" id="heroHeader">
   <div class="hero-media-wrap" aria-hidden="true">
     <video id="heroVideo" class="hero-video-bg" autoplay loop muted playsinline preload="auto" poster="videos/hero-poster.jpg">
       <source src="videos/hero-evolution-10s.webm" type="video/webm">
@@ -850,13 +850,6 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
     <div class="hs"><div class="v" data-count="1">0</div><div class="k">个幸存至今的人种</div></div>
     <div class="hs"><div class="v" data-count="99.9" data-dec="1" data-suffix="%">0</div><div class="k">全人类基因组相似度</div></div>
     <div class="hs"><div class="v" data-count="2" data-dec="1" data-suffix="%">0</div><div class="k">非洲外人群的尼人基因</div></div>
-  </div>
-  <div class="hero-sound-wrap">
-    <button class="hero-sound-btn" id="heroSoundBtn" type="button" title="点击开启/关闭 700 万年沉浸式原生态声景">
-      <span class="hs-ico">🎧</span>
-      <span class="hs-txt">开启 700 万年原生态沉浸声景</span>
-      <span class="sound-wave"><i></i><i></i><i></i></span>
-    </button>
   </div>
   <div class="scroll-hint"><span class="mouse"></span>SCROLL</div>
 </header>
@@ -1937,6 +1930,15 @@ function avatarHTML(s){
   const heroVid=$('#heroVideo');
   let videoHasStarted = false;
   if(heroVid){
+    heroVid.muted = true;
+    heroVid.defaultMuted = true;
+    heroVid.volume = 0;
+    heroVid.addEventListener('volumechange', ()=>{
+      if(!heroVid.muted || heroVid.volume > 0){
+        heroVid.muted = true;
+        heroVid.volume = 0;
+      }
+    });
     heroVid.addEventListener('playing', ()=>{ videoHasStarted=true; });
     heroVid.addEventListener('timeupdate', ()=>{ if(heroVid.currentTime>0) videoHasStarted=true; });
     if(heroVid.readyState>=2 && !heroVid.paused) videoHasStarted=true;
@@ -3258,7 +3260,7 @@ const SoundEngine = (function(){
 
   let enabled = false;
   let scene = 'auto'; // 'auto' | 'jungle' | 'savanna' | 'cave'
-  let autoEra = 'savanna';
+  let autoEra = 'silent';
   const DEFAULT_VOL = 0.65;
 
   // 3 条独立音轨，永久绑定专属 Audio 实例与 Gain 节点，彻底杜绝 WebKit 切源断音 Bug
@@ -3320,16 +3322,16 @@ const SoundEngine = (function(){
   }
 
   function crossfade(targetEra, durMs = 1500) {
-    if (!TRACK_CONFIG[targetEra]) return;
     if (!enabled) return;
     initCtx();
 
     const durSec = durMs / 1000;
     const now = ctx ? ctx.currentTime : 0;
+    const isValidTarget = !!TRACK_CONFIG[targetEra];
 
     Object.keys(tracks).forEach(key => {
       const tr = tracks[key];
-      const isTarget = (key === targetEra);
+      const isTarget = isValidTarget && (key === targetEra);
 
       if (isTarget) {
         if (tr.audio.paused) {
@@ -3447,17 +3449,18 @@ const SoundEngine = (function(){
 
   function updateUI() {
     const era = getEffectiveEra();
+    const isSilent = (scene === 'auto' && era === 'silent');
     const eraInfo = TRACK_CONFIG[era];
-    const eraBadge = eraInfo ? eraInfo.badge : '原声';
-    const eraName = eraInfo ? eraInfo.name : '沉浸声景';
+    const eraBadge = eraInfo ? eraInfo.badge : (isSilent ? '静音' : '原声');
+    const eraName = eraInfo ? eraInfo.name : (isSilent ? '首页静音' : '沉浸声景');
 
     // 1. 悬浮胶囊按钮
     const sfb = $('#soundFloatBtn');
     if (sfb) {
-      sfb.classList.toggle('on', enabled);
+      sfb.classList.toggle('on', enabled && !isSilent);
       const txt = sfb.querySelector('.sfb-txt');
-      if (txt) txt.textContent = enabled ? eraBadge : '声景';
-      sfb.setAttribute('title', enabled ? `沉浸声景运行中 · ${eraName} (点击管理)` : '点击开启沉浸声景');
+      if (txt) txt.textContent = enabled ? (isSilent ? '静音' : eraBadge) : '声景';
+      sfb.setAttribute('title', enabled ? (isSilent ? '声景已开启 · 首页背景视频静音播放中 (滑动正文自动开启)' : `沉浸声景运行中 · ${eraName} (点击管理)`) : '点击开启沉浸声景');
     }
 
     // 2. 面板开关行与拨动开关
@@ -3476,34 +3479,28 @@ const SoundEngine = (function(){
 
     const swDesc = $('#soundSwitchDesc');
     if (swDesc) {
-      swDesc.textContent = enabled ? `${eraName} 播放中` : '已关闭';
+      if (!enabled) swDesc.textContent = '已关闭';
+      else if (isSilent) swDesc.textContent = '首页视频静音中 · 下滑正文自动开启';
+      else swDesc.textContent = `${eraName} 播放中`;
     }
 
     // 3. 面板顶栏状态标签
     const stag = $('#soundStatusTag');
     if (stag) {
       stag.classList.toggle('on', enabled);
-      stag.textContent = enabled ? '播放中' : '已静音';
+      stag.textContent = enabled ? (isSilent ? '首页静音' : '播放中') : '已静音';
     }
 
     // 4. 导航条声景入口
     const nap = $('#navAudioPill');
     if (nap) {
-      nap.classList.toggle('on', enabled);
+      nap.classList.toggle('on', enabled && !isSilent);
       const txt = nap.querySelector('.nav-audio-txt');
-      if (txt) txt.textContent = enabled ? eraBadge : '原声';
+      if (txt) txt.textContent = enabled ? (isSilent ? '原声' : eraBadge) : '原声';
       nap.title = enabled ? `声景播放中: ${eraName} (点击静音)` : '点击开启沉浸声景';
     }
 
-    // 5. 首屏大按钮
-    const hsb = $('#heroSoundBtn');
-    if (hsb) {
-      hsb.classList.toggle('on', enabled);
-      const txt = hsb.querySelector('.hs-txt');
-      if (txt) txt.textContent = enabled ? `700万年声景运行中 · ${eraName} (点击关闭)` : '开启 700 万年原生态沉浸声景';
-    }
-
-    // 6. 面板场景按钮激活态
+    // 5. 面板场景按钮激活态
     $$('.scene-btn').forEach(b => {
       b.classList.toggle('active', b.dataset.scene === scene);
     });
@@ -3616,6 +3613,7 @@ const SoundEngine = (function(){
 
       // 时空自适应声景观测器
       const sectionEras = [
+        { id: 'heroHeader', era: 'silent' },
         { id: 's1', era: 'jungle' },
         { id: 's2', era: 'jungle' },
         { id: 's3', era: 'savanna' },
