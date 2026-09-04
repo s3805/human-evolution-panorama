@@ -532,12 +532,20 @@ footer .fg{font-size:2.4rem;margin-bottom:12px}
 #themeBtn:hover{color:#04060f;background:linear-gradient(120deg,#22d3ee,#a78bfa);border-color:transparent}
 
 /* ============ 沉浸式原生态声音控制台 (Soundscape) ============ */
-.sound-float-btn{position:fixed;left:74px;bottom:22px;z-index:98;height:44px;border-radius:22px;cursor:pointer;
+.sound-float-btn{position:fixed;left:74px;bottom:22px;z-index:98;height:44px;border-radius:22px;
   border:1px solid var(--line2);background:rgba(6,10,22,.85);color:var(--tx);font-size:.82rem;backdrop-filter:blur(12px);
-  display:inline-flex;align-items:center;gap:7px;padding:0 14px;box-shadow:var(--shadow);transition:.3s;font-family:inherit}
+  display:inline-flex;align-items:center;padding:0;box-shadow:var(--shadow);transition:.3s;font-family:inherit;overflow:hidden}
 .sound-float-btn:hover{color:#fff;border-color:rgba(34,211,238,.6);background:rgba(34,211,238,.12)}
 .sound-float-btn.on{border-color:rgba(34,211,238,.75);color:#7de9fb;background:rgba(34,211,238,.15);
   box-shadow:0 0 20px rgba(34,211,238,.28)}
+.sfb-main{background:none;border:none;color:inherit;font:inherit;height:100%;
+  display:inline-flex;align-items:center;gap:7px;padding:0 12px 0 14px;cursor:pointer}
+.sfb-quick-mute{display:none;align-items:center;justify-content:center;width:30px;height:100%;
+  background:none;border:none;border-left:1px solid rgba(34,211,238,.25);color:var(--tx2);
+  cursor:pointer;font-size:.82rem;transition:.2s;padding:0}
+.sound-float-btn.on .sfb-quick-mute{display:inline-flex}
+.sfb-quick-mute:hover{color:#f87171;background:rgba(239,68,68,.22)}
+
 .sound-wave{display:inline-flex;align-items:flex-end;gap:2.5px;height:12px;margin-left:2px}
 .sound-wave i{width:2.5px;height:3px;border-radius:1px;background:var(--cyan);opacity:.4;transition:height .2s}
 .sound-float-btn.on .sound-wave i, .hero-sound-btn.on .sound-wave i, .nav-audio-pill.on .sound-wave i{
@@ -546,15 +554,44 @@ footer .fg{font-size:2.4rem;margin-bottom:12px}
 .sound-wave i:nth-child(3){animation-delay:.45s!important}
 @keyframes waveDance{0%{height:3px}100%{height:12px}}
 
-.sound-panel{position:fixed;left:22px;bottom:76px;z-index:99;width:315px;border-radius:18px;
-  background:rgba(8,12,28,.94);border:1px solid var(--line2);backdrop-filter:blur(24px);
+.sound-panel{position:fixed;left:22px;bottom:76px;z-index:99;width:320px;border-radius:18px;
+  background:rgba(8,12,28,.95);border:1px solid var(--line2);backdrop-filter:blur(24px);
   padding:16px 18px;box-shadow:0 24px 50px -10px rgba(0,0,0,.75);opacity:0;pointer-events:none;
   transform:translateY(12px) scale(.96);transition:.3s cubic-bezier(.16,1,.3,1)}
 .sound-panel.open{opacity:1;pointer-events:auto;transform:none}
 .sound-panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;
   font-size:.86rem;font-weight:700;color:var(--tx)}
-.sound-panel-head button{background:none;border:none;color:var(--tx3);cursor:pointer;font-size:1.05rem;padding:2px 6px;border-radius:6px;transition:.2s}
-.sound-panel-head button:hover{color:var(--tx);background:rgba(255,255,255,.08)}
+.sp-title-wrap{display:flex;align-items:center;gap:8px}
+.sp-status-tag{font-size:.68rem;padding:2px 7px;border-radius:10px;font-weight:600;
+  background:rgba(255,255,255,.07);color:var(--tx3);border:1px solid var(--line)}
+.sp-status-tag.on{background:rgba(34,211,238,.12);color:#7de9fb;border-color:rgba(34,211,238,.4)}
+.sound-panel-close{background:none;border:none;color:var(--tx3);cursor:pointer;font-size:1.05rem;padding:2px 6px;border-radius:6px;transition:.2s}
+.sound-panel-close:hover{color:var(--tx);background:rgba(255,255,255,.08)}
+
+/* 一键开关大按钮 */
+.sound-power-wrap{margin-bottom:12px}
+.sound-power-btn{width:100%;display:flex;align-items:center;justify-content:space-between;
+  padding:9px 13px;border-radius:12px;cursor:pointer;font-family:inherit;transition:.25s;
+  border:1px solid var(--line2)}
+.sound-power-btn.on{
+  background:linear-gradient(135deg,rgba(34,211,238,.16),rgba(52,211,153,.12));
+  border-color:rgba(34,211,238,.5);color:#fff;box-shadow:0 0 16px rgba(34,211,238,.15)}
+.sound-power-btn.on:hover{
+  background:linear-gradient(135deg,rgba(239,68,68,.18),rgba(244,63,94,.12));
+  border-color:rgba(239,68,68,.5);color:#fca5a5}
+.sound-power-btn.off{
+  background:rgba(255,255,255,.04);border-color:var(--line);color:var(--tx2)}
+.sound-power-btn.off:hover{
+  background:rgba(34,211,238,.12);border-color:rgba(34,211,238,.5);color:#7de9fb}
+.sp-pwr-left{display:flex;align-items:center;gap:8px}
+.sp-pwr-icon{font-size:1.1rem}
+.sp-pwr-title{font-size:.82rem;font-weight:700}
+.sp-pwr-action{font-size:.73rem;padding:3px 9px;border-radius:6px;font-weight:600;transition:.2s}
+.sound-power-btn.on .sp-pwr-action{background:rgba(34,211,238,.2);color:#7de9fb}
+.sound-power-btn.on:hover .sp-pwr-action{background:rgba(239,68,68,.25);color:#fca5a5}
+.sound-power-btn.off .sp-pwr-action{background:rgba(255,255,255,.08);color:var(--tx2)}
+.sound-power-btn.off:hover .sp-pwr-action{background:rgba(34,211,238,.18);color:#7de9fb}
+
 .sound-scenes{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:14px}
 .scene-btn{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:11px;
   padding:8px 10px;cursor:pointer;text-align:left;transition:.2s;color:var(--tx2);font-family:inherit}
@@ -568,6 +605,9 @@ footer .fg{font-size:2.4rem;margin-bottom:12px}
 .sound-vol-row{display:flex;align-items:center;gap:10px;padding-top:10px;border-top:1px solid var(--line);
   font-size:.8rem;color:var(--tx2)}
 .sound-vol-row input[type=range]{flex:1;accent-color:var(--cyan);height:4px;border-radius:2px;cursor:pointer}
+.vol-ico-btn{background:none;border:none;cursor:pointer;font-size:1.05rem;color:var(--tx2);padding:2px 4px;border-radius:4px;transition:.2s;display:inline-flex;align-items:center;justify-content:center}
+.vol-ico-btn:hover{color:var(--tx);transform:scale(1.1)}
+.sound-vol-val{font-size:.76rem;color:var(--tx3);min-width:36px;text-align:right;font-variant-numeric:tabular-nums}
 
 .nav-audio-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;
   background:rgba(255,255,255,.05);border:1px solid var(--line);font-size:.76rem;
@@ -648,6 +688,15 @@ body.light .tip{background:rgba(255,253,246,.97);border-color:rgba(28,38,66,.22)
 body.light #toTop,body.light #themeBtn,body.light .sound-float-btn{background:rgba(250,248,242,.88);color:#1d2436;border-color:rgba(28,38,66,.22)}
 body.light .sound-panel{background:rgba(255,253,246,.96);border-color:rgba(28,38,66,.2);color:#1d2436}
 body.light .sound-panel-head{color:#1d2436}
+body.light .sound-power-btn.on{background:rgba(14,116,144,.1);border-color:rgba(14,116,144,.4);color:#0e7490}
+body.light .sound-power-btn.on:hover{background:rgba(220,38,38,.1);border-color:rgba(220,38,38,.4);color:#dc2626}
+body.light .sound-power-btn.off{background:rgba(28,38,66,.04);border-color:rgba(28,38,66,.14);color:#47526e}
+body.light .sound-power-btn.off:hover{background:rgba(14,116,144,.1);border-color:rgba(14,116,144,.4);color:#0e7490}
+body.light .sound-power-btn.on .sp-pwr-action{background:rgba(14,116,144,.15);color:#0e7490}
+body.light .sound-power-btn.on:hover .sp-pwr-action{background:rgba(220,38,38,.15);color:#dc2626}
+body.light .sfb-quick-mute{border-left-color:rgba(28,38,66,.16);color:#64748b}
+body.light .sfb-quick-mute:hover{color:#dc2626;background:rgba(239,68,68,.12)}
+body.light .sound-vol-val{color:#64748b}
 body.light .scene-btn{background:rgba(28,38,66,.04);border-color:rgba(28,38,66,.12);color:#47526e}
 body.light .scene-btn:hover{background:rgba(28,38,66,.08);color:#1d2436}
 body.light .scene-btn.active{background:rgba(14,116,144,.12);border-color:rgba(14,116,144,.5);color:#0e7490}
@@ -759,7 +808,9 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
   .sec-title{font-size:1.7rem}
   .detail-top h3{font-size:1.18rem}
   .nav-logo{display:none}
-  .sound-float-btn{left:66px;bottom:18px;height:40px;padding:0 10px;font-size:.76rem}
+  .sound-float-btn{left:66px;bottom:18px;height:40px;padding:0;font-size:.76rem}
+  .sfb-main{padding:0 9px 0 11px}
+  .sfb-quick-mute{width:28px}
   #themeBtn{left:18px;bottom:18px;width:40px;height:40px}
   .sound-panel{left:16px;bottom:66px;width:calc(100vw - 32px);max-width:320px}
   .hero-sound-btn{padding:8px 16px;font-size:.8rem}
@@ -1477,17 +1528,34 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
 </footer>
 <button id="toTop" aria-label="返回顶部" title="返回顶部">↑</button>
 <button id="themeBtn" aria-label="切换亮色/暗色主题" title="切换主题">☀️</button>
-<button id="soundFloatBtn" class="sound-float-btn" aria-label="沉浸声景控制" title="沉浸式原生态声景">
-  <span class="sfb-ico">🎧</span>
-  <span class="sfb-txt">声景</span>
-  <span class="sound-wave"><i></i><i></i><i></i></span>
-</button>
+<div id="soundFloatBtn" class="sound-float-btn" aria-label="沉浸声景控制" title="沉浸式原生态声景">
+  <button class="sfb-main" id="sfbMainBtn" title="管理沉浸声景">
+    <span class="sfb-ico">🎧</span>
+    <span class="sfb-txt">声景</span>
+    <span class="sound-wave"><i></i><i></i><i></i></span>
+  </button>
+  <button class="sfb-quick-mute" id="sfbQuickMute" title="一键关闭声音" aria-label="一键关闭声音">✕</button>
+</div>
 
 <div class="sound-panel" id="soundPanel">
   <div class="sound-panel-head">
-    <span>🎧 700万年原生态沉浸声景</span>
-    <button id="soundPanelClose" title="关闭面板">✕</button>
+    <div class="sp-title-wrap">
+      <span>🎧 700万年原生态沉浸声景</span>
+      <span class="sp-status-tag" id="soundStatusTag">已静音</span>
+    </div>
+    <button id="soundPanelClose" class="sound-panel-close" title="收起面板">✕</button>
   </div>
+
+  <div class="sound-power-wrap">
+    <button id="soundPowerBtn" class="sound-power-btn off" title="一键开启或关闭沉浸声景">
+      <div class="sp-pwr-left">
+        <span class="sp-pwr-icon">🔇</span>
+        <span class="sp-pwr-title">声景已关闭</span>
+      </div>
+      <span class="sp-pwr-action">点击开启声景</span>
+    </button>
+  </div>
+
   <div class="sound-scenes">
     <button class="scene-btn active" data-scene="auto">
       <span class="s-ico">✨</span>
@@ -1510,10 +1578,13 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
       <span class="s-sub">50~1万年·严寒风雪与篝火柴裂</span>
     </button>
   </div>
+
   <div class="sound-vol-row">
-    <span>🔈</span>
-    <input type="range" id="soundVolRange" min="0" max="1" step="0.05" value="0.6" title="音量调节">
-    <span>🔊</span>
+    <button id="volMuteToggle" class="vol-ico-btn" title="点击一键静音/恢复音量">
+      <span id="volIco">🔈</span>
+    </button>
+    <input type="range" id="soundVolRange" min="0" max="1" step="0.01" value="0.6" title="滑动调节音量">
+    <span id="soundVolVal" class="sound-vol-val">60%</span>
   </div>
 </div>
 
@@ -3200,6 +3271,7 @@ const SoundEngine = (function(){
   let scene = 'auto'; // 'auto' | 'jungle' | 'savanna' | 'cave'
   let autoEra = 'savanna';
   let volume = 0.6;
+  let lastNonZeroVol = 0.6;
   let fadeTimer = null;
 
   const pA = new Audio();
@@ -3212,6 +3284,11 @@ const SoundEngine = (function(){
 
   let ctx = null;
   let filter = null;
+  let masterGain = null;
+  let gainA = null;
+  let gainB = null;
+  let sA = null;
+  let sB = null;
 
   function initCtx() {
     if (!ctx) {
@@ -3219,59 +3296,101 @@ const SoundEngine = (function(){
       if (AC) {
         try {
           ctx = new AC();
+
           filter = ctx.createBiquadFilter();
           filter.type = 'lowpass';
           filter.frequency.setValueAtTime(20000, ctx.currentTime);
-          filter.connect(ctx.destination);
-          const sA = ctx.createMediaElementSource(pA);
-          const sB = ctx.createMediaElementSource(pB);
-          sA.connect(filter);
-          sB.connect(filter);
+
+          masterGain = ctx.createGain();
+          masterGain.gain.setValueAtTime(enabled ? volume : 0, ctx.currentTime);
+
+          gainA = ctx.createGain();
+          gainB = ctx.createGain();
+          gainA.gain.setValueAtTime(curPlayer === pA ? 1 : 0, ctx.currentTime);
+          gainB.gain.setValueAtTime(curPlayer === pB ? 1 : 0, ctx.currentTime);
+
+          if (!sA) sA = ctx.createMediaElementSource(pA);
+          if (!sB) sB = ctx.createMediaElementSource(pB);
+
+          sA.connect(gainA);
+          sB.connect(gainB);
+          gainA.connect(filter);
+          gainB.connect(filter);
+          filter.connect(masterGain);
+          masterGain.connect(ctx.destination);
         } catch(e) {
-          ctx = null;
-          filter = null;
+          console.warn('Web Audio Graph init fallback:', e);
         }
       }
     }
-    if (ctx && ctx.state === 'suspended') ctx.resume();
+    if (ctx && ctx.state === 'suspended') {
+      ctx.resume().catch(() => {});
+    }
   }
 
-  function crossfade(targetEra, durMs = 2000) {
+  function crossfade(targetEra, durMs = 1800) {
     if (!AMBIENT[targetEra]) return;
     if (!enabled) return;
+    initCtx();
 
     const nxt = (curPlayer === pA) ? pB : pA;
     const prv = curPlayer;
+    const nxtGain = (nxt === pA) ? gainA : gainB;
+    const prvGain = (prv === pA) ? gainA : gainB;
     const targetSrc = AMBIENT[targetEra].src;
 
-    if (prv && prv.src.includes(targetSrc) && !prv.paused) {
-      prv.volume = volume;
+    if (prv && prv.src && prv.src.includes(targetSrc) && !prv.paused) {
       return;
     }
 
-    if (fadeTimer) clearInterval(fadeTimer);
+    if (fadeTimer) {
+      clearInterval(fadeTimer);
+      fadeTimer = null;
+    }
+
     nxt.src = targetSrc;
     nxt.currentTime = 0;
-    nxt.volume = 0;
+    try { nxt.volume = volume; } catch(e) {}
 
     const pr = nxt.play();
     if (pr) {
       pr.then(() => {
         curPlayer = nxt;
-        const steps = 20;
-        const dt = durMs / steps;
-        let s = 0;
-        fadeTimer = setInterval(() => {
-          s++;
-          const t = s / steps;
-          nxt.volume = Math.min(1, Math.max(0, volume * t));
-          if (prv && !prv.paused) prv.volume = Math.min(1, Math.max(0, volume * (1 - t)));
-          if (s >= steps) {
-            clearInterval(fadeTimer);
-            fadeTimer = null;
-            if (prv) { prv.pause(); prv.currentTime = 0; }
-          }
-        }, dt);
+        const durSec = durMs / 1000;
+        if (ctx && nxtGain && prvGain) {
+          const now = ctx.currentTime;
+          nxtGain.gain.cancelScheduledValues(now);
+          prvGain.gain.cancelScheduledValues(now);
+          nxtGain.gain.setValueAtTime(0, now);
+          nxtGain.gain.linearRampToValueAtTime(1, now + durSec);
+          prvGain.gain.setValueAtTime(prvGain.gain.value, now);
+          prvGain.gain.linearRampToValueAtTime(0, now + durSec);
+
+          setTimeout(() => {
+            if (prv && curPlayer !== prv) {
+              prv.pause();
+              prv.currentTime = 0;
+            }
+          }, durMs + 50);
+        } else {
+          // Fallback interval
+          const steps = 20;
+          const dt = durMs / steps;
+          let s = 0;
+          fadeTimer = setInterval(() => {
+            s++;
+            const t = s / steps;
+            try {
+              nxt.volume = Math.min(1, Math.max(0, volume * t));
+              if (prv && !prv.paused) prv.volume = Math.min(1, Math.max(0, volume * (1 - t)));
+            } catch(e) {}
+            if (s >= steps) {
+              clearInterval(fadeTimer);
+              fadeTimer = null;
+              if (prv) { prv.pause(); prv.currentTime = 0; }
+            }
+          }, dt);
+        }
       }).catch(() => {});
     }
   }
@@ -3286,32 +3405,48 @@ const SoundEngine = (function(){
     try {
       initCtx();
       const a = new Audio(src);
-      a.volume = Math.min(1, Math.max(0, (enabled ? volume : 0.6) * customVol));
+      const baseVol = enabled ? volume : 0.6;
+      a.volume = Math.min(1, Math.max(0, baseVol * customVol));
       a.play().catch(() => {});
     } catch(e) {}
   }
 
   function toggle(forceState) {
     initCtx();
-    enabled = typeof forceState === 'boolean' ? forceState : !enabled;
-    if (enabled) {
-      crossfade(getEffectiveEra(), 1600);
-    } else {
-      if (fadeTimer) clearInterval(fadeTimer);
-      if (curPlayer) {
-        let s = 0;
-        const p = curPlayer;
-        fadeTimer = setInterval(() => {
-          s++;
-          p.volume = Math.max(0, p.volume - (p.volume / (12 - s + 1)));
-          if (s >= 12) {
-            clearInterval(fadeTimer);
-            fadeTimer = null;
-            p.pause();
-          }
-        }, 50);
-      }
+    const nextState = typeof forceState === 'boolean' ? forceState : !enabled;
+    enabled = nextState;
+
+    if (fadeTimer) {
+      clearInterval(fadeTimer);
+      fadeTimer = null;
     }
+
+    if (enabled) {
+      if (volume <= 0.01) {
+        setVolume(lastNonZeroVol || 0.6);
+      }
+      if (ctx && masterGain) {
+        const now = ctx.currentTime;
+        masterGain.gain.cancelScheduledValues(now);
+        masterGain.gain.setValueAtTime(0, now);
+        masterGain.gain.linearRampToValueAtTime(volume, now + 0.25);
+      }
+      crossfade(getEffectiveEra(), 1200);
+    } else {
+      if (ctx && masterGain) {
+        const now = ctx.currentTime;
+        masterGain.gain.cancelScheduledValues(now);
+        masterGain.gain.setValueAtTime(masterGain.gain.value, now);
+        masterGain.gain.linearRampToValueAtTime(0, now + 0.2);
+      }
+      setTimeout(() => {
+        if (!enabled) {
+          if (pA) pA.pause();
+          if (pB) pB.pause();
+        }
+      }, 220);
+    }
+
     updateUI();
     try { localStorage.setItem('evo_audio_enabled', enabled ? '1' : '0'); } catch(e) {}
   }
@@ -3325,10 +3460,31 @@ const SoundEngine = (function(){
   }
 
   function setVolume(v) {
-    volume = Math.max(0, Math.min(1, v));
-    if (curPlayer && enabled) curPlayer.volume = volume;
+    volume = Math.max(0, Math.min(1, Number(v)));
+    if (volume > 0.01) lastNonZeroVol = volume;
+
+    const effectiveGain = enabled ? volume : 0;
+    if (masterGain && ctx) {
+      masterGain.gain.cancelScheduledValues(ctx.currentTime);
+      masterGain.gain.setValueAtTime(effectiveGain, ctx.currentTime);
+    }
+    try {
+      pA.volume = volume;
+      pB.volume = volume;
+    } catch(e) {}
+
     updateUI();
-    try { localStorage.setItem('evo_audio_vol', volume); } catch(e) {}
+    try { localStorage.setItem('evo_audio_vol', volume.toString()); } catch(e) {}
+  }
+
+  function toggleVolMute() {
+    if (volume > 0.01) {
+      lastNonZeroVol = volume;
+      setVolume(0);
+    } else {
+      setVolume(lastNonZeroVol || 0.6);
+      if (!enabled) toggle(true);
+    }
   }
 
   function onScrollEra(era) {
@@ -3358,41 +3514,72 @@ const SoundEngine = (function(){
   function updateUI() {
     const era = getEffectiveEra();
     const eraInfo = AMBIENT[era];
+    const eraBadge = eraInfo ? eraInfo.badge : '原声';
+    const eraName = eraInfo ? eraInfo.name : '沉浸声景';
 
-    // Floating button
+    // 1. Floating button
     const sfb = $('#soundFloatBtn');
     if (sfb) {
       sfb.classList.toggle('on', enabled);
       const txt = sfb.querySelector('.sfb-txt');
-      if (txt) txt.textContent = enabled ? (eraInfo ? eraInfo.badge : '原声') : '声景';
-      sfb.title = enabled ? `沉浸声景运行中 · ${eraInfo ? eraInfo.name : ''}` : '点击开启沉浸声景';
+      if (txt) txt.textContent = enabled ? eraBadge : '声景';
+      sfb.setAttribute('title', enabled ? `沉浸声景运行中 · ${eraName} (点击管理)` : '点击开启沉浸声景');
     }
 
-    // Nav pill
+    // 2. Sound power button in panel
+    const pwrBtn = $('#soundPowerBtn');
+    if (pwrBtn) {
+      pwrBtn.classList.toggle('on', enabled);
+      pwrBtn.classList.toggle('off', !enabled);
+      const icon = pwrBtn.querySelector('.sp-pwr-icon');
+      const title = pwrBtn.querySelector('.sp-pwr-title');
+      const action = pwrBtn.querySelector('.sp-pwr-action');
+      if (icon) icon.textContent = enabled ? '🔊' : '🔇';
+      if (title) title.textContent = enabled ? `声景播放中 · ${eraName}` : '声景已关闭';
+      if (action) action.textContent = enabled ? '点击关闭声音' : '点击开启声景';
+      pwrBtn.setAttribute('title', enabled ? '点击关闭沉浸声景' : '点击开启沉浸声景');
+    }
+
+    // 3. Status tag in panel header
+    const stag = $('#soundStatusTag');
+    if (stag) {
+      stag.classList.toggle('on', enabled);
+      stag.textContent = enabled ? '播放中' : '已静音';
+    }
+
+    // 4. Volume range, speaker icon & percentage
+    const vi = $('#soundVolRange');
+    if (vi) vi.value = volume;
+    const vval = $('#soundVolVal');
+    if (vval) vval.textContent = `${Math.round(volume * 100)}%`;
+    const vico = $('#volIco');
+    if (vico) {
+      if (!enabled || volume <= 0.001) vico.textContent = '🔇';
+      else if (volume > 0.5) vico.textContent = '🔊';
+      else vico.textContent = '🔈';
+    }
+
+    // 5. Nav pill
     const nap = $('#navAudioPill');
     if (nap) {
       nap.classList.toggle('on', enabled);
       const txt = nap.querySelector('.nav-audio-txt');
-      if (txt) txt.textContent = enabled ? (eraInfo ? eraInfo.badge : '原声') : '原声';
-      nap.title = enabled ? `声景播放中: ${eraInfo ? eraInfo.name : ''} (点击静音)` : '点击开启沉浸声景';
+      if (txt) txt.textContent = enabled ? eraBadge : '原声';
+      nap.title = enabled ? `声景播放中: ${eraName} (点击静音)` : '点击开启沉浸声景';
     }
 
-    // Hero button
+    // 6. Hero button
     const hsb = $('#heroSoundBtn');
     if (hsb) {
       hsb.classList.toggle('on', enabled);
       const txt = hsb.querySelector('.hs-txt');
-      if (txt) txt.textContent = enabled ? `700万年声景运行中 · ${eraInfo ? eraInfo.name : ''}` : '开启 700 万年原生态沉浸声景';
+      if (txt) txt.textContent = enabled ? `700万年声景运行中 · ${eraName} (点击关闭)` : '开启 700 万年原生态沉浸声景';
     }
 
-    // Panel scene buttons
+    // 7. Panel scene buttons
     $$('.scene-btn').forEach(b => {
       b.classList.toggle('active', b.dataset.scene === scene);
     });
-
-    // Volume input
-    const vi = $('#soundVolRange');
-    if (vi) vi.value = volume;
   }
 
   // Preload on first interaction
@@ -3413,10 +3600,11 @@ const SoundEngine = (function(){
         const sc = localStorage.getItem('evo_audio_scene');
         const vo = localStorage.getItem('evo_audio_vol');
         if (sc && (AMBIENT[sc] || sc === 'auto')) scene = sc;
-        if (vo !== null) volume = parseFloat(vo);
-        // If user explicitly left it enabled on last visit, we keep state ready
+        if (vo !== null && !isNaN(parseFloat(vo))) {
+          volume = Math.max(0, Math.min(1, parseFloat(vo)));
+          if (volume > 0.01) lastNonZeroVol = volume;
+        }
         if (en === '1') {
-          // Will activate on first user gesture
           const startOnUser = () => {
             if (!enabled) toggle(true);
             window.removeEventListener('click', startOnUser);
@@ -3430,21 +3618,50 @@ const SoundEngine = (function(){
 
       // Bind UI buttons
       const sfb = $('#soundFloatBtn');
+      const sfbMain = $('#sfbMainBtn');
+      const sfbQuickMute = $('#sfbQuickMute');
       const spanel = $('#soundPanel');
       const spclose = $('#soundPanelClose');
-      if (sfb && spanel) {
-        sfb.addEventListener('click', e => {
+      const pwrBtn = $('#soundPowerBtn');
+      const volMuteBtn = $('#volMuteToggle');
+
+      if (sfbMain && spanel) {
+        sfbMain.addEventListener('click', e => {
           e.stopPropagation();
+          const willOpen = !spanel.classList.contains('open');
           spanel.classList.toggle('open');
-          if (!enabled) toggle(true);
+          if (willOpen && !enabled) toggle(true);
         });
       }
+
+      if (sfbQuickMute) {
+        sfbQuickMute.addEventListener('click', e => {
+          e.stopPropagation();
+          toggle(false);
+        });
+      }
+
+      if (pwrBtn) {
+        pwrBtn.addEventListener('click', e => {
+          e.stopPropagation();
+          toggle();
+        });
+      }
+
+      if (volMuteBtn) {
+        volMuteBtn.addEventListener('click', e => {
+          e.stopPropagation();
+          toggleVolMute();
+        });
+      }
+
       if (spclose && spanel) {
         spclose.addEventListener('click', e => {
           e.stopPropagation();
           spanel.classList.remove('open');
         });
       }
+
       document.addEventListener('click', e => {
         if (spanel && spanel.classList.contains('open') && !e.target.closest('#soundPanel') && !e.target.closest('#soundFloatBtn')) {
           spanel.classList.remove('open');
@@ -3460,7 +3677,9 @@ const SoundEngine = (function(){
 
       const vi = $('#soundVolRange');
       if (vi) {
-        vi.addEventListener('input', () => setVolume(parseFloat(vi.value)));
+        const onVol = () => setVolume(parseFloat(vi.value));
+        vi.addEventListener('input', onVol);
+        vi.addEventListener('change', onVol);
       }
 
       const nap = $('#navAudioPill');
