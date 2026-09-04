@@ -1239,7 +1239,7 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
   </div>
   <div class="tech-strip reveal" id="techStrip"></div>
   <h4 style="font-size:1.06rem;margin:38px 0 4px" class="reveal">🔑 关键转折点</h4>
-  <div class="mile-grid" id="mileGrid"></div>
+  <div class="mile-grid reveal" id="mileGrid"></div>
 </div>
 </section>
 
@@ -2148,6 +2148,7 @@ function avatarHTML(s){
     es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
   },{threshold:.12,rootMargin:'0px 0px -60px 0px'});
   document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
+  window.observeReveal=(e)=>{if(e)io.observe(e);};
 
   const io2=new IntersectionObserver((es)=>{
     es.forEach(e=>{
@@ -2884,12 +2885,15 @@ const TREE={id:'root',t:7.0,kids:[
     strip.appendChild(d);
   });
   const mg=$('#mileGrid');
-  MILESTONES.forEach(m=>{
-    const d=document.createElement('div');d.className='mile reveal';
-    const sfxBtn=m.sfx?`<button class="sfx-play-btn sm" data-sfx="${m.sfx}" type="button" title="${m.sfxTip}"><span>🔊 聆听原声</span></button>`:'';
-    d.innerHTML=`<span class="mi">${m.i}</span><div><h5>${m.h}</h5><span>${m.t}</span><p>${m.p}</p>${sfxBtn}</div>`;
-    mg.appendChild(d);
-  });
+  if(mg){
+    MILESTONES.forEach(m=>{
+      const d=document.createElement('div');d.className='mile';
+      const sfxBtn=m.sfx?`<button class="sfx-play-btn sm" data-sfx="${m.sfx}" type="button" title="${m.sfxTip}"><span>🔊 聆听原声</span></button>`:'';
+      d.innerHTML=`<span class="mi">${m.i}</span><div><h5>${m.h}</h5><span>${m.t}</span><p>${m.p}</p>${sfxBtn}</div>`;
+      mg.appendChild(d);
+    });
+    if(window.observeReveal) window.observeReveal(mg);
+  }
   document.addEventListener('click',e=>{
     const b=e.target.closest('.sfx-play-btn');
     if(!b)return;
