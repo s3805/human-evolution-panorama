@@ -1857,18 +1857,25 @@ function avatarHTML(s){
   }
 
   const heroVid=$('#heroVideo');
+  let videoHasStarted = false;
+  if(heroVid){
+    heroVid.addEventListener('playing', ()=>{ videoHasStarted=true; });
+    heroVid.addEventListener('timeupdate', ()=>{ if(heroVid.currentTime>0) videoHasStarted=true; });
+    if(heroVid.readyState>=2 && !heroVid.paused) videoHasStarted=true;
+  }
 
   function render(now){
     ctx.clearRect(0,0,W,H);
     const isLight=document.body.classList.contains('light');
-    const isVideoPlaying=heroVid && !heroVid.paused && heroVid.readyState>=2;
+    const isVideoActive = heroVid && (videoHasStarted || (!heroVid.paused && heroVid.readyState>=2));
     
-    // 如果视频正在播放，时间轴完全与视频保持帧级同频 (10秒无缝循环)
-    const elapsed=isVideoPlaying ? ((heroVid.currentTime*1000)%10000) : ((now-startTime)%10000);
-    const eraDuration=2000; // 每个物种2秒
-    const curIdx=Math.floor(elapsed/eraDuration);
-    const nextIdx=(curIdx+1)%ERAS.length;
-    const localP=(elapsed%eraDuration)/eraDuration;
+    // 如果视频正在播放，时间轴完全与视频保持帧级同频无缝循环
+    const vidDur = (heroVid && heroVid.duration && !isNaN(heroVid.duration)) ? heroVid.duration : 9.0;
+    const elapsed = isVideoActive ? ((heroVid.currentTime % vidDur) * 1000) : ((now-startTime)%10000);
+    const eraDuration = (isVideoActive ? (vidDur * 1000) : 10000) / ERAS.length;
+    const curIdx = Math.min(ERAS.length - 1, Math.floor(elapsed / eraDuration));
+    const nextIdx = (curIdx + 1) % ERAS.length;
+    const localP = (elapsed % eraDuration) / eraDuration;
 
     let curAlpha=1.0,nxtAlpha=0.0;
     if(localP>0.55){
@@ -1880,8 +1887,8 @@ function avatarHTML(s){
     const curEra=ERAS[curIdx];
     const nxtEra=ERAS[nextIdx];
 
-    // 如果视频未就绪或受浏览器拦截，无缝降级为 Canvas 离屏羽化肖像过渡
-    if(!isVideoPlaying){
+    // 仅当视频未就绪或被浏览器拦截无法播放时，才降级显示 Canvas 离屏羽化肖像
+    if(!isVideoActive){
       const bgGrad=ctx.createRadialGradient(W*0.5,H*0.42,40,W*0.5,H*0.45,Math.max(W*0.6,400));
       if(isLight){
         bgGrad.addColorStop(0,'rgba(255,246,230,0.45)');
