@@ -521,6 +521,67 @@ footer .fg{font-size:2.4rem;margin-bottom:12px}
   transition:.35s;font-family:inherit}
 #themeBtn:hover{color:#04060f;background:linear-gradient(120deg,#22d3ee,#a78bfa);border-color:transparent}
 
+/* ============ 沉浸式原生态声音控制台 (Soundscape) ============ */
+.sound-float-btn{position:fixed;left:74px;bottom:22px;z-index:98;height:44px;border-radius:22px;cursor:pointer;
+  border:1px solid var(--line2);background:rgba(6,10,22,.85);color:var(--tx);font-size:.82rem;backdrop-filter:blur(12px);
+  display:inline-flex;align-items:center;gap:7px;padding:0 14px;box-shadow:var(--shadow);transition:.3s;font-family:inherit}
+.sound-float-btn:hover{color:#fff;border-color:rgba(34,211,238,.6);background:rgba(34,211,238,.12)}
+.sound-float-btn.on{border-color:rgba(34,211,238,.75);color:#7de9fb;background:rgba(34,211,238,.15);
+  box-shadow:0 0 20px rgba(34,211,238,.28)}
+.sound-wave{display:inline-flex;align-items:flex-end;gap:2.5px;height:12px;margin-left:2px}
+.sound-wave i{width:2.5px;height:3px;border-radius:1px;background:var(--cyan);opacity:.4;transition:height .2s}
+.sound-float-btn.on .sound-wave i, .hero-sound-btn.on .sound-wave i, .nav-audio-pill.on .sound-wave i{
+  opacity:1;animation:waveDance .8s ease-in-out infinite alternate}
+.sound-wave i:nth-child(2){animation-delay:.25s!important}
+.sound-wave i:nth-child(3){animation-delay:.45s!important}
+@keyframes waveDance{0%{height:3px}100%{height:12px}}
+
+.sound-panel{position:fixed;left:22px;bottom:76px;z-index:99;width:315px;border-radius:18px;
+  background:rgba(8,12,28,.94);border:1px solid var(--line2);backdrop-filter:blur(24px);
+  padding:16px 18px;box-shadow:0 24px 50px -10px rgba(0,0,0,.75);opacity:0;pointer-events:none;
+  transform:translateY(12px) scale(.96);transition:.3s cubic-bezier(.16,1,.3,1)}
+.sound-panel.open{opacity:1;pointer-events:auto;transform:none}
+.sound-panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;
+  font-size:.86rem;font-weight:700;color:var(--tx)}
+.sound-panel-head button{background:none;border:none;color:var(--tx3);cursor:pointer;font-size:1.05rem;padding:2px 6px;border-radius:6px;transition:.2s}
+.sound-panel-head button:hover{color:var(--tx);background:rgba(255,255,255,.08)}
+.sound-scenes{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:14px}
+.scene-btn{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:11px;
+  padding:8px 10px;cursor:pointer;text-align:left;transition:.2s;color:var(--tx2);font-family:inherit}
+.scene-btn:hover{background:rgba(255,255,255,.09);color:var(--tx);border-color:var(--line2)}
+.scene-btn.active{background:rgba(34,211,238,.12);border-color:rgba(34,211,238,.65);color:#7de9fb}
+.scene-btn .s-ico{font-size:1.1rem;display:block;margin-bottom:2px}
+.scene-btn .s-nm{font-size:.8rem;font-weight:700;display:block}
+.scene-btn .s-sub{font-size:.67rem;color:var(--tx3);display:block;line-height:1.25;margin-top:2px}
+.scene-btn.active .s-sub{color:rgba(125,233,251,.8)}
+
+.sound-vol-row{display:flex;align-items:center;gap:10px;padding-top:10px;border-top:1px solid var(--line);
+  font-size:.8rem;color:var(--tx2)}
+.sound-vol-row input[type=range]{flex:1;accent-color:var(--cyan);height:4px;border-radius:2px;cursor:pointer}
+
+.nav-audio-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;
+  background:rgba(255,255,255,.05);border:1px solid var(--line);font-size:.76rem;
+  color:var(--tx2);cursor:pointer;transition:.22s;white-space:nowrap;margin-left:8px;font-family:inherit}
+.nav-audio-pill:hover{background:rgba(255,255,255,.1);color:var(--tx);border-color:var(--line2)}
+.nav-audio-pill.on{border-color:rgba(34,211,238,.5);color:#7de9fb;background:rgba(34,211,238,.1)}
+
+.hero-sound-wrap{margin-top:26px;animation:fadeUp 1s .8s both cubic-bezier(.16,1,.3,1)}
+.hero-sound-btn{display:inline-flex;align-items:center;gap:9px;padding:9px 20px;border-radius:30px;
+  background:linear-gradient(135deg,rgba(34,211,238,.13),rgba(167,139,250,.13));
+  border:1px solid rgba(34,211,238,.38);color:#fff;font-size:.86rem;font-weight:600;
+  cursor:pointer;transition:.3s;backdrop-filter:blur(8px);font-family:inherit}
+.hero-sound-btn:hover{transform:translateY(-2px);border-color:rgba(34,211,238,.8);
+  box-shadow:0 0 24px rgba(34,211,238,.32)}
+.hero-sound-btn.on{border-color:rgba(52,211,153,.6);background:rgba(52,211,153,.12);color:#6ee7b7}
+
+.sfx-play-btn{display:inline-flex;align-items:center;gap:5px;padding:4px 9px;border-radius:7px;
+  background:rgba(34,211,238,.09);border:1px solid rgba(34,211,238,.32);color:#7de9fb;
+  font-size:.72rem;cursor:pointer;transition:.2s;margin-top:8px;font-family:inherit}
+.sfx-play-btn:hover{background:rgba(34,211,238,.22);border-color:rgba(34,211,238,.65);transform:translateY(-1px)}
+.sfx-play-btn.playing{background:rgba(52,211,153,.22);border-color:rgba(52,211,153,.65);color:#6ee7b7;
+  box-shadow:0 0 10px rgba(52,211,153,.4)}
+.sfx-play-btn.sm{margin-top:5px;padding:2px 7px;font-size:.7rem}
+
 /* ============ 亮色主题（纸面博物馆） ============ */
 body.light{
   --bg:#f5f3ec;--bg2:#fffdf7;
@@ -566,7 +627,15 @@ body.light #cnmap .cnrivlabel.w2l{fill:rgba(5,150,105,.8)}
 body.light .hs{background:rgba(255,255,255,.6)}
 body.light .detail,body.light .sp-card{background:rgba(255,255,255,.6)}
 body.light .tip{background:rgba(255,253,246,.97);border-color:rgba(28,38,66,.22);color:#1d2436}
-body.light #toTop,body.light #themeBtn{background:rgba(250,248,242,.88);color:#1d2436}
+body.light #toTop,body.light #themeBtn,body.light .sound-float-btn{background:rgba(250,248,242,.88);color:#1d2436;border-color:rgba(28,38,66,.22)}
+body.light .sound-panel{background:rgba(255,253,246,.96);border-color:rgba(28,38,66,.2);color:#1d2436}
+body.light .sound-panel-head{color:#1d2436}
+body.light .scene-btn{background:rgba(28,38,66,.04);border-color:rgba(28,38,66,.12);color:#47526e}
+body.light .scene-btn:hover{background:rgba(28,38,66,.08);color:#1d2436}
+body.light .scene-btn.active{background:rgba(14,116,144,.12);border-color:rgba(14,116,144,.5);color:#0e7490}
+body.light .nav-audio-pill{background:rgba(28,38,66,.05);border-color:rgba(28,38,66,.15);color:#47526e}
+body.light .nav-audio-pill.on{background:rgba(14,116,144,.1);border-color:rgba(14,116,144,.4);color:#0e7490}
+body.light .sfx-play-btn{background:rgba(14,116,144,.08);border-color:rgba(14,116,144,.3);color:#0e7490}
 body.light .tb,body.light .ft{background:rgba(28,38,66,.05);color:#47526e}
 body.light .tb:hover,body.light .ft:hover{background:rgba(28,38,66,.1);color:#1d2436}
 body.light .chip,body.light .mt{background:rgba(28,38,66,.06);color:#47526e}
@@ -650,6 +719,10 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
   .sec-title{font-size:1.7rem}
   .detail-top h3{font-size:1.18rem}
   .nav-logo{display:none}
+  .sound-float-btn{left:66px;bottom:18px;height:40px;padding:0 10px;font-size:.76rem}
+  #themeBtn{left:18px;bottom:18px;width:40px;height:40px}
+  .sound-panel{left:16px;bottom:66px;width:calc(100vw - 32px);max-width:320px}
+  .hero-sound-btn{padding:8px 16px;font-size:.8rem}
 }
 </style>
 </head>
@@ -662,6 +735,11 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
   <div class="nav-in">
     <span class="nav-logo">HOMO · 演化全景</span>
     <div class="nav-links" id="navlinks"></div>
+    <button class="nav-audio-pill" id="navAudioPill" title="沉浸式原生态声景">
+      <span class="nav-audio-ico">🎧</span>
+      <span class="nav-audio-txt">原声</span>
+      <span class="sound-wave"><i></i><i></i><i></i></span>
+    </button>
   </div>
 </nav>
 
@@ -684,6 +762,13 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
     <div class="hs"><div class="v" data-count="1">0</div><div class="k">个幸存至今的人种</div></div>
     <div class="hs"><div class="v" data-count="99.9" data-dec="1" data-suffix="%">0</div><div class="k">全人类基因组相似度</div></div>
     <div class="hs"><div class="v" data-count="2" data-dec="1" data-suffix="%">0</div><div class="k">非洲外人群的尼人基因</div></div>
+  </div>
+  <div class="hero-sound-wrap">
+    <button class="hero-sound-btn" id="heroSoundBtn" type="button" title="点击开启/关闭 700 万年沉浸式原生态声景">
+      <span class="hs-ico">🎧</span>
+      <span class="hs-txt">开启 700 万年原生态沉浸声景</span>
+      <span class="sound-wave"><i></i><i></i><i></i></span>
+    </button>
   </div>
   <div class="scroll-hint"><span class="mouse"></span>SCROLL</div>
 </header>
@@ -1345,6 +1430,45 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
 </footer>
 <button id="toTop" aria-label="返回顶部" title="返回顶部">↑</button>
 <button id="themeBtn" aria-label="切换亮色/暗色主题" title="切换主题">☀️</button>
+<button id="soundFloatBtn" class="sound-float-btn" aria-label="沉浸声景控制" title="沉浸式原生态声景">
+  <span class="sfb-ico">🎧</span>
+  <span class="sfb-txt">声景</span>
+  <span class="sound-wave"><i></i><i></i><i></i></span>
+</button>
+
+<div class="sound-panel" id="soundPanel">
+  <div class="sound-panel-head">
+    <span>🎧 700万年原生态沉浸声景</span>
+    <button id="soundPanelClose" title="关闭面板">✕</button>
+  </div>
+  <div class="sound-scenes">
+    <button class="scene-btn active" data-scene="auto">
+      <span class="s-ico">✨</span>
+      <span class="s-nm">时空自适应</span>
+      <span class="s-sub">随浏览历史时代自动切换</span>
+    </button>
+    <button class="scene-btn" data-scene="jungle">
+      <span class="s-ico">🌿</span>
+      <span class="s-nm">雨林深处</span>
+      <span class="s-sub">700~420万年·鸟鸣与树冠微风</span>
+    </button>
+    <button class="scene-btn" data-scene="savanna">
+      <span class="s-ico">🌾</span>
+      <span class="s-nm">稀树草原</span>
+      <span class="s-sub">420~50万年·旷野热风与远雷</span>
+    </button>
+    <button class="scene-btn" data-scene="cave">
+      <span class="s-ico">🔥</span>
+      <span class="s-nm">冰川洞穴</span>
+      <span class="s-sub">50~1万年·严寒风雪与篝火柴裂</span>
+    </button>
+  </div>
+  <div class="sound-vol-row">
+    <span>🔈</span>
+    <input type="range" id="soundVolRange" min="0" max="1" step="0.05" value="0.6" title="音量调节">
+    <span>🔊</span>
+  </div>
+</div>
 
 <script>
 /* =========================================================
@@ -1474,20 +1598,25 @@ const SP = [
 // 技术/文化阶段
 const TECH = [
   {yr:'约 330 万年前',n:'01',t:'最早的打制石器',c:'#94a3b8',
+   sfx:'flint',sfxLabel:'燧石敲击剥片实录',sfxTip:'聆听早期人族硬锤敲击燧石剥片的清脆原声',
    d:'肯尼亚洛梅奎遗址出土的石器早于人属出现，说明工具使用并非人类专属——早期人族已经开始利用锋利的石片。'},
   {yr:'260 万年前',n:'02',t:'奥杜威工业',c:'#34d399',
+   sfx:'flint',sfxLabel:'砍砸器打制原声',sfxTip:'聆听能人打制奥杜威石器的清脆脆响',
    d:'砍砸器与石片：简单，却要求制作者理解岩石的断裂角度并预先选择原料。与能人／早期人属密切相关。'},
   {yr:'176 万年前',n:'03',t:'阿舍利手斧',c:'#22d3ee',
    d:'对称的泪滴形手斧，沿用超过 100 万年。它体现了"心中先有形状，再动手去实现"的抽象规划能力。'},
   {yr:'约 100 万年前',n:'04',t:'控制用火',c:'#fbbf24',
+   sfx:'fire',sfxLabel:'远古营火木柴实录',sfxTip:'聆听木柴摩擦助燃与营火噼啪燃烧原声',
    d:'烹饪让食物更易消化、释放更多热量，是人类大脑得以扩张的关键能量前提，也让寒冷地区的殖民成为可能。'},
   {yr:'50 万年前',n:'05',t:'复合工具与木矛',c:'#fb923c',
+   sfx:'hunt',sfxLabel:'群体围猎呼号与木矛',sfxTip:'聆听原生态协作呼叫、草丛奔跑与投矛破空声',
    d:'德国舍宁根出土的木质标枪（约 30 万年前）证明系统化狩猎大型猎物；装柄技术让工具效率倍增。'},
   {yr:'30 万年前',n:'06',t:'勒瓦娄哇技法',c:'#a78bfa',
    d:'先修整石核、再打下预定形状的石片——这是一种"两步走"的思维，认知复杂度远超此前的直接打制。'},
   {yr:'约 10 万年前',n:'07',t:'颜料与装饰',c:'#f472b6',
    d:'南非布隆伯斯洞窟的刻纹赭石（约 7.3 万年前）与穿孔贝壳，是最早的"我思故我在"痕迹。'},
   {yr:'7 万–4 万年前',n:'08',t:'行为现代性大爆发',c:'#fb7185',
+   sfx:'flute',sfxLabel:'史前动物骨笛原声',sfxTip:'聆听旧石器时代动物骨笛复原演奏的空灵泛音与洞穴回响',
    d:'洞穴壁画、骨笛、雕塑、复杂的墓葬、远距离贸易网络——象征性思维全面展开，语言很可能已高度发达。'},
   {yr:'约 1.2 万年前',n:'09',t:'农业与新石器革命',c:'#4ade80',
    d:'新月沃地、中国长江黄河流域、中美洲等多中心独立起源。人类从"适应环境"转向"改造环境"。'},
@@ -1501,13 +1630,13 @@ const TECH = [
 
 const MILESTONES = [
   {i:'🦴',t:'约 700 万年前',h:'直立行走的开端',p:'人族与黑猩猩支系分道扬镳。两足行走是这场分手的第一个标志。'},
-  {i:'🪨',t:'260 万年前',h:'系统性制造工具',p:'从"偶然使用"到"按规格制作"，认知能力的第一次质变。'},
+  {i:'🪨',t:'260 万年前',h:'系统性制造工具',sfx:'flint',sfxTip:'聆听燧石敲击剥片实录',p:'从"偶然使用"到"按规格制作"，认知能力的第一次质变。'},
   {i:'🌍',t:'180 万年前',h:'第一次走出非洲',p:'直立人扩散至格鲁吉亚、印尼与中国，人属首次成为跨大陆物种。'},
-  {i:'🔥',t:'约 100 万年前',h:'掌握火',p:'烹饪扩展了可食资源，也延长了白昼——夜晚从此属于社交与故事。'},
+  {i:'🔥',t:'约 100 万年前',h:'掌握火',sfx:'fire',sfxTip:'聆听远古营火噼啪原声',p:'烹饪扩展了可食资源，也延长了白昼——夜晚从此属于社交与故事。'},
   {i:'🧠',t:'80 万–20 万年前',h:'脑容量爆发',p:'曲线最陡的一段。群体协作、生态位扩张与技术积累形成正反馈。'},
   {i:'👤',t:'31.5 万年前',h:'智人出现',p:'摩洛哥杰贝尔·伊尔胡德——目前已知最早的解剖学现代人化石。'},
   {i:'🤝',t:'约 6 万年前',h:'与古人类杂交',p:'走出非洲的智人与尼安德特人、丹尼索瓦人相遇并留下后代。'},
-  {i:'🎭',t:'7 万–4 万年前',h:'象征性行为革命',p:'艺术、宗教、复杂语言——"文化爆炸"让智人彻底区别于其他物种。'},
+  {i:'🎭',t:'7 万–4 万年前',h:'象征性行为革命',sfx:'flute',sfxTip:'聆听史前骨笛复原原声',p:'艺术、宗教、复杂语言——"文化爆炸"让智人彻底区别于其他物种。'},
   {i:'🧊',t:'约 4 万年前',h:'尼安德特人消失',p:'最后一个与我们有直接亲缘关系的物种退场，人属只剩一支。'},
   {i:'🌾',t:'1.17 万年前',h:'全新世与农业',p:'末次冰期结束，农业在多个中心独立起源，人口开始指数增长。'},
   {i:'🚀',t:'今天',h:'唯一的幸存者',p:'80 亿人，遍布七大洲——以及，正在把目光投向更远的地方。'}
@@ -1907,6 +2036,7 @@ const TREE={id:'root',t:7.0,kids:[
   window.__pickSpecies=function(id,scroll){
     if(!SP.some(x=>x.id===id))return;
     cur=id;paint();
+    if(window.SoundEngine)window.SoundEngine.playSFX('stone-tap',0.5);
     if(scroll===false)return;
     document.getElementById('s2').scrollIntoView({behavior:'smooth'});
     const d=$('#detail');
@@ -2465,14 +2595,27 @@ const TREE={id:'root',t:7.0,kids:[
   const strip=$('#techStrip');
   TECH.forEach(t=>{
     const d=document.createElement('div');d.className='tech';d.style.setProperty('--c',t.c);
-    d.innerHTML=`<span class="n">${t.n}</span><div class="yr">${t.yr}</div><h4>${t.t}</h4><p>${t.d}</p>`;
+    const sfxBtn=t.sfx?`<button class="sfx-play-btn" data-sfx="${t.sfx}" type="button" title="${t.sfxTip}"><span>🔊 ${t.sfxLabel}</span></button>`:'';
+    d.innerHTML=`<span class="n">${t.n}</span><div class="yr">${t.yr}</div><h4>${t.t}</h4><p>${t.d}</p>${sfxBtn}`;
     strip.appendChild(d);
   });
   const mg=$('#mileGrid');
   MILESTONES.forEach(m=>{
     const d=document.createElement('div');d.className='mile reveal';
-    d.innerHTML=`<span class="mi">${m.i}</span><div><h5>${m.h}</h5><span>${m.t}</span><p>${m.p}</p></div>`;
+    const sfxBtn=m.sfx?`<button class="sfx-play-btn sm" data-sfx="${m.sfx}" type="button" title="${m.sfxTip}"><span>🔊 聆听原声</span></button>`:'';
+    d.innerHTML=`<span class="mi">${m.i}</span><div><h5>${m.h}</h5><span>${m.t}</span><p>${m.p}</p>${sfxBtn}</div>`;
     mg.appendChild(d);
+  });
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('.sfx-play-btn');
+    if(!b)return;
+    e.stopPropagation();
+    const sfx=b.dataset.sfx;
+    if(sfx&&window.SoundEngine){
+      window.SoundEngine.playSFX(sfx);
+      b.classList.add('playing');
+      setTimeout(()=>b.classList.remove('playing'),1200);
+    }
   });
 })();
 
@@ -2803,6 +2946,373 @@ const TREE={id:'root',t:7.0,kids:[
     }),{threshold:.35}).observe(ag);
   }
 })();
+
+/* =========================================================
+   沉浸式原生态声景引擎 (SoundEngine)
+   ========================================================= */
+const SoundEngine = (function(){
+  const AMBIENT = {
+    jungle: {
+      src: 'audio/ambient-jungle.mp3',
+      name: '雨林深处',
+      badge: '雨林',
+      period: '700~420万年前',
+      desc: '热带树冠微风、湿润鸣禽与中新世蝉鸣'
+    },
+    savanna: {
+      src: 'audio/ambient-savanna.mp3',
+      name: '稀树草原',
+      badge: '草原',
+      period: '420~50万年前',
+      desc: '东非大裂谷旷野风声、草甸虫鸣与远方闷雷'
+    },
+    cave: {
+      src: 'audio/ambient-cave.mp3',
+      name: '冰川洞穴',
+      badge: '洞穴',
+      period: '50~1万年前',
+      desc: '晚更新世洞外风雪、洞内滴水与篝火噼啪'
+    }
+  };
+
+  const SFX = {
+    'flint': 'audio/sfx-flint.mp3',
+    'fire': 'audio/sfx-fire.mp3',
+    'hunt': 'audio/sfx-hunt.mp3',
+    'flute': 'audio/sfx-flute.mp3',
+    'stone-tap': 'audio/sfx-stone-tap.mp3'
+  };
+
+  let enabled = false;
+  let scene = 'auto'; // 'auto' | 'jungle' | 'savanna' | 'cave'
+  let autoEra = 'savanna';
+  let volume = 0.6;
+  let fadeTimer = null;
+
+  const pA = new Audio();
+  const pB = new Audio();
+  pA.loop = true;
+  pB.loop = true;
+  pA.preload = 'auto';
+  pB.preload = 'auto';
+  let curPlayer = null;
+
+  let ctx = null;
+  let filter = null;
+
+  function initCtx() {
+    if (!ctx) {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (AC) {
+        try {
+          ctx = new AC();
+          filter = ctx.createBiquadFilter();
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(20000, ctx.currentTime);
+          filter.connect(ctx.destination);
+          const sA = ctx.createMediaElementSource(pA);
+          const sB = ctx.createMediaElementSource(pB);
+          sA.connect(filter);
+          sB.connect(filter);
+        } catch(e) {
+          ctx = null;
+          filter = null;
+        }
+      }
+    }
+    if (ctx && ctx.state === 'suspended') ctx.resume();
+  }
+
+  function crossfade(targetEra, durMs = 2000) {
+    if (!AMBIENT[targetEra]) return;
+    if (!enabled) return;
+
+    const nxt = (curPlayer === pA) ? pB : pA;
+    const prv = curPlayer;
+    const targetSrc = AMBIENT[targetEra].src;
+
+    if (prv && prv.src.includes(targetSrc) && !prv.paused) {
+      prv.volume = volume;
+      return;
+    }
+
+    if (fadeTimer) clearInterval(fadeTimer);
+    nxt.src = targetSrc;
+    nxt.currentTime = 0;
+    nxt.volume = 0;
+
+    const pr = nxt.play();
+    if (pr) {
+      pr.then(() => {
+        curPlayer = nxt;
+        const steps = 20;
+        const dt = durMs / steps;
+        let s = 0;
+        fadeTimer = setInterval(() => {
+          s++;
+          const t = s / steps;
+          nxt.volume = Math.min(1, Math.max(0, volume * t));
+          if (prv && !prv.paused) prv.volume = Math.min(1, Math.max(0, volume * (1 - t)));
+          if (s >= steps) {
+            clearInterval(fadeTimer);
+            fadeTimer = null;
+            if (prv) { prv.pause(); prv.currentTime = 0; }
+          }
+        }, dt);
+      }).catch(() => {});
+    }
+  }
+
+  function getEffectiveEra() {
+    return scene === 'auto' ? autoEra : scene;
+  }
+
+  function playSFX(k, customVol = 1.0) {
+    const src = SFX[k];
+    if (!src) return;
+    try {
+      initCtx();
+      const a = new Audio(src);
+      a.volume = Math.min(1, Math.max(0, (enabled ? volume : 0.6) * customVol));
+      a.play().catch(() => {});
+    } catch(e) {}
+  }
+
+  function toggle(forceState) {
+    initCtx();
+    enabled = typeof forceState === 'boolean' ? forceState : !enabled;
+    if (enabled) {
+      crossfade(getEffectiveEra(), 1600);
+    } else {
+      if (fadeTimer) clearInterval(fadeTimer);
+      if (curPlayer) {
+        let s = 0;
+        const p = curPlayer;
+        fadeTimer = setInterval(() => {
+          s++;
+          p.volume = Math.max(0, p.volume - (p.volume / (12 - s + 1)));
+          if (s >= 12) {
+            clearInterval(fadeTimer);
+            fadeTimer = null;
+            p.pause();
+          }
+        }, 50);
+      }
+    }
+    updateUI();
+    try { localStorage.setItem('evo_audio_enabled', enabled ? '1' : '0'); } catch(e) {}
+  }
+
+  function setScene(s) {
+    scene = s;
+    if (!enabled) toggle(true);
+    else crossfade(getEffectiveEra(), 1800);
+    updateUI();
+    try { localStorage.setItem('evo_audio_scene', scene); } catch(e) {}
+  }
+
+  function setVolume(v) {
+    volume = Math.max(0, Math.min(1, v));
+    if (curPlayer && enabled) curPlayer.volume = volume;
+    updateUI();
+    try { localStorage.setItem('evo_audio_vol', volume); } catch(e) {}
+  }
+
+  function onScrollEra(era) {
+    if (autoEra !== era) {
+      autoEra = era;
+      if (enabled && scene === 'auto') {
+        crossfade(autoEra, 2400);
+        updateUI();
+      }
+    }
+  }
+
+  function enterModal() {
+    if (filter && ctx) {
+      filter.frequency.cancelScheduledValues(ctx.currentTime);
+      filter.frequency.exponentialRampToValueAtTime(650, ctx.currentTime + 0.5);
+    }
+  }
+
+  function exitModal() {
+    if (filter && ctx) {
+      filter.frequency.cancelScheduledValues(ctx.currentTime);
+      filter.frequency.exponentialRampToValueAtTime(20000, ctx.currentTime + 0.5);
+    }
+  }
+
+  function updateUI() {
+    const era = getEffectiveEra();
+    const eraInfo = AMBIENT[era];
+
+    // Floating button
+    const sfb = $('#soundFloatBtn');
+    if (sfb) {
+      sfb.classList.toggle('on', enabled);
+      const txt = sfb.querySelector('.sfb-txt');
+      if (txt) txt.textContent = enabled ? (eraInfo ? eraInfo.badge : '原声') : '声景';
+      sfb.title = enabled ? `沉浸声景运行中 · ${eraInfo ? eraInfo.name : ''}` : '点击开启沉浸声景';
+    }
+
+    // Nav pill
+    const nap = $('#navAudioPill');
+    if (nap) {
+      nap.classList.toggle('on', enabled);
+      const txt = nap.querySelector('.nav-audio-txt');
+      if (txt) txt.textContent = enabled ? (eraInfo ? eraInfo.badge : '原声') : '原声';
+      nap.title = enabled ? `声景播放中: ${eraInfo ? eraInfo.name : ''} (点击静音)` : '点击开启沉浸声景';
+    }
+
+    // Hero button
+    const hsb = $('#heroSoundBtn');
+    if (hsb) {
+      hsb.classList.toggle('on', enabled);
+      const txt = hsb.querySelector('.hs-txt');
+      if (txt) txt.textContent = enabled ? `700万年声景运行中 · ${eraInfo ? eraInfo.name : ''}` : '开启 700 万年原生态沉浸声景';
+    }
+
+    // Panel scene buttons
+    $$('.scene-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.scene === scene);
+    });
+
+    // Volume input
+    const vi = $('#soundVolRange');
+    if (vi) vi.value = volume;
+  }
+
+  // Preload on first interaction
+  let preloaded = false;
+  function preload() {
+    if (preloaded) return;
+    preloaded = true;
+    pA.src = AMBIENT.savanna.src;
+    pA.load();
+    pB.src = AMBIENT.jungle.src;
+    pB.load();
+  }
+
+  return {
+    init: function() {
+      try {
+        const en = localStorage.getItem('evo_audio_enabled');
+        const sc = localStorage.getItem('evo_audio_scene');
+        const vo = localStorage.getItem('evo_audio_vol');
+        if (sc && (AMBIENT[sc] || sc === 'auto')) scene = sc;
+        if (vo !== null) volume = parseFloat(vo);
+        // If user explicitly left it enabled on last visit, we keep state ready
+        if (en === '1') {
+          // Will activate on first user gesture
+          const startOnUser = () => {
+            if (!enabled) toggle(true);
+            window.removeEventListener('click', startOnUser);
+          };
+          window.addEventListener('click', startOnUser, {once:true});
+        }
+      } catch(e) {}
+
+      window.addEventListener('pointerdown', preload, {once:true});
+      window.addEventListener('scroll', preload, {once:true});
+
+      // Bind UI buttons
+      const sfb = $('#soundFloatBtn');
+      const spanel = $('#soundPanel');
+      const spclose = $('#soundPanelClose');
+      if (sfb && spanel) {
+        sfb.addEventListener('click', e => {
+          e.stopPropagation();
+          spanel.classList.toggle('open');
+          if (!enabled) toggle(true);
+        });
+      }
+      if (spclose && spanel) {
+        spclose.addEventListener('click', e => {
+          e.stopPropagation();
+          spanel.classList.remove('open');
+        });
+      }
+      document.addEventListener('click', e => {
+        if (spanel && spanel.classList.contains('open') && !e.target.closest('#soundPanel') && !e.target.closest('#soundFloatBtn')) {
+          spanel.classList.remove('open');
+        }
+      });
+
+      $$('.scene-btn').forEach(b => {
+        b.addEventListener('click', e => {
+          e.stopPropagation();
+          setScene(b.dataset.scene);
+        });
+      });
+
+      const vi = $('#soundVolRange');
+      if (vi) {
+        vi.addEventListener('input', () => setVolume(parseFloat(vi.value)));
+      }
+
+      const nap = $('#navAudioPill');
+      if (nap) {
+        nap.addEventListener('click', e => {
+          e.stopPropagation();
+          toggle();
+        });
+      }
+
+      const hsb = $('#heroSoundBtn');
+      if (hsb) {
+        hsb.addEventListener('click', e => {
+          e.stopPropagation();
+          toggle();
+        });
+      }
+
+      // Observe chapters for Time-travel soundscape
+      const sectionEras = [
+        { id: 's1', era: 'jungle' },
+        { id: 's2', era: 'jungle' },
+        { id: 's3', era: 'savanna' },
+        { id: 's3b', era: 'savanna' },
+        { id: 's4', era: 'savanna' },
+        { id: 's5', era: 'savanna' },
+        { id: 's6', era: 'cave' },
+        { id: 's7', era: 'cave' },
+        { id: 's8', era: 'cave' },
+        { id: 's8b', era: 'savanna' },
+        { id: 's9', era: 'savanna' },
+        { id: 's10', era: 'savanna' }
+      ];
+
+      const eraObs = new IntersectionObserver(entries => {
+        entries.forEach(ent => {
+          if (ent.isIntersecting) {
+            const match = sectionEras.find(x => x.id === ent.target.id);
+            if (match) onScrollEra(match.era);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      sectionEras.forEach(item => {
+        const sec = document.getElementById(item.id);
+        if (sec) eraObs.observe(sec);
+      });
+
+      updateUI();
+    },
+    toggle,
+    setScene,
+    setVolume,
+    playSFX,
+    onScrollEra,
+    enterModal,
+    exitModal,
+    isEnabled: () => enabled,
+    getEffectiveEra
+  };
+})();
+
+// 启动声音引擎
+SoundEngine.init();
+window.SoundEngine = SoundEngine;
 </script>
 
 </body>
