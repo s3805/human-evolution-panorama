@@ -1581,7 +1581,7 @@ const AVATAR_SET = new Set([
 ]);
 function avatarHTML(s){
   if(AVATAR_SET.has(s.id)){
-    return `<img src="images/avatars/${s.id}.jpg" alt="${s.cn} 权威科学复原头像" loading="lazy" onerror="this.style.display='none';if(this.nextElementSibling)this.nextElementSibling.style.display='block';">${avatarSVG(s).replace('<svg ', '<svg style="display:none" ')}`;
+    return `<img src="images/avatars/${s.id}.jpg" alt="${s.cn} 权威科学复原头像" decoding="async" onerror="this.style.display='none';if(this.nextElementSibling)this.nextElementSibling.style.display='block';">${avatarSVG(s).replace('<svg ', '<svg style="display:none" ')}`;
   }
   return avatarSVG(s);
 }
