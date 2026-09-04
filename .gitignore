@@ -11,3 +11,6 @@
 # 音频剪辑母带与工作素材
 audio_raw/
 
+# PDF 导出件不入库（线上已托管于 /download/）
+*.pdf
+
