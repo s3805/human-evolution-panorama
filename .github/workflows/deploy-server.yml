@@ -1,0 +1,41 @@
+name: 自动同步云服务器 (evolution.stockbuster.cn)
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-server
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: 同步至阿里云 Nginx 服务器
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 配置 SSH 凭据并执行增量同步
+        env:
+          SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          SERVER_HOST: ${{ secrets.SERVER_HOST }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "$SERVER_HOST" >> ~/.ssh/known_hosts
+
+          # 执行 rsync 增量安全同步，排除无关系统文件与服务器特定目录
+          rsync -avz --delete \
+            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new" \
+            --exclude='.git*' \
+            --exclude='.github' \
+            --exclude='.DS_Store' \
+            --exclude='*.pdf' \
+            --exclude='download' \
+            ./ "$SERVER_USER@$SERVER_HOST":/var/www/evolution/
+
+          echo "🚀 阿里云服务器同步成功完成！"
