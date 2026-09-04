@@ -77,15 +77,15 @@ body::before{
 
 /* ============ 通用 ============ */
 .wrap{max-width:1280px;margin:0 auto;padding:0 22px}
-section{padding:42px 0 54px;position:relative;scroll-margin-top:58px}
-.sec-head{margin-bottom:24px}
-.sec-num{font-family:var(--mono);font-size:.76rem;letter-spacing:.25em;color:var(--cyan);
-  text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:8px}
-.sec-num::after{content:'';flex:1;height:1px;max-width:160px;
+section{padding:96px 0;position:relative}
+.sec-head{margin-bottom:44px}
+.sec-num{font-family:var(--mono);font-size:.78rem;letter-spacing:.28em;color:var(--cyan);
+  text-transform:uppercase;display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.sec-num::after{content:'';flex:1;height:1px;max-width:180px;
   background:linear-gradient(90deg,rgba(34,211,238,.65),transparent)}
-.sec-title{font-size:clamp(1.75rem,3.8vw,2.7rem);font-weight:800;line-height:1.2;letter-spacing:-.5px}
+.sec-title{font-size:clamp(1.85rem,4vw,2.9rem);font-weight:800;line-height:1.2;letter-spacing:-.5px}
 .sec-title em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;background-clip:text;color:transparent}
-.sec-desc{color:var(--tx2);max-width:76ch;margin-top:10px;font-size:.98rem;line-height:1.7}
+.sec-desc{color:var(--tx2);max-width:76ch;margin-top:16px;font-size:1.02rem}
 
 .glass{background:var(--panel);border:1px solid var(--line);border-radius:18px;
   backdrop-filter:blur(10px);box-shadow:var(--shadow)}
@@ -181,7 +181,7 @@ section{padding:42px 0 54px;position:relative;scroll-margin-top:58px}
 .lg i{width:10px;height:10px;border-radius:50%;display:inline-block}
 
 /* 详情面板 */
-.detail{position:sticky;top:64px;border-radius:20px;background:var(--panel);border:1px solid var(--line);
+.detail{position:sticky;top:84px;border-radius:20px;background:var(--panel);border:1px solid var(--line);
   overflow:hidden;box-shadow:var(--shadow)}
 .detail-top{padding:22px;background:linear-gradient(150deg,rgba(34,211,238,.14),rgba(167,139,250,.07));
   border-bottom:1px solid var(--line);position:relative;overflow:hidden}
@@ -369,7 +369,7 @@ section{padding:42px 0 54px;position:relative;scroll-margin-top:58px}
 #cnmap .siteg:hover text,#cnmap .siteg.on text{fill:#fff;font-weight:700}
 #cnmap .reglabel{font-size:12px;fill:rgba(255,255,255,.16);pointer-events:none;letter-spacing:.14em}
 .cnrivlabel{font-size:11px;paint-order:stroke;stroke:var(--halo,#04060f);stroke-width:3px;pointer-events:none}
-.cnsite-panel{position:sticky;top:64px;border-radius:18px;background:var(--panel);
+.cnsite-panel{position:sticky;top:84px;border-radius:18px;background:var(--panel);
   border:1px solid var(--line);overflow:hidden;box-shadow:var(--shadow)}
 .cnsite-panel .top{padding:18px 20px;border-bottom:1px solid var(--line);
   background:linear-gradient(150deg,rgba(251,113,133,.13),rgba(167,139,250,.05))}
@@ -714,10 +714,9 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
   .unity{grid-template-columns:1fr}
 }
 @media(max-width:640px){
-  section{padding:32px 0 40px;scroll-margin-top:52px}
-  .sec-head{margin-bottom:18px}
+  section{padding:64px 0}
   .hero-stats .hs{min-width:120px;padding:13px 16px}
-  .sec-title{font-size:1.6rem}
+  .sec-title{font-size:1.7rem}
   .detail-top h3{font-size:1.18rem}
   .nav-logo{display:none}
   .sound-float-btn{left:66px;bottom:18px;height:40px;padding:0 10px;font-size:.76rem}
