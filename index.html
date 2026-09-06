@@ -10,8 +10,13 @@
 <meta property="og:description" content="一页读懂人类 700 万年演化史：谱系树、时空共存、脑容量、迁徙路线、古人类基因与中国化石遗址。">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
+<link rel="stylesheet" href="fonts/phosphor-duotone.css">
 <title>人类演化全景图 · 从七百万年前到今天</title>
 <style>
+/* Phosphor Duotone Icon Helper */
+.ph-duotone{display:inline-block;vertical-align:-0.12em;font-style:normal;line-height:1}
+.ph-duotone::before,.ph-duotone::after{font-family:'Phosphor-Duotone'!important}
+
 /* ============ 设计令牌 ============ */
 :root{
   --bg:#04060f;
@@ -622,6 +627,234 @@ footer .fg{font-size:2.4rem;margin-bottom:12px}
   box-shadow:0 0 10px rgba(52,211,153,.4)}
 .sfx-play-btn.sm{margin-top:5px;padding:2px 7px;font-size:.7rem}
 
+/* ============ 彩蛋 1：古DNA祖源测序报告 ============ */
+.dna-trigger-wrap{margin-top:24px;text-align:center}
+.dna-trigger-pill{display:inline-flex;align-items:center;gap:10px;padding:10px 22px;border-radius:30px;
+  background:linear-gradient(135deg,rgba(34,211,238,.12),rgba(167,139,250,.14));
+  border:1px solid rgba(34,211,238,.4);color:var(--tx);font-size:.88rem;font-weight:700;
+  cursor:pointer;transition:.25s cubic-bezier(.16,1,.3,1);box-shadow:0 4px 20px rgba(34,211,238,.12);
+  font-family:inherit}
+.dna-trigger-pill:hover{transform:translateY(-2px) scale(1.02);border-color:var(--cyan);
+  box-shadow:0 8px 28px rgba(34,211,238,.28);color:#fff}
+.dtp-ico{font-size:1.2rem;animation:spinPulse 4s infinite linear}
+.dtp-tag{font-size:.65rem;padding:2px 7px;border-radius:10px;background:rgba(239,68,68,.2);
+  color:#fca5a5;border:1px solid rgba(239,68,68,.3);font-weight:600;letter-spacing:.04em}
+.dtp-hint{font-size:.74rem;color:var(--tx3);margin-top:8px;letter-spacing:.02em}
+
+@keyframes spinPulse{
+  0%{transform:rotate(0deg) scale(1)}
+  50%{transform:rotate(180deg) scale(1.15)}
+  100%{transform:rotate(360deg) scale(1)}
+}
+
+.easter-modal{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;
+  background:rgba(4,6,15,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  padding:16px;opacity:0;transition:opacity .3s cubic-bezier(.16,1,.3,1)}
+.easter-modal.open{display:flex;opacity:1}
+
+.dna-card{width:100%;max-width:540px;background:linear-gradient(160deg,#0e1628,#090d18);
+  border:1px solid rgba(34,211,238,.35);border-radius:24px;padding:26px 22px 20px;
+  box-shadow:0 24px 60px rgba(0,0,0,.85),0 0 35px rgba(34,211,238,.15);position:relative;
+  color:var(--tx);max-height:92vh;overflow-y:auto;transform:scale(.95);transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.easter-modal.open .dna-card{transform:scale(1)}
+
+.dna-modal-close{position:absolute;top:14px;right:16px;z-index:5;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);
+  color:var(--tx);font-size:1.1rem;cursor:pointer;width:36px;height:36px;display:flex;align-items:center;justify-content:center;
+  border-radius:50%;transition:all .2s;z-index:50;line-height:1}
+.dna-modal-close:hover{background:rgba(239,68,68,.25);border-color:rgba(239,68,68,.6);color:#fff;transform:scale(1.08)}
+
+/* 扫描中动画态 */
+.dna-scan-view{text-align:center;padding:40px 10px}
+.dna-scanner-ring{width:80px;height:80px;border-radius:50%;border:3px dashed var(--cyan);
+  margin:0 auto 20px;animation:scannerSpin 2.5s linear infinite;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 25px rgba(34,211,238,.35)}
+.dna-scanner-ring span{font-size:2rem}
+@keyframes scannerSpin{to{transform:rotate(360deg)}}
+.dna-scan-title{font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:8px}
+.dna-scan-sub{font-size:.8rem;color:var(--tx3);font-family:monospace}
+.dna-scan-progress{width:220px;height:4px;border-radius:2px;background:rgba(255,255,255,.1);
+  margin:18px auto 0;overflow:hidden;position:relative}
+.dna-scan-bar{width:0;height:100%;background:linear-gradient(90deg,var(--cyan),var(--purple));
+  transition:width 1.2s ease-out}
+
+/* 测序报告态 */
+.dna-rep-view{display:none;animation:fadeUp .4s ease forwards}
+.dna-rep-badge{position:absolute;top:14px;left:22px;z-index:2;display:inline-flex;align-items:center;gap:6px;font-size:.68rem;letter-spacing:.06em;
+  font-weight:700;color:var(--cyan);background:rgba(4,10,22,.55);backdrop-filter:blur(6px);padding:3px 10px;border-radius:20px;
+  border:1px solid rgba(34,211,238,.28);margin:0;text-transform:uppercase}
+.dna-rep-head{position:absolute;left:22px;right:22px;top:52px;z-index:2}
+.dna-rep-head h3{font-size:1.5rem;font-weight:800;color:#fff;letter-spacing:.02em;margin-bottom:4px;text-shadow:0 2px 16px rgba(0,0,0,.6)}
+.dna-rep-head .dna-rep-sn{color:rgba(255,255,255,.8)}
+.dna-rep-sn{font-size:.72rem;color:var(--tx3);font-family:monospace;letter-spacing:.05em}
+
+/* 基因条与古人类肖像（一体化平面：无卡片壳，行间发丝线分隔） */
+.dna-bars-wrap{margin:16px 0 14px;display:flex;flex-direction:column;gap:0;background:transparent;border:none;border-radius:0;padding:0}
+.dna-row + .dna-row{border-top:1px solid var(--line);margin-top:12px;padding-top:12px}
+.dna-row{display:flex;align-items:center;gap:12px}
+.dna-species-avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;
+  border:2px solid rgba(255,255,255,.2);box-shadow:0 2px 10px rgba(0,0,0,.5)}
+.dna-row-content{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.dna-row-meta{display:flex;justify-content:space-between;align-items:center;font-size:.82rem}
+.dna-row-nm{font-weight:700;display:flex;align-items:center;gap:6px}
+.dna-row-pct{font-weight:800;font-variant-numeric:tabular-nums;color:var(--cyan)}
+.dna-track{width:100%;height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.dna-fill{height:100%;border-radius:3px;transition:width 1s cubic-bezier(.16,1,.3,1)}
+.dna-talent{font-size:.68rem;color:var(--tx2);line-height:1.3}
+
+/* 前世身份：通栏出血大图 + 内容直接躺在弹窗表面 */
+.dna-identity-card{background:transparent;border:none;border-radius:0;overflow:hidden;margin:-26px -22px 16px;box-shadow:none}
+.dic-banner-wrap{position:relative;width:100%;height:240px;overflow:hidden}
+.dic-banner-img{width:100%;height:100%;object-fit:cover;display:block}
+.dic-banner-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(4,10,22,.9) 0%,rgba(4,10,22,.5) 30%,rgba(4,10,22,.08) 52%,rgba(6,9,18,.25) 72%,rgba(10,15,28,.96) 100%)}
+.dic-tag{position:absolute;bottom:10px;left:14px;font-size:.7rem;font-weight:800;color:#fbbf24;
+  background:rgba(0,0,0,.68);backdrop-filter:blur(4px);padding:3px 10px;border-radius:20px;
+  border:1px solid rgba(251,191,36,.4);letter-spacing:.04em}
+.dic-body{padding:12px 22px 0}
+.dic-title{font-size:1.12rem;font-weight:800;color:#fef3c7;margin-bottom:5px;letter-spacing:.02em}
+.dic-desc{font-size:.78rem;color:var(--tx2);line-height:1.48;margin-bottom:8px}
+.dic-talent{display:inline-block;font-size:.72rem;font-weight:700;color:#38bdf8;background:rgba(56,189,248,.12);
+  border:1px solid rgba(56,189,248,.3);padding:3px 9px;border-radius:10px}
+
+/* 老祖宗全息连线对话（一体化平面：顶部发丝线分隔） */
+.dna-quote-box{display:flex;align-items:flex-start;gap:12px;background:transparent;
+  border:none;border-top:1px solid var(--line);border-radius:0;padding:14px 0 0;margin-bottom:16px}
+.dna-ancestor-wrap{display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0}
+.dna-ancestor-avatar{width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid var(--rose);
+  box-shadow:0 0 10px rgba(244,63,94,.4)}
+.dna-ancestor-tag{font-size:.58rem;color:#fca5a5;font-family:monospace;white-space:normal;max-width:54px;text-align:center;line-height:1.3;word-break:break-all}
+.dna-quote-content{flex:1;font-size:.78rem;line-height:1.46;color:var(--tx2)}
+.dna-quote-content b{display:block;color:#fca5a5;font-size:.82rem;margin-bottom:3px}
+
+/* 操作按钮群 */
+.dna-actions{display:flex;gap:8px;flex-wrap:wrap}
+.dna-btn-poster{flex:1.4;min-width:150px;display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  background:linear-gradient(135deg,rgba(34,211,238,.85),rgba(139,92,246,.85));
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:#fff;font-weight:800;font-size:.86rem;
+  border:1px solid rgba(255,255,255,.28);border-radius:12px;padding:12px 14px;cursor:pointer;transition:.22s;font-family:inherit;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 6px 18px rgba(34,211,238,.3)}
+.dna-btn-poster:hover{transform:translateY(-1px);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 8px 26px rgba(34,211,238,.45)}
+.dna-btn-poster:active{transform:translateY(1px);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 3px 10px rgba(34,211,238,.3)}
+.dna-btn-reroll{flex:1;min-width:100px;display:inline-flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.07);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  color:var(--tx);font-weight:600;font-size:.82rem;
+  border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:12px 10px;cursor:pointer;transition:.22s;font-family:inherit;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 4px 14px rgba(0,0,0,.28)}
+.dna-btn-reroll:hover{background:rgba(255,255,255,.13);color:#fff;transform:translateY(-1px)}
+.dna-btn-reroll:active{transform:translateY(1px);box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 2px 6px rgba(0,0,0,.2)}
+.dna-btn-close{flex:.8;min-width:80px;display:inline-flex;align-items:center;justify-content:center;
+  background:rgba(239,68,68,.1);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  color:#fca5a5;border:1px solid rgba(239,68,68,.3);font-weight:600;font-size:.82rem;
+  border-radius:12px;padding:12px 10px;cursor:pointer;transition:.22s;font-family:inherit;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 4px 14px rgba(239,68,68,.15)}
+.dna-btn-close:hover{background:rgba(239,68,68,.22);color:#fff;transform:translateY(-1px)}
+.dna-btn-close:active{transform:translateY(1px)}
+
+/* ============ 专属朋友圈长图海报弹窗 ============ */
+.poster-card{width:100%;max-width:500px;background:#090d18;border:1px solid rgba(34,211,238,.4);
+  border-radius:24px;padding:22px 18px 18px;box-shadow:0 24px 70px rgba(0,0,0,.92),0 0 40px rgba(34,211,238,.18);
+  position:relative;text-align:center;color:var(--tx);max-height:94vh;overflow-y:auto;
+  transform:scale(.95);transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.easter-modal.open .poster-card{transform:scale(1)}
+.poster-head h4{font-size:1.15rem;font-weight:800;color:#fff;margin-bottom:6px}
+.poster-tip-badge{background:linear-gradient(135deg,rgba(34,211,238,.14),rgba(167,139,250,.14));
+  border:1px solid rgba(34,211,238,.35);color:#67e8f9;padding:8px 12px;border-radius:10px;
+  font-size:.78rem;font-weight:600;margin:8px 0 12px;display:inline-block;width:100%}
+.poster-preview-wrap{width:100%;border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.7);
+  border:1px solid rgba(255,255,255,.12);margin-bottom:14px;background:#000}
+#posterPreviewImg{width:100%;height:auto;display:block}
+.poster-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.poster-btn-primary{flex:1.3;min-width:140px;display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  background:linear-gradient(135deg,#22d3ee,#0284c7);color:#04060f;font-weight:800;font-size:.85rem;
+  border-radius:12px;padding:11px 14px;text-decoration:none;transition:.22s}
+.poster-btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(34,211,238,.4)}
+.poster-btn-secondary{flex:1.1;min-width:120px;display:inline-flex;align-items:center;justify-content:center;gap:5px;
+  background:rgba(255,255,255,.08);border:1px solid var(--line2);color:var(--tx);font-weight:700;font-size:.82rem;
+  border-radius:12px;padding:11px 12px;cursor:pointer;transition:.22s;font-family:inherit}
+.poster-btn-secondary:hover{background:rgba(255,255,255,.15);color:#fff}
+.poster-btn-back{flex:.8;min-width:90px;display:inline-flex;align-items:center;justify-content:center;gap:4px;
+  background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--tx2);font-weight:600;font-size:.8rem;
+  border-radius:12px;padding:11px 10px;cursor:pointer;transition:.22s;font-family:inherit}
+.poster-btn-back:hover{background:rgba(255,255,255,.1);color:#fff}
+
+/* ============ 彩蛋 2：燧石击火微交互 ============ */
+.mile-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:7px}
+.flint-mini-btn{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:7px;
+  background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.45);color:#fdba74;
+  font-size:.7rem;font-weight:700;cursor:pointer;transition:.2s;font-family:inherit}
+.flint-mini-btn:hover{background:rgba(249,115,22,.25);border-color:#f97316;color:#fff;transform:translateY(-1px);
+  box-shadow:0 0 12px rgba(249,115,22,.35)}
+
+.flint-card{width:100%;max-width:500px;background:linear-gradient(160deg,#1c1510,#0d0a08);
+  border:1px solid rgba(249,115,22,.4);border-radius:24px;padding:26px 22px 22px;
+  box-shadow:0 24px 60px rgba(0,0,0,.85),0 0 40px rgba(249,115,22,.18);position:relative;
+  color:var(--tx);text-align:center;overflow:hidden;transform:scale(.95);transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.easter-modal.open .flint-card{transform:scale(1)}
+
+.flint-head h3{font-size:1.25rem;font-weight:800;color:#ffedd5;margin-bottom:4px}
+.flint-head p{font-size:.78rem;color:var(--tx3)}
+
+.flint-stage{position:relative;width:100%;height:220px;margin:16px 0;background:radial-gradient(circle at center,rgba(249,115,22,.08),transparent 70%);
+  border:1px dashed rgba(249,115,22,.25);border-radius:18px;overflow:hidden;cursor:crosshair;user-select:none;touch-action:none}
+.flint-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+.flint-stone-l,.flint-stone-r{position:absolute;top:50%;font-size:3.6rem;transform:translateY(-50%);
+  transition:transform .08s ease;filter:drop-shadow(0 4px 10px rgba(0,0,0,.6));z-index:1;pointer-events:none}
+.flint-stone-l{left:22%}
+.flint-stone-r{right:22%;transform:translateY(-50%) scaleX(-1)}
+.flint-stage.strike .flint-stone-l{transform:translate(18px,-50%)}
+.flint-stage.strike .flint-stone-r{transform:translate(-18px,-50%) scaleX(-1)}
+
+.flint-hint-badge{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
+  background:rgba(0,0,0,.6);backdrop-filter:blur(4px);padding:4px 12px;border-radius:20px;
+  font-size:.7rem;color:#fdba74;border:1px solid rgba(249,115,22,.3);pointer-events:none;white-space:nowrap}
+
+.flint-heat-wrap{margin-bottom:18px}
+.flint-heat-meta{display:flex;justify-content:space-between;align-items:center;font-size:.78rem;margin-bottom:6px}
+.flint-heat-label{color:var(--tx2);font-weight:600}
+.flint-heat-val{font-weight:800;color:#f97316;font-variant-numeric:tabular-nums}
+.flint-heat-track{width:100%;height:10px;border-radius:5px;background:rgba(255,255,255,.08);overflow:hidden;position:relative}
+.flint-heat-bar{width:0;height:100%;background:linear-gradient(90deg,#eab308,#f97316,#ef4444);border-radius:5px;
+  transition:width .12s linear;box-shadow:0 0 14px rgba(249,115,22,.6)}
+
+/* 点火成功成就态 */
+.flint-achieve-box{display:none;padding:12px 6px;text-align:center;animation:fadeUp .4s ease forwards}
+.flint-achieve-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(249,115,22,.2);
+  border:1px solid #f97316;color:#fed7aa;padding:5px 14px;border-radius:20px;font-size:.8rem;font-weight:800;margin-bottom:12px}
+.flint-achieve-box h4{font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:8px}
+.flint-achieve-box p{font-size:.82rem;color:var(--tx2);line-height:1.55;margin-bottom:16px}
+.ach-actions{display:flex;gap:10px;justify-content:center}
+.ach-btn{background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;border:none;border-radius:10px;
+  padding:9px 18px;font-weight:700;font-size:.82rem;cursor:pointer;transition:.2s;font-family:inherit}
+.ach-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(249,115,22,.4)}
+.ach-btn.secondary{background:rgba(255,255,255,.08);border:1px solid var(--line2);color:var(--tx)}
+.ach-btn.secondary:hover{background:rgba(255,255,255,.14)}
+
+/* 提示轻气泡 */
+.easter-toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:rgba(4,6,15,.92);border:1px solid var(--cyan);color:#fff;padding:9px 18px;border-radius:20px;
+  font-size:.82rem;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.6);z-index:999999;
+  opacity:0;pointer-events:none;transition:.25s cubic-bezier(.16,1,.3,1)}
+.easter-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* 亮色模式适配 */
+body.light .dna-card, body.light .poster-card{
+  background:linear-gradient(160deg,#ffffff,#f8fafc);
+  border-color:rgba(14,165,233,.38);
+  box-shadow:0 20px 50px rgba(0,0,0,.15);
+  color:#1e293b;
+}
+body.light .dna-modal-close{background:rgba(0,0,0,.06);border-color:rgba(0,0,0,.12);color:#475569}
+body.light .dna-modal-close:hover{background:rgba(239,68,68,.12);color:#dc2626}
+body.light .dna-rep-head h3, body.light .dic-title, body.light .poster-head h4{color:#0f172a}
+body.light .dna-bars-wrap{background:transparent;border-color:transparent}
+body.light .dna-identity-card{background:transparent;border-color:transparent}
+body.light .dic-banner-overlay{background:linear-gradient(to bottom,rgba(255,253,247,.95) 0%,rgba(255,253,247,.82) 28%,rgba(255,253,247,.38) 48%,rgba(255,253,247,.1) 62%,rgba(255,253,247,.2) 74%,rgba(255,253,247,.97) 100%)}
+body.light .dna-rep-head h3{text-shadow:0 1px 12px rgba(255,253,247,.95),0 0 26px rgba(255,253,247,.85)}
+body.light .dna-rep-head .dna-rep-sn{text-shadow:0 1px 8px rgba(255,253,247,.95),0 0 18px rgba(255,253,247,.9)}
+body.light .dna-quote-box{background:transparent}
+body.light .dna-btn-reroll, body.light .poster-btn-secondary{
+  background:rgba(255,255,255,.6);border-color:rgba(28,38,66,.14);color:#334155}
+body.light .poster-tip-badge{background:#ecfeff;border-color:#a5f3fc;color:#0e7490}
+
 /* ============ 亮色主题（纸面博物馆） ============ */
 body.light{
   --bg:#f5f3ec;--bg2:#fffdf7;
@@ -727,6 +960,28 @@ body.light #cnmap .reglabel{fill:rgba(28,38,66,.15)}
 body.light .pb .track,body.light .bar,body.light .accbar{background:rgba(28,38,66,.09)}
 body.light .sp-search{background:rgba(255,255,255,.7)}
 
+/* 亮色模式彩蛋适配 */
+body.light .dna-trigger-pill{background:linear-gradient(135deg,rgba(14,116,144,.12),rgba(124,58,237,.1));border-color:rgba(14,116,144,.35);color:#0e7490}
+body.light .dna-card{background:linear-gradient(160deg,#fffdf7,#f5f0e4);border-color:rgba(14,116,144,.35);
+  box-shadow:0 24px 60px rgba(28,38,66,.18),0 0 30px rgba(14,116,144,.1);color:#1d2436}
+body.light .dna-rep-head h3{color:#1d2436}
+body.light .dna-scan-title{color:#1d2436}
+body.light .dna-bars-wrap{background:transparent;border-color:transparent}
+body.light .dna-identity-card{background:transparent;border-color:transparent}
+body.light .dic-title{color:#92400e}
+body.light .dna-btn-close{color:#e11d48}
+body.light .dna-quote-box{background:transparent;color:#47526e}
+body.light .dna-ancestor-tag{color:#be123c}
+body.light .dna-rep-head .dna-rep-sn{color:#475569}
+body.light .dna-quote-box b{color:#be123c}
+
+body.light .flint-card{background:linear-gradient(160deg,#fffdf7,#fef3c7);border-color:rgba(217,119,6,.38);
+  box-shadow:0 24px 60px rgba(28,38,66,.18),0 0 35px rgba(217,119,6,.15);color:#1d2436}
+body.light .flint-head h3{color:#1d2436}
+body.light .flint-stage{background:radial-gradient(circle at center,rgba(217,119,6,.1),transparent 70%);border-color:rgba(217,119,6,.3)}
+body.light .flint-achieve-box h4{color:#1d2436}
+body.light .easter-toast{background:#fff;border-color:#0284c7;color:#1d2436;box-shadow:0 10px 30px rgba(28,38,66,.2)}
+
 /* —— 亮色主题 · 图表与细节精修 —— */
 /* 谱系树时间轴竖线（浅色下原白色不可见） */
 body.light .axis line{stroke:rgba(28,38,66,.18)}
@@ -817,7 +1072,7 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
     <span class="nav-logo">HOMO · 演化全景</span>
     <div class="nav-links" id="navlinks"></div>
     <button class="nav-audio-pill" id="navAudioPill" title="沉浸式原生态声景">
-      <span class="nav-audio-ico">🎧</span>
+      <span class="nav-audio-ico"><i class="ph-duotone ph-headphones"></i></span>
       <span class="nav-audio-txt">原声</span>
       <span class="sound-wave"><i></i><i></i><i></i></span>
     </button>
@@ -867,28 +1122,28 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
     </p>
   </div>
   <div class="kp-grid">
-    <div class="kp reveal" style="--c:var(--cyan)"><span class="ico">🌿</span>
+    <div class="kp reveal" style="--c:var(--cyan)"><span class="ico"><i class="ph-duotone ph-plant" style="color:var(--cyan)"></i></span>
       <h4>多物种共存是常态</h4>
       <p>约 300 万年前的东非，至少有 4 个不同人族支系在同一片土地上活动（早期人属、傍人属、南方古猿属多个种）。2025 年发表于《自然》的两项研究进一步确认了这一点。</p></div>
-    <div class="kp reveal" style="--c:var(--violet)"><span class="ico">🔥</span>
+    <div class="kp reveal" style="--c:var(--violet)"><span class="ico"><i class="ph-duotone ph-footprints" style="color:var(--violet)"></i></span>
       <h4>直立行走早于大脑</h4>
       <p>直立行走在 700 万年前就已出现（2026 年 1 月《科学进展》为乍得沙赫人提供了迄今最强证据），而脑容量的爆发要等到 200 万年前人属登场——足足晚了 500 万年。</p></div>
-    <div class="kp reveal" style="--c:var(--amber)"><span class="ico">🧬</span>
+    <div class="kp reveal" style="--c:var(--amber)"><span class="ico"><i class="ph-duotone ph-dna" style="color:var(--amber)"></i></span>
       <h4>我们是"混血"的产物</h4>
       <p>非洲以外的现代人基因组中约有 1.8%–2.6% 来自尼安德特人；大洋洲与东亚人群还携带 0.2%–6% 的丹尼索瓦人基因。人类的故事里，"融合"和"替代"同样重要。</p></div>
-    <div class="kp reveal" style="--c:var(--emerald)"><span class="ico">🌏</span>
+    <div class="kp reveal" style="--c:var(--emerald)"><span class="ico"><i class="ph-duotone ph-globe-hemisphere-east" style="color:var(--emerald)"></i></span>
       <h4>东亚不是演化的"边缘"</h4>
       <p>2026 年 2 月，中国科学院古脊椎动物与古人类研究所在《自然》发表成果，系统论证了过去 200 万年间东亚在人属演化中扮演的核心角色——多谱系共存、连续演化、附带杂交。</p></div>
-    <div class="kp reveal" style="--c:var(--rose)"><span class="ico">🏝️</span>
+    <div class="kp reveal" style="--c:var(--rose)"><span class="ico"><i class="ph-duotone ph-mountains" style="color:var(--rose)"></i></span>
       <h4>岛屿会造出"霍比特人"</h4>
       <p>在弗洛勒斯岛和吕宋岛，孤立环境让人族发生"岛屿矮化"：佛罗勒斯人身高仅约 1.06 米、脑容量约 420 毫升，却存活到距今约 5 万年前——与我们同时代。</p></div>
-    <div class="kp reveal" style="--c:var(--blue)"><span class="ico">🧑‍🤝‍🧑</span>
+    <div class="kp reveal" style="--c:var(--blue)"><span class="ico"><i class="ph-duotone ph-users" style="color:var(--blue)"></i></span>
       <h4>全人类同属一个物种</h4>
       <p>现代遗传学证实：所有活着的人都属智人种，彼此间不存在生殖隔离，基因组相似度 99.9%。人群之间的外形差异只是对局地环境的适应性表型，由极少数基因位点控制。</p></div>
   </div>
 
   <div class="glass pad reveal" style="margin-top:26px">
-    <h4 style="font-size:1.05rem;margin-bottom:16px">📐 先厘清几个容易混淆的概念</h4>
+    <h4 style="font-size:1.05rem;margin-bottom:16px"><i class="ph-duotone ph-ruler" style="color:var(--cyan);margin-right:6px"></i>先厘清几个容易混淆的概念</h4>
     <div style="overflow-x:auto">
     <table class="gene-table">
       <thead><tr><th>阶元 / 术语</th><th>学名</th><th>包含什么</th><th>存续年代</th></tr></thead>
@@ -987,7 +1242,7 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
   </div>
 
   <div class="lab glass pad reveal" style="margin-top:20px">
-    <h4 style="font-size:1.05rem;margin-bottom:4px">🧪 共存实验室</h4>
+    <h4 style="font-size:1.05rem;margin-bottom:4px"><i class="ph-duotone ph-flask" style="color:var(--cyan);margin-right:6px"></i>共存实验室</h4>
     <p class="note" style="margin-bottom:14px">任选两个人族物种，看看他们是否真的在地球上打过照面——这是理解"演化灌木"最直观的方式。</p>
     <div class="lab-picks">
       <label for="cmpA">物种 A</label>
@@ -995,7 +1250,7 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
       <span style="color:var(--tx3)">vs</span>
       <label for="cmpB">物种 B</label>
       <select id="cmpB" aria-label="选择物种 B"></select>
-      <button class="lab-btn" id="cmpRnd" type="button">🎲 随机一对</button>
+      <button class="lab-btn" id="cmpRnd" type="button"><i class="ph-duotone ph-shuffle" style="margin-right:4px"></i>随机一对</button>
     </div>
     <div id="cmpOut" style="margin-top:16px"></div>
   </div>
@@ -1031,7 +1286,7 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
   </div>
 
   <div class="cnmap-note glass pad reveal">
-    <h4 style="font-size:1.02rem;margin-bottom:8px">🧭 这张图在说什么</h4>
+    <h4 style="font-size:1.02rem;margin-bottom:8px"><i class="ph-duotone ph-compass" style="color:var(--cyan);margin-right:6px"></i>这张图在说什么</h4>
     <p class="note" style="line-height:1.85">
       三个值得注意的格局：<b>其一</b>，早期遗址（元谋、蓝田、郧县）沿第二、三级阶梯的河谷与盆地分布，
       显示早期人群偏好温暖的南方与中部；<b>其二</b>，中更新世之后遗址数量激增、分布北扩至哈尔滨（北纬 45.8°，
@@ -1062,22 +1317,22 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
     </div>
     <div class="brain-facts">
       <div class="bf reveal" style="--c:var(--cyan)">
-        <h5>🥩 昂贵的组织假说</h5>
+        <h5><i class="ph-duotone ph-knife" style="color:var(--cyan);margin-right:6px"></i>昂贵的组织假说</h5>
         <p>大脑只占体重 2%，却消耗 20% 的能量（婴儿高达 60%）。学界主流解释是：肉食增加 + 烹饪 + 用火，
           让肠道缩短、能量重新分配给大脑。直立人掌握用火后，脑容量的爬升曲线明显变陡。</p>
       </div>
       <div class="bf reveal" style="--c:var(--violet)">
-        <h5>📉 近 1 万年反而变小了</h5>
+        <h5><i class="ph-duotone ph-chart-line-down" style="color:var(--violet);margin-right:6px"></i>近 1 万年反而变小了</h5>
         <p>智人的平均脑容量在约 3 万年前达到峰值（约 1500 毫升），此后下降了约 10%，现代平均约 1350 毫升。
           主流解释包括体型变小、能量预算优化，以及社会分工带来的<strong>群体层面</strong>智能。</p>
       </div>
       <div class="bf reveal" style="--c:var(--amber)">
-        <h5>🏝️ 岛屿法则：反向演化</h5>
+        <h5><i class="ph-duotone ph-island" style="color:var(--amber);margin-right:6px"></i>岛屿法则：反向演化</h5>
         <p>佛罗勒斯人（约 420 毫升）与吕宋人展示了"岛屿矮化"：资源有限、缺乏天敌的孤立环境中，
           大型动物变小、小型动物变大。它们的脑虽然小，却制作工具、猎捕剑齿象，行为复杂程度远超体积暗示。</p>
       </div>
       <div class="bf reveal" style="--c:var(--emerald)">
-        <h5>🧠 结构比体积更重要</h5>
+        <h5><i class="ph-duotone ph-brain" style="color:var(--emerald);margin-right:6px"></i>结构比体积更重要</h5>
         <p>尼安德特人的脑容量（平均约 1450 毫升）比现代人更大，但顶叶与小脑的比例不同：
           现代人更发达的是与<b>社会认知、语言、长程规划</b>相关的区域。体积只是粗糙的代理指标。</p>
       </div>
@@ -1106,21 +1361,21 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
       <span class="ml"><i style="background:#22d3ee"></i>③ 现代人南方路线 · 约 7 万–5 万年前</span>
       <span class="ml"><i style="background:#34d399"></i>③ 现代人北方路线 · 约 5 万–4 万年前</span>
       <span class="ml"><i style="background:#fb7185"></i>④ 进入美洲 · 约 2 万–1.5 万年前</span>
-      <span class="ml" style="margin-left:auto;color:var(--tx3)">🖱️ 拖动地球可自由旋转</span>
+      <span class="ml" style="margin-left:auto;color:var(--tx3)"><i class="ph-duotone ph-mouse" style="margin-right:4px"></i>拖动地球可自由旋转</span>
     </div>
   </div>
   <div class="mile-grid">
-    <div class="mile reveal"><span class="mi">🦶</span><div><h5>德马尼西人</h5><span>约 180 万年前 · 格鲁吉亚</span>
+    <div class="mile reveal"><span class="mi"><i class="ph-duotone ph-footprints" style="color:#38bdf8"></i></span><div><h5>德马尼西人</h5><span>约 180 万年前 · 格鲁吉亚</span>
       <p>非洲以外最早的确凿人属化石，脑容量仅约 600–780 毫升，证明"走出非洲"发生在大脑变大之前。</p></div></div>
-    <div class="mile reveal"><span class="mi">🔥</span><div><h5>用火与狩猎</h5><span>约 100 万–40 万年前</span>
+    <div class="mile reveal"><span class="mi"><i class="ph-duotone ph-fire" style="color:#f97316"></i></span><div><h5>用火与狩猎</h5><span>约 100 万–40 万年前</span>
       <p>德国舍宁根出土约 30 万年前的木质标枪，证明系统化狩猎大型猎物；用火让高纬度地区得以殖民。</p></div></div>
-    <div class="mile reveal"><span class="mi">⛵</span><div><h5>跨越海洋</h5><span>约 65 万–5 万年前</span>
+    <div class="mile reveal"><span class="mi"><i class="ph-duotone ph-boat" style="color:#38bdf8"></i></span><div><h5>跨越海洋</h5><span>约 65 万–5 万年前</span>
       <p>弗洛勒斯岛、吕宋岛的化石证明，某些人族在极早年代就具备了跨越深海海峡的能力（可能是漂流或简易筏）。</p></div></div>
-    <div class="mile reveal"><span class="mi">🎨</span><div><h5>象征性思维爆发</h5><span>约 7 万–4 万年前</span>
+    <div class="mile reveal"><span class="mi"><i class="ph-duotone ph-palette" style="color:#fb7185"></i></span><div><h5>象征性思维爆发</h5><span>约 7 万–4 万年前</span>
       <p>南非布隆伯斯洞窟的刻纹赭石（约 7.3 万年）、欧洲洞穴壁画（约 4 万年）、最早的骨笛与雕塑，标志着"现代行为"的出现。</p></div></div>
-    <div class="mile reveal"><span class="mi">🌾</span><div><h5>新石器革命</h5><span>约 1.2 万年前</span>
+    <div class="mile reveal"><span class="mi"><i class="ph-duotone ph-grains" style="color:#facc15"></i></span><div><h5>新石器革命</h5><span>约 1.2 万年前</span>
       <p>从新月沃地、中国长江黄河流域、中美洲等多个中心独立起源的农业，让人类的种群规模呈指数级增长。</p></div></div>
-    <div class="mile reveal"><span class="mi">🗿</span><div><h5>全球殖民完成</h5><span>约 1 万年前 – 近代</span>
+    <div class="mile reveal"><span class="mi"><i class="ph-duotone ph-globe-hemisphere-west" style="color:#34d399"></i></span><div><h5>全球殖民完成</h5><span>约 1 万年前 – 近代</span>
       <p>从太平洋岛屿到北极圈，智人成为唯一遍布全球的人属物种——上一次有多个人属共存，还是 4 万年前的事。</p></div></div>
   </div>
 </div>
@@ -1170,7 +1425,7 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
   </div>
 
   <div class="glass pad reveal" style="margin-top:22px">
-    <h4 style="font-size:1.05rem;margin-bottom:6px">🎁 它们留给我们的"礼物"：适应性渗入</h4>
+    <h4 style="font-size:1.05rem;margin-bottom:6px"><i class="ph-duotone ph-gift" style="color:var(--amber);margin-right:6px"></i>它们留给我们的"礼物"：适应性渗入</h4>
     <p class="note" style="margin-bottom:14px">这些来自古人类的基因并非中性乘客，其中一部分被自然选择保留下来，帮助我们的祖先快速适应非洲以外的新环境。</p>
     <div style="overflow-x:auto">
     <table class="gene-table">
@@ -1188,6 +1443,15 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
       反过来，基因流动也是双向的：约 27 万年前的一次杂交，让早期智人的线粒体 DNA 与 Y 染色体<b>取代了</b>尼安德特人原有的版本。
       此外，2022 年研究显示东部尼安德特人基因组中高达 2% 来自约 10 万年前走出非洲的早期现代人。
     </p>
+
+    <div class="dna-trigger-wrap reveal">
+      <button class="dna-trigger-pill" id="dnaTestTrigger" type="button" title="点击提取你的远古基因报告">
+        <span class="dtp-ico"><i class="ph-duotone ph-dna" style="color:#f43f5e"></i></span>
+        <span class="dtp-txt">测测你体内的古人类基因占比与远古前世</span>
+        <span class="dtp-tag">彩蛋</span>
+      </button>
+      <div class="dtp-hint"><i class="ph-duotone ph-lightbulb" style="color:var(--amber);margin-right:5px"></i>探索提示：连续点击顶部导航 Logo 5 次或输入键盘秘籍 ↑ ↑ ↓ ↓ ← → ← → B A 也可随时唤醒</div>
+    </div>
   </div>
 </div>
 </section>
@@ -1221,7 +1485,7 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
     </p>
   </div>
   <div class="tech-strip reveal" id="techStrip"></div>
-  <h4 style="font-size:1.06rem;margin:38px 0 4px" class="reveal">🔑 关键转折点</h4>
+  <h4 style="font-size:1.06rem;margin:38px 0 4px" class="reveal"><i class="ph-duotone ph-key" style="color:var(--amber);margin-right:6px"></i>关键转折点</h4>
   <div class="mile-grid reveal" id="mileGrid"></div>
 </div>
 </section>
@@ -1242,7 +1506,7 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
   <!-- 人口曲线 -->
   <div class="glass pad reveal" style="position:relative">
     <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:baseline;justify-content:space-between;margin-bottom:6px">
-      <h4 style="font-size:1.05rem">📈 世界人口：1.2 万年前 → 2100 年</h4>
+      <h4 style="font-size:1.05rem"><i class="ph-duotone ph-chart-line-up" style="color:var(--rose);margin-right:6px"></i>世界人口：1.2 万年前 → 2100 年</h4>
       <span class="note">数据基于联合国《世界人口展望 2024 修订版》中方案 · 单位：亿人</span>
     </div>
     <div class="pop-scroll"><svg id="popchart" viewBox="0 0 1000 430" preserveAspectRatio="xMinYMin meet"></svg></div>
@@ -1256,12 +1520,12 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
   <!-- 里程碑 -->
   <div class="pop-duo">
     <div class="glass pad reveal">
-      <h4 style="font-size:1.02rem;margin-bottom:4px">⏱️ 每增加 10 亿人，用了多久</h4>
+      <h4 style="font-size:1.02rem;margin-bottom:4px"><i class="ph-duotone ph-timer" style="color:var(--cyan);margin-right:6px"></i>每增加 10 亿人，用了多久</h4>
       <p class="note" style="margin-bottom:16px">间隔时间从 123 年骤降到约 12 年，随后又开始回升——曲线正在重新弯折。</p>
       <div id="popBars"></div>
     </div>
     <div class="glass pad reveal">
-      <h4 style="font-size:1.02rem;margin-bottom:4px">🌡️ 三条关键增长率</h4>
+      <h4 style="font-size:1.02rem;margin-bottom:4px"><i class="ph-duotone ph-thermometer" style="color:var(--amber);margin-right:6px"></i>三条关键增长率</h4>
       <p class="note" style="margin-bottom:16px">年增长率在 1963 年前后达到历史峰值，此后一路下行。</p>
       <div class="rate-row">
         <div class="rate"><div class="rv" style="color:var(--amber)">~0.03%</div><div class="rk">新石器革命前的狩猎采集时代</div></div>
@@ -1290,7 +1554,7 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
   <div class="anthro-grid">
     <div class="glass pad reveal" style="border-color:rgba(251,191,36,.3)">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
-        <span style="font-size:1.5rem">📌</span>
+        <span style="font-size:1.5rem;line-height:1"><i class="ph-duotone ph-push-pin" style="color:var(--amber)"></i></span>
         <h4 style="font-size:1.05rem">金钉子方案：克劳福德湖 1952</h4>
       </div>
       <p class="note" style="font-size:.85rem;line-height:1.8">
@@ -1303,7 +1567,7 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
     </div>
     <div class="glass pad reveal" style="border-color:rgba(251,113,133,.3)">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
-        <span style="font-size:1.5rem">🗳️</span>
+        <span style="font-size:1.5rem;line-height:1"><i class="ph-duotone ph-x-circle" style="color:var(--rose)"></i></span>
         <h4 style="font-size:1.05rem">2024 年 3 月：12 比 4，被否决</h4>
       </div>
       <p class="note" style="font-size:.85rem;line-height:1.8">
@@ -1317,10 +1581,10 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
     </div>
   </div>
 
-  <h4 style="font-size:1.06rem;margin:32px 0 4px" class="reveal">🕰️ 起点之争：四个候选时刻</h4>
+  <h4 style="font-size:1.06rem;margin:32px 0 4px" class="reveal"><i class="ph-duotone ph-clock" style="color:var(--cyan);margin-right:6px"></i>起点之争：四个候选时刻</h4>
   <div class="mile-grid" id="anthroStarts"></div>
 
-  <h4 style="font-size:1.06rem;margin:38px 0 4px" class="reveal">📊 大加速：1750 → 今天</h4>
+  <h4 style="font-size:1.06rem;margin:38px 0 4px" class="reveal"><i class="ph-duotone ph-chart-bar" style="color:var(--violet);margin-right:6px"></i>大加速：1750 → 今天</h4>
   <p class="note reveal" style="margin-bottom:16px">
     环境史学家把 1950 年之后社会经济与地球系统指标的同步暴涨称为"大加速"（Great Acceleration）——
     它们的曲线形状几乎都是曲棍球棒。以下是其中几条最具代表性的。
@@ -1371,7 +1635,7 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
     </div>
 
     <div class="dna-vis reveal">
-      <h4 style="font-size:1.02rem">🧬 人类遗传变异的分布</h4>
+      <h4 style="font-size:1.02rem"><i class="ph-duotone ph-dna" style="color:var(--cyan);margin-right:6px"></i>人类遗传变异的分布</h4>
       <p class="note" style="margin:8px 0 4px">
         经典的群体遗传学分析（Lewontin 1972）及后续大规模基因组研究都指向同一结论：
         人类绝大部分遗传变异存在于<b>人群内部</b>，而非人群之间。
@@ -1384,7 +1648,7 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
         <span>◀ 群体内部差异 ≈ 85–90%</span><span>群体之间 ≈ 10–15% ▶</span>
       </div>
       <div style="margin-top:22px;padding-top:18px;border-top:1px solid var(--line)">
-        <h4 style="font-size:1.02rem;margin-bottom:10px">📍 多样性的起源：奠基者效应</h4>
+        <h4 style="font-size:1.02rem;margin-bottom:10px"><i class="ph-duotone ph-map-pin" style="color:var(--amber);margin-right:6px"></i>多样性的起源：奠基者效应</h4>
         <p class="note">
           遗传多样性随<b>距非洲的迁徙距离</b>递减——因为每一次"一小群人分家走出去"，
           都只能带走母群体基因库的一部分样本。非洲人群保留了最高的人类遗传多样性，
@@ -1479,7 +1743,7 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
   </dl>
 
   <div class="glass pad reveal" style="margin-top:26px">
-    <h4 style="font-size:1.02rem;margin-bottom:12px">📚 主要资料来源</h4>
+    <h4 style="font-size:1.02rem;margin-bottom:12px"><i class="ph-duotone ph-books" style="color:var(--emerald);margin-right:6px"></i>主要资料来源</h4>
     <div class="refs">
       · 新华社《中国化石重塑人类进化史认知》（2026 年 4 月），综述中科院古脊椎所 2026 年 2 月《自然》成果<br>
       · 新华社《改写生命演化史：2025 年我国古生物学研究在多领域取得突破》（2025 年 12 月）<br>
@@ -1503,35 +1767,35 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
 </section>
 
 <footer>
-  <div class="fg">🧬</div>
+  <div class="fg"><i class="ph-duotone ph-dna"></i></div>
   <p style="max-width:60ch;margin:0 auto 10px;font-size:.9rem;color:var(--tx2)">
     演化没有目标，也没有终点。我们只是众多分支中，恰好活到今天的那一根。
   </p>
   <p>人类演化全景图 · 科普用途 · 内容基于公开发表的科学研究 · 2026 · 键盘 ←/→ 可切换章节</p>
 </footer>
-<button id="toTop" aria-label="返回顶部" title="返回顶部">↑</button>
-<button id="themeBtn" aria-label="切换亮色/暗色主题" title="切换主题">☀️</button>
+<button id="toTop" aria-label="返回顶部" title="返回顶部"><i class="ph-duotone ph-arrow-up"></i></button>
+<button id="themeBtn" aria-label="切换亮色/暗色主题" title="切换主题"><i class="ph-duotone ph-sun"></i></button>
 <div id="soundFloatBtn" class="sound-float-btn" aria-label="沉浸声景控制" title="沉浸式原生态声景">
   <button class="sfb-main" id="sfbMainBtn" title="管理沉浸声景">
-    <span class="sfb-ico">🎧</span>
+    <span class="sfb-ico"><i class="ph-duotone ph-headphones"></i></span>
     <span class="sfb-txt">声景</span>
     <span class="sound-wave"><i></i><i></i><i></i></span>
   </button>
-  <button class="sfb-quick-mute" id="sfbQuickMute" title="一键关闭声音" aria-label="一键关闭声音">✕</button>
+  <button class="sfb-quick-mute" id="sfbQuickMute" title="一键关闭声音" aria-label="一键关闭声音"><i class="ph-duotone ph-speaker-slash"></i></button>
 </div>
 
 <div class="sound-panel" id="soundPanel">
   <div class="sound-panel-head">
     <div class="sp-title-wrap">
-      <span>🎧 700万年原生态沉浸声景</span>
+      <span><i class="ph-duotone ph-headphones" style="margin-right:6px"></i>700万年原生态沉浸声景</span>
       <span class="sp-status-tag" id="soundStatusTag">已静音</span>
     </div>
-    <button id="soundPanelClose" class="sound-panel-close" title="收起面板">✕</button>
+    <button id="soundPanelClose" class="sound-panel-close" title="收起面板"><i class="ph-duotone ph-x"></i></button>
   </div>
 
   <div class="sound-switch-row" id="soundSwitchRow">
     <div class="ssr-info">
-      <span class="ssr-ico" id="soundSwitchIco">🔇</span>
+      <span class="ssr-ico" id="soundSwitchIco"><i class="ph-duotone ph-speaker-slash"></i></span>
       <div class="ssr-meta">
         <span class="ssr-label">原生态声景</span>
         <span class="ssr-desc" id="soundSwitchDesc">已关闭</span>
@@ -1544,22 +1808,22 @@ body.light .tech .n{color:rgba(28,38,66,.07)}
 
   <div class="sound-scenes">
     <button class="scene-btn active" data-scene="auto">
-      <span class="s-ico">✨</span>
+      <span class="s-ico"><i class="ph-duotone ph-sparkle"></i></span>
       <span class="s-nm">时空自适应</span>
       <span class="s-sub">随浏览历史时代自动切换</span>
     </button>
     <button class="scene-btn" data-scene="jungle">
-      <span class="s-ico">🌿</span>
+      <span class="s-ico"><i class="ph-duotone ph-plant"></i></span>
       <span class="s-nm">雨林深处</span>
       <span class="s-sub">700~420万年·鸟鸣与树冠微风</span>
     </button>
     <button class="scene-btn" data-scene="savanna">
-      <span class="s-ico">🌾</span>
+      <span class="s-ico"><i class="ph-duotone ph-sun"></i></span>
       <span class="s-nm">稀树草原</span>
       <span class="s-sub">420~50万年·旷野热风与虫鸣</span>
     </button>
     <button class="scene-btn" data-scene="cave">
-      <span class="s-ico">🔥</span>
+      <span class="s-ico"><i class="ph-duotone ph-fire"></i></span>
       <span class="s-nm">冰川洞穴</span>
       <span class="s-sub">50~1万年·风雪呼啸与篝火噼啪</span>
     </button>
@@ -1725,17 +1989,17 @@ const TECH = [
 ];
 
 const MILESTONES = [
-  {i:'🦴',t:'约 700 万年前',h:'直立行走的开端',p:'人族与黑猩猩支系分道扬镳。两足行走是这场分手的第一个标志。'},
-  {i:'🪨',t:'260 万年前',h:'系统性制造工具',sfx:'flint',sfxTip:'聆听燧石敲击剥片实录',p:'从"偶然使用"到"按规格制作"，认知能力的第一次质变。'},
-  {i:'🌍',t:'180 万年前',h:'第一次走出非洲',p:'直立人扩散至格鲁吉亚、印尼与中国，人属首次成为跨大陆物种。'},
-  {i:'🔥',t:'约 100 万年前',h:'掌握火',sfx:'fire',sfxTip:'聆听远古营火噼啪原声',p:'烹饪扩展了可食资源，也延长了白昼——夜晚从此属于社交与故事。'},
-  {i:'🧠',t:'80 万–20 万年前',h:'脑容量爆发',p:'曲线最陡的一段。群体协作、生态位扩张与技术积累形成正反馈。'},
-  {i:'👤',t:'31.5 万年前',h:'智人出现',p:'摩洛哥杰贝尔·伊尔胡德——目前已知最早的解剖学现代人化石。'},
-  {i:'🤝',t:'约 6 万年前',h:'与古人类杂交',p:'走出非洲的智人与尼安德特人、丹尼索瓦人相遇并留下后代。'},
-  {i:'🎭',t:'7 万–4 万年前',h:'象征性行为革命',sfx:'flute',sfxTip:'聆听史前骨笛复原原声',p:'艺术、宗教、复杂语言——"文化爆炸"让智人彻底区别于其他物种。'},
-  {i:'🧊',t:'约 4 万年前',h:'尼安德特人消失',p:'最后一个与我们有直接亲缘关系的物种退场，人属只剩一支。'},
-  {i:'🌾',t:'1.17 万年前',h:'全新世与农业',p:'末次冰期结束，农业在多个中心独立起源，人口开始指数增长。'},
-  {i:'🚀',t:'今天',h:'唯一的幸存者',p:'80 亿人，遍布七大洲——以及，正在把目光投向更远的地方。'}
+  {icon:'ph-footprints',c:'#38bdf8',t:'约 700 万年前',h:'直立行走的开端',p:'人族与黑猩猩支系分道扬镳。两足行走是这场分手的第一个标志。'},
+  {icon:'ph-axe',c:'#fbbf24',t:'260 万年前',h:'系统性制造工具',sfx:'flint',sfxTip:'聆听燧石敲击剥片实录',p:'从"偶然使用"到"按规格制作"，认知能力的第一次质变。'},
+  {icon:'ph-globe-hemisphere-east',c:'#34d399',t:'180 万年前',h:'第一次走出非洲',p:'直立人扩散至格鲁吉亚、印尼与中国，人属首次成为跨大陆物种。'},
+  {icon:'ph-fire',c:'#f97316',t:'约 100 万年前',h:'掌握火',sfx:'fire',sfxTip:'聆听远古营火噼啪原声',flintMini:true,p:'烹饪扩展了可食资源，也延长了白昼——夜晚从此属于社交与故事。'},
+  {icon:'ph-brain',c:'#a78bfa',t:'80 万–20 万年前',h:'脑容量爆发',p:'曲线最陡的一段。群体协作、生态位扩张与技术积累形成正反馈。'},
+  {icon:'ph-skull',c:'#38bdf8',t:'31.5 万年前',h:'智人出现',p:'摩洛哥杰贝尔·伊尔胡德——目前已知最早的解剖学现代人化石。'},
+  {icon:'ph-dna',c:'#f43f5e',t:'约 6 万年前',h:'与古人类杂交',p:'走出非洲的智人与尼安德特人、丹尼索瓦人相遇并留下后代。'},
+  {icon:'ph-palette',c:'#fb7185',t:'7 万–4 万年前',h:'象征性行为革命',sfx:'flute',sfxTip:'聆听史前骨笛复原原声',p:'艺术、宗教、复杂语言——"文化爆炸"让智人彻底区别于其他物种。'},
+  {icon:'ph-snowflake',c:'#93c5fd',t:'约 4 万年前',h:'尼安德特人消失',p:'最后一个与我们有直接亲缘关系的物种退场，人属只剩一支。'},
+  {icon:'ph-grains',c:'#facc15',t:'1.17 万年前',h:'全新世与农业',p:'末次冰期结束，农业在多个中心独立起源，人口开始指数增长。'},
+  {icon:'ph-rocket',c:'#e879f9',t:'今天',h:'唯一的幸存者',p:'80 亿人，遍布七大洲——以及，正在把目光投向更远的地方。'}
 ];
 
 /* =========================================================
@@ -2095,7 +2359,7 @@ function avatarHTML(s){
   const tbtn=$('#themeBtn'),mc=document.querySelector('meta[name="theme-color"]');
   function applyTheme(t){
     document.body.classList.toggle('light',t==='light');
-    if(tbtn){tbtn.textContent=t==='light'?'🌙':'☀️';
+    if(tbtn){tbtn.innerHTML=t==='light'?'<i class="ph-duotone ph-moon"></i>':'<i class="ph-duotone ph-sun"></i>';
       tbtn.title=t==='light'?'切换到暗色主题':'切换到亮色主题';}
     if(mc)mc.setAttribute('content',t==='light'?'#f5f3ec':'#04060f');
     try{localStorage.setItem('evo-theme',t)}catch(e){}
@@ -2337,7 +2601,7 @@ const TREE={id:'root',t:7.0,kids:[
         <div class="drow"><span class="k">分布</span><span class="v">${s.region}</span></div>
         <div class="detail-desc">${s.desc}</div>
         <div class="chips">${s.tags.map(t=>`<span class="chip">${t}</span>`).join('')}</div>
-        <button class="dlink" data-id="${s.id}" type="button">🗂 在物种档案库中查看 →</button>
+        <button class="dlink" data-id="${s.id}" type="button"><i class="ph-duotone ph-folder" style="margin-right:4px"></i>在物种档案库中查看 →</button>
       </div>`;
   }
 
@@ -2471,8 +2735,8 @@ const TREE={id:'root',t:7.0,kids:[
     };
     out.innerHTML=`
       <div class="cmp-verdict ${yes?'yes':'no'}">${yes
-        ?`✅ 同时代 —— 两者在地球上共存约 ${span(ov)}`
-        :`💤 擦肩而过 —— 时间上至少相隔 ${span(-ov)}`}</div>
+        ?`<i class="ph-duotone ph-check-circle" style="color:var(--emerald);margin-right:6px"></i>同时代 —— 两者在地球上共存约 ${span(ov)}`
+        :`<i class="ph-duotone ph-hourglass" style="color:var(--rose);margin-right:6px"></i>擦肩而过 —— 时间上至少相隔 ${span(-ov)}`}</div>
       <div class="cmp-tl">${grid}${band}${bar(s1,32)}${bar(s2,62)}${axis}</div>
       <div class="cmp-stats">${col(s1)}${col(s2)}</div>`;
   }
@@ -2821,12 +3085,12 @@ const TREE={id:'root',t:7.0,kids:[
         <div class="sci">${s.sci}</div>
         <div class="sp-meta">
           <span class="mt">${fmtMa(s.start)}</span>
-          <span class="mt">🧠 ${s.brain} ml</span>
-          <span class="mt">📏 ${s.height||'—'}</span>
+          <span class="mt"><i class="ph-duotone ph-brain" style="color:var(--violet);margin-right:3px"></i>${s.brain} ml</span>
+          <span class="mt"><i class="ph-duotone ph-ruler" style="color:var(--cyan);margin-right:3px"></i>${s.height||'—'}</span>
         </div>
         <p>${s.desc}</p>
-        <div class="loc">📍 ${s.region}</div>
-        <button class="clink" data-id="${s.id}" type="button">🌳 在谱系树中定位</button>`;
+        <div class="loc"><i class="ph-duotone ph-map-pin" style="color:var(--rose);margin-right:4px"></i>${s.region}</div>
+        <button class="clink" data-id="${s.id}" type="button"><i class="ph-duotone ph-tree-structure" style="margin-right:4px"></i>在谱系树中定位</button>`;
       box.appendChild(d);
     });
     if(!list.length)box.innerHTML='<p class="note" style="padding:20px 4px">没有匹配的物种，换个关键词试试。</p>';
@@ -2867,7 +3131,7 @@ const TREE={id:'root',t:7.0,kids:[
   const strip=$('#techStrip');
   TECH.forEach(t=>{
     const d=document.createElement('div');d.className='tech';d.style.setProperty('--c',t.c);
-    const sfxBtn=t.sfx?`<button class="sfx-play-btn" data-sfx="${t.sfx}" type="button" title="${t.sfxTip}"><span>🔊 ${t.sfxLabel}</span></button>`:'';
+    const sfxBtn=t.sfx?`<button class="sfx-play-btn" data-sfx="${t.sfx}" type="button" title="${t.sfxTip}"><span><i class="ph-duotone ph-speaker-simple-high" style="margin-right:4px"></i>${t.sfxLabel}</span></button>`:'';
     d.innerHTML=`<span class="n">${t.n}</span><div class="yr">${t.yr}</div><h4>${t.t}</h4><p>${t.d}</p>${sfxBtn}`;
     strip.appendChild(d);
   });
@@ -2875,21 +3139,29 @@ const TREE={id:'root',t:7.0,kids:[
   if(mg){
     MILESTONES.forEach(m=>{
       const d=document.createElement('div');d.className='mile';
-      const sfxBtn=m.sfx?`<button class="sfx-play-btn sm" data-sfx="${m.sfx}" type="button" title="${m.sfxTip}"><span>🔊 聆听原声</span></button>`:'';
-      d.innerHTML=`<span class="mi">${m.i}</span><div><h5>${m.h}</h5><span>${m.t}</span><p>${m.p}</p>${sfxBtn}</div>`;
+      const sfxBtn=m.sfx?`<button class="sfx-play-btn sm" data-sfx="${m.sfx}" type="button" title="${m.sfxTip}"><span><i class="ph-duotone ph-speaker-simple-high" style="margin-right:3px"></i>聆听原声</span></button>`:'';
+      const flintBtn=m.flintMini?`<button class="flint-mini-btn" id="flintMiniTrigger" type="button" title="进入燧石摩擦击火试炼"><span><i class="ph-duotone ph-fire" style="color:#f97316;margin-right:3px"></i>燧石击火试炼</span></button>`:'';
+      d.innerHTML=`<span class="mi" ${m.flintMini?'data-flint="1" style="cursor:pointer" title="点击开启燧石击火试炼"':''}><i class="ph-duotone ${m.icon}" style="color:${m.c}"></i></span><div><h5>${m.h}</h5><span>${m.t}</span><p>${m.p}</p><div class="mile-actions">${sfxBtn}${flintBtn}</div></div>`;
       mg.appendChild(d);
     });
     if(window.observeReveal) window.observeReveal(mg);
   }
   document.addEventListener('click',e=>{
     const b=e.target.closest('.sfx-play-btn');
-    if(!b)return;
-    e.stopPropagation();
-    const sfx=b.dataset.sfx;
-    if(sfx&&window.SoundEngine){
-      window.SoundEngine.playSFX(sfx);
-      b.classList.add('playing');
-      setTimeout(()=>b.classList.remove('playing'),1200);
+    if(b){
+      e.stopPropagation();
+      const sfx=b.dataset.sfx;
+      if(sfx&&window.SoundEngine){
+        window.SoundEngine.playSFX(sfx);
+        b.classList.add('playing');
+        setTimeout(()=>b.classList.remove('playing'),1200);
+      }
+      return;
+    }
+    const fb=e.target.closest('#flintMiniTrigger') || e.target.closest('.mi[data-flint="1"]');
+    if(fb && window.FlintFireApp){
+      e.stopPropagation();
+      window.FlintFireApp.open();
     }
   });
 })();
@@ -3043,7 +3315,7 @@ const TREE={id:'root',t:7.0,kids:[
           font-size:.7rem;font-weight:700;background:${c}22;color:${c};border:1px solid ${c}55">${EC[s.era].n}</span>
       </div>
       <div class="body">
-        <div style="font-size:.78rem;color:var(--tx3);margin-bottom:10px">📍 ${s.prov}</div>
+        <div style="font-size:.78rem;color:var(--tx3);margin-bottom:10px"><i class="ph-duotone ph-map-pin" style="color:var(--rose);margin-right:4px"></i>${s.prov}</div>
         <p>${s.d}</p>
         <div class="chips">${s.tags.map(t=>`<span class="chip">${t}</span>`).join('')}</div>
         <div class="cnlist">${SITES.map((x,k)=>`<div class="cnli${k===i?' on':''}" data-k="${k}">
@@ -3180,37 +3452,37 @@ const TREE={id:'root',t:7.0,kids:[
 
   // 人类世起点之争
   const STARTS=[
-    {i:'🌾',t:'约 8000–5000 年前',h:'早期农业假说',
+    {icon:'ph-grains',c:'#facc15',t:'约 8000–5000 年前',h:'早期农业假说',
      p:'Ruddiman 提出：新石器农业与森林砍伐使大气 CO₂ 与甲烷在工业革命前数千年就已偏离自然轨道。若采此说，"人类世"的开端几乎与"文明"同义。'},
-    {i:'🌎',t:'1610 年 · Orbis 低谷',h:'殖民与再造林',
+    {icon:'ph-globe',c:'#34d399',t:'1610 年 · Orbis 低谷',h:'殖民与再造林',
      p:'Lewis 与 Maslin：欧洲殖民美洲导致原住民人口锐减、耕地弃荒、森林恢复固碳，南极冰芯记录到 CO₂ 在 1610 年前后出现约 7–10 ppm 的明显下探。这是"全球化"留在大气中的第一道伤疤。'},
-    {i:'⚙️',t:'约 1760 年',h:'工业革命',
+    {icon:'ph-gear',c:'#818cf8',t:'约 1760 年',h:'工业革命',
      p:'克鲁岑最初的提议，也是 IPCC 选定的"工业化前"基准年（1750）。蒸汽机与煤炭让人类第一次大规模释放地质时期封存的太阳能。'},
-    {i:'☢️',t:'1950 年 · 大加速',h:'AWG 推荐方案',
+    {icon:'ph-radioactive',c:'#fb7185',t:'1950 年 · 大加速',h:'AWG 推荐方案',
      p:'钚-239 全球沉降、塑料、混凝土、化肥、CO₂ 陡升——地球系统指标与社会经济指标同步暴涨。克劳福德湖 1952 年纹层被选定为候选金钉子。'}
   ];
   const as=$('#anthroStarts');
-  if(as)as.innerHTML=STARTS.map(s=>`<div class="mile reveal"><span class="mi">${s.i}</span>
+  if(as)as.innerHTML=STARTS.map(s=>`<div class="mile reveal"><span class="mi"><i class="ph-duotone ${s.icon}" style="color:${s.c}"></i></span>
       <div><h5>${s.h}</h5><span>${s.t}</span><p>${s.p}</p></div></div>`).join('');
 
   // 大加速
   const ACCEL=[
-    {i:'👥',h:'世界人口',a:'约 7.9 亿（1750）',b:'82.7 亿（2026）',w:100,c:'#fb7185',
+    {icon:'ph-users',h:'世界人口',a:'约 7.9 亿（1750）',b:'82.7 亿（2026）',w:100,c:'#fb7185',
      p:'增长约 10.5 倍；但增速自 1963 年峰值起持续放缓，预计 2084 年前后触顶。'},
-    {i:'🫧',h:'大气 CO₂ 浓度',a:'280 ppm（工业化前）',b:'约 424 ppm（2024）',w:96,c:'#fbbf24',
+    {icon:'ph-cloud',h:'大气 CO₂ 浓度',a:'280 ppm（工业化前）',b:'约 424 ppm（2024）',w:96,c:'#fbbf24',
      p:'增幅超过 50%，为至少两百万年来的最高值，也是地质记录中最陡的一次上升。'},
-    {i:'🧪',h:'化肥（氮）使用',a:'几乎为零（1900）',b:'约 1.1 亿吨/年',w:88,c:'#34d399',
+    {icon:'ph-flask',h:'化肥（氮）使用',a:'几乎为零（1900）',b:'约 1.1 亿吨/年',w:88,c:'#34d399',
      p:'人类活动固定的氮已超过所有自然陆地过程之和，彻底改变了全球氮磷循环。'},
-    {i:'🏗️',h:'塑料年产量',a:'0（1950 年前）',b:'约 4 亿吨/年',w:84,c:'#60a5fa',
+    {icon:'ph-buildings',h:'塑料年产量',a:'0（1950 年前）',b:'约 4 亿吨/年',w:84,c:'#60a5fa',
      p:'塑料与混凝土、铝正在形成全新的"技术圈"（technosphere）沉积层与新型"岩石"。'},
-    {i:'🌡️',h:'全球平均气温',a:'工业化前基线',b:'升高约 1.3 ℃',w:70,c:'#fb923c',
+    {icon:'ph-thermometer',h:'全球平均气温',a:'工业化前基线',b:'升高约 1.3 ℃',w:70,c:'#fb923c',
      p:'2015—2024 年是有器测记录以来最暖的十年；变暖速率远快于多数自然气候事件。'},
-    {i:'💀',h:'物种灭绝速率',a:'自然背景速率',b:'数十至数百倍',w:92,c:'#a78bfa',
+    {icon:'ph-skull',h:'物种灭绝速率',a:'自然背景速率',b:'数十至数百倍',w:92,c:'#a78bfa',
      p:'学界普遍认为第六次大规模灭绝正在进行——这是人族 700 万年里第一次由单一物种驱动。'}
   ];
   const ag=$('#accelGrid');
   if(ag){
-    ag.innerHTML=ACCEL.map(a=>`<div class="acc" style="--c:${a.c}"><div class="ai">${a.i}</div>
+    ag.innerHTML=ACCEL.map(a=>`<div class="acc" style="--c:${a.c}"><div class="ai"><i class="ph-duotone ${a.icon}" style="color:${a.c}"></i></div>
       <h5>${a.h}</h5>
       <div class="cmp"><span class="a">${a.a}</span><span class="ar">→</span><span class="b">${a.b}</span></div>
       <div class="accbar"><i data-w="${a.w}" style="--w:${a.w}%"></i></div>
@@ -3475,7 +3747,7 @@ const SoundEngine = (function(){
     }
 
     const swIco = $('#soundSwitchIco');
-    if (swIco) swIco.textContent = enabled ? '🔊' : '🔇';
+    if (swIco) swIco.innerHTML = enabled ? '<i class="ph-duotone ph-speaker-high"></i>' : '<i class="ph-duotone ph-speaker-slash"></i>';
 
     const swDesc = $('#soundSwitchDesc');
     if (swDesc) {
@@ -3659,7 +3931,1096 @@ const SoundEngine = (function(){
 // 启动声音引擎
 SoundEngine.init();
 window.SoundEngine = SoundEngine;
+
+/* =========================================================
+   彩蛋 1：古DNA祖源测序报告与前世证书终端 (AncientDNAApp)
+   ========================================================= */
+const AncientDNAApp = (function(){
+  const IDENTITIES = [
+    {
+      title: '旧石器晚期 · 拉斯科洞穴首席壁画大师',
+      badge: '艺术先驱',
+      scene: 'videos/scenes/scene5_sapiens.jpg',
+      avatar: 'images/avatars/sapiens.jpg',
+      desc: '你曾在幽暗深邃的石灰岩洞窟中，用赤铁矿粉末和兽油勾勒狂奔的野牛与野马。今天你依然对高饱和度色彩和深夜发呆情有独钟。',
+      talent: '空间抽象思维 +100% · 极强夜间灵感'
+    },
+    {
+      title: '阿舍利手斧 · 极致对称强迫症学者',
+      badge: '工艺宗师',
+      scene: 'videos/scenes/scene3_erectus.jpg',
+      avatar: 'images/avatars/erectus.jpg',
+      desc: '当你握起一块燧石，两面对称的泪滴形就是你的美学信仰。敲片误差绝不能超过一毫米，你就是旧石器早期的工匠精神代言人。',
+      talent: '空间几何直觉 · 细节强迫症'
+    },
+    {
+      title: '末次盛冰期 · 极寒驯鹿雪原追踪手',
+      badge: '荒野生存狂',
+      scene: 'videos/scenes/scene4_neander.jpg',
+      avatar: 'images/avatars/neander.jpg',
+      desc: '零下 35 度的北风呼啸中，你仅凭雪地上一撮动物蹄印就能辨别群兽走向。你体内流淌着极高浓度的尼人耐寒耐疲劳基因。',
+      talent: '极寒抗冻机能 · 超强野外方向感'
+    },
+    {
+      title: '白令陆桥 · 首批踏冰横渡探险家',
+      badge: '洲际拓荒者',
+      scene: 'videos/scenes/scene5_sapiens.jpg',
+      avatar: 'images/avatars/sapiens.jpg',
+      desc: '海平面下降的严寒纪元，你望着未知冰原对同伴说“去看看那边有什么”。最终你们的脚印跨越亚美大陆，抵达了新世界。',
+      talent: '探索欲过载 · 危机第六感'
+    },
+    {
+      title: '贾湖聚落 · 第一支七孔骨笛试奏家',
+      badge: '音乐鼻祖',
+      scene: 'videos/scenes/scene5_sapiens.jpg',
+      avatar: 'images/avatars/sapiens.jpg',
+      desc: '截取丹顶鹤的尺骨，精准钻出七个微孔。当第一缕清澈的五声音阶在淮河流域升起，天籁之音从此有了人间音准。',
+      talent: '绝对听觉音感 · 情感穿透力'
+    },
+    {
+      title: '东非大裂谷 · 旷野长跑耐力马拉松王',
+      badge: '耐力天花板',
+      scene: 'videos/scenes/scene2_lucy.jpg',
+      avatar: 'images/avatars/ergaster.jpg',
+      desc: '直立行走的修长双腿与致密汗腺，让你在正午烈日下把羚羊跑得脱水倒地。今天你赶地铁和熬夜赶工的耐力全拜此所赐。',
+      talent: '超强心肺续航 · 散热排汗大师'
+    },
+    {
+      title: '查特佩隆文化 · 海贝与象牙穿孔设计师',
+      badge: '史前弄潮儿',
+      scene: 'videos/scenes/scene4_neander.jpg',
+      avatar: 'images/avatars/neander.jpg',
+      desc: '谁说古人类不懂时尚？你用鹿角钻透海贝串成项链，并用红赭石涂抹身体。你将“爱美之心”刻进了人类的演化长河。',
+      talent: '潮流审美敏锐 · 社交亲和力'
+    },
+    {
+      title: '阿尔泰山 · 丹尼索瓦洞穴高山旅者',
+      badge: '高原领主',
+      scene: 'videos/scenes/scene4_neander.jpg',
+      avatar: 'images/avatars/longi.jpg',
+      desc: '在高寒缺氧的西伯利亚山地，你的 EPAS1 突变让你健步如飞。你曾与路过的尼人击掌交换燧石，并留下了那枚著名的绿泥石手镯。',
+      talent: '高海拔低氧抗性 · 跨群落社交达人'
+    },
+    {
+      title: '克罗马农 · 篝火故事会金牌叙事官',
+      badge: '虚构发明家',
+      scene: 'videos/scenes/scene5_sapiens.jpg',
+      avatar: 'images/avatars/sapiens.jpg',
+      desc: '当夜幕降临、肉香四溢，你借着火光手舞足蹈，讲述远方巨兽与祖灵的传说。语言的魔力让三十人结成了最牢固的部落。',
+      talent: '语言蛊惑力 +99 · 社交凝聚力'
+    },
+    {
+      title: '黎凡特走廊 · 无花果与野麦驯化观察员',
+      badge: '农耕启蒙者',
+      scene: 'videos/scenes/scene2_lucy.jpg',
+      avatar: 'images/avatars/sapiens.jpg',
+      desc: '你第一个注意到掉在地里的麦粒明年还会发芽，并耐心地将颗粒饱满的留种。人类告别流浪定居田野，你的功劳占了一半。',
+      talent: '自然节律感知 · 长期主义思维'
+    },
+    {
+      title: '格陵兰冰盖 · 海豹油脂高能量代谢专家',
+      badge: '热量黑客',
+      scene: 'videos/scenes/scene4_neander.jpg',
+      avatar: 'images/avatars/neander.jpg',
+      desc: '依靠丹人留下的 TBX15 基因，你的棕色脂肪能在冰天雪地中像微型反应堆一样熊熊燃烧。今天的你吃热气腾腾的火锅从不怕冷。',
+      talent: '脂肪转化暴击 · 极寒暴走机能'
+    },
+    {
+      title: '托罗斯-梅纳拉 · 树冠下两足行走尝试者',
+      badge: '图迈同行人',
+      scene: 'videos/scenes/scene1_sahel.jpg',
+      avatar: 'images/avatars/sahel.jpg',
+      desc: '在查德沙漠还是葱郁森林的中新世，你壮着胆子松开抓树枝的手，试着用双脚在草地上晃晃悠悠走出了两步。传奇从此启程。',
+      talent: '敢为人先勇气 · 划时代首创者'
+    }
+  ];
+
+  const QUOTES = [
+    {
+      author: '320万年前 · 露西（Lucy）对你说：',
+      tag: '320万年前连线',
+      avatar: 'images/avatars/afarensis.jpg',
+      text: '站直了！少窝着看手机！当初我刚学双足直立行走脊椎受力还没完全进化好，你们今天倒好，天天窝在椅子上腰疼难受……赶紧起来转转脖子！'
+    },
+    {
+      author: '180万年前 · 直立人先祖对你说：',
+      tag: '180万年前连线',
+      avatar: 'images/avatars/erectus.jpg',
+      text: '火可是我们好不容易学会保存的，结果你们现代人天天用它来点外卖和烤串……不过闻起来确实挺香的！'
+    },
+    {
+      author: '4万年前 · 尼安德特老哥对你说：',
+      tag: '4万年前连线',
+      avatar: 'images/avatars/neander.jpg',
+      text: '别总说我们灭绝了，你照照镜子摸摸抗冻的厚皮肤，我的基因可一直活在你们身上呢！'
+    },
+    {
+      author: '3万年前 · 克罗马农智人对你说：',
+      tag: '3万年前连线',
+      avatar: 'images/avatars/sapiens.jpg',
+      text: '别在信息洪流里焦虑了后代，700万年里我们闯过了冰川、饥荒与巨兽，你们现在的困难算个啥！'
+    }
+  ];
+
+  let currentResult = null;
+  let scanTimer = null;
+
+  function showToast(msg) {
+    const t = $('#easterToast');
+    if (!t) return;
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2600);
+  }
+
+  function generateReport() {
+    const neander = (1.8 + Math.random() * 0.9).toFixed(1);
+    const denisov = (0.3 + Math.random() * 1.1).toFixed(1);
+    const sapiens = (100 - parseFloat(neander) - parseFloat(denisov)).toFixed(1);
+    const idObj = IDENTITIES[Math.floor(Math.random() * IDENTITIES.length)];
+    const quoteObj = QUOTES[Math.floor(Math.random() * QUOTES.length)];
+    const sn = 'HOMO-2026-DNA-' + Math.random().toString(36).substring(2, 7).toUpperCase();
+
+    return {
+      neander,
+      denisov,
+      sapiens,
+      identity: idObj,
+      quoteObj,
+      sn
+    };
+  }
+
+  function renderReport(data) {
+    currentResult = data;
+    const snEl = $('#dnaRepSn');
+    if (snEl) snEl.textContent = 'REPORT ID: ' + data.sn;
+    const pN = $('#dnaPctNeander'); if (pN) pN.textContent = data.neander + '%';
+    const pD = $('#dnaPctDenisov'); if (pD) pD.textContent = data.denisov + '%';
+    const pS = $('#dnaPctSapiens'); if (pS) pS.textContent = data.sapiens + '%';
+
+    const bN = $('#dnaBarNeander'); if (bN) bN.style.width = Math.min(100, (parseFloat(data.neander) / 3.0) * 100) + '%';
+    const bD = $('#dnaBarDenisov'); if (bD) bD.style.width = Math.min(100, (parseFloat(data.denisov) / 2.0) * 100) + '%';
+    const bS = $('#dnaBarSapiens'); if (bS) bS.style.width = '100%';
+
+    const tagEl = $('#dicTag'); if (tagEl) tagEl.textContent = '前世身份推测 · ' + data.identity.badge;
+    const tEl = $('#dicTitle'); if (tEl) tEl.textContent = data.identity.title;
+    const dEl = $('#dicDesc'); if (dEl) dEl.textContent = data.identity.desc;
+    const talEl = $('#dicTalent'); if (talEl) talEl.innerHTML = '<i class="ph-duotone ph-lightning" style="color:var(--amber);margin-right:4px"></i>专属特质：' + data.identity.talent;
+
+    const bannerImg = $('#dicBannerImg');
+    if (bannerImg) bannerImg.src = data.identity.scene || 'videos/scenes/scene5_sapiens.jpg';
+
+    const ancAvatar = $('#dnaAncestorAvatar');
+    if (ancAvatar) ancAvatar.src = data.quoteObj.avatar;
+    const ancTag = $('#dnaAncestorTag');
+    if (ancTag) ancTag.textContent = data.quoteObj.tag;
+    const ancName = $('#dnaAncestorName');
+    if (ancName) ancName.innerHTML = '<i class="ph-duotone ph-lightbulb" style="color:var(--amber);margin-right:4px"></i>' + data.quoteObj.author;
+    const qTxt = $('#dnaQuoteTxt');
+    if (qTxt) qTxt.textContent = data.quoteObj.text;
+  }
+
+  function open() {
+    const modal = $('#dnaCertModal');
+    if (!modal) return;
+    modal.classList.add('open');
+
+    // 播放骨笛声轻反馈
+    if (window.SoundEngine) window.SoundEngine.playSFX('flute', 0.5);
+
+    // 显示扫描动画
+    const scanView = $('#dnaScanView');
+    const repView = $('#dnaRepView');
+    const bar = $('#dnaScanBar');
+    const sub = $('#dnaScanSub');
+
+    if (scanView) scanView.style.display = 'block';
+    if (repView) repView.style.display = 'none';
+    if (bar) bar.style.width = '0%';
+
+    const subTexts = [
+      '比对阿尔泰与文迪亚尼安德特人参考基因组...',
+      '检索丹尼索瓦洞穴高通量覆盖度位点...',
+      '标记 EPAS1 与 TLR 适应性渗入染色体片段...',
+      '生成专属远古前世图文报告...'
+    ];
+
+    let step = 0;
+    const stepInterval = setInterval(() => {
+      step++;
+      if (subTexts[step] && sub) sub.textContent = subTexts[step];
+    }, 280);
+
+    setTimeout(() => { if (bar) bar.style.width = '100%'; }, 50);
+
+    if (scanTimer) clearTimeout(scanTimer);
+    scanTimer = setTimeout(() => {
+      clearInterval(stepInterval);
+      if (scanView) scanView.style.display = 'none';
+      if (repView) repView.style.display = 'block';
+      renderReport(generateReport());
+    }, 1200);
+  }
+
+  function close() {
+    const modal = $('#dnaCertModal');
+    if (modal) modal.classList.remove('open');
+    if (scanTimer) clearTimeout(scanTimer);
+  }
+
+  function closePoster() {
+    const modal = $('#dnaPosterModal');
+    if (modal) modal.classList.remove('open');
+  }
+
+  function loadImage(src) {
+    return new Promise(resolve => {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => resolve(img);
+      img.onerror = () => resolve(null);
+      img.src = src;
+      if (img.complete && img.naturalWidth > 0) resolve(img);
+    });
+  }
+
+  function drawRoundedRect(c, x, y, w, h, r) {
+    c.beginPath();
+    c.moveTo(x + r, y);
+    c.lineTo(x + w - r, y);
+    c.quadraticCurveTo(x + w, y, x + w, y + r);
+    c.lineTo(x + w, y + h - r);
+    c.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    c.lineTo(x + r, y + h);
+    c.quadraticCurveTo(x, y + h, x, y + h - r);
+    c.lineTo(x, y + r);
+    c.quadraticCurveTo(x, y, x + r, y);
+    c.closePath();
+  }
+
+  function drawCircleImg(c, img, cx, cy, r, borderColor) {
+    c.save();
+    c.beginPath();
+    c.arc(cx, cy, r, 0, Math.PI * 2);
+    c.closePath();
+    c.clip();
+    if (img) {
+      c.drawImage(img, cx - r, cy - r, r * 2, r * 2);
+    } else {
+      c.fillStyle = '#334155';
+      c.fill();
+    }
+    c.restore();
+    if (borderColor) {
+      c.save();
+      c.strokeStyle = borderColor;
+      c.lineWidth = 2.5;
+      c.beginPath();
+      c.arc(cx, cy, r, 0, Math.PI * 2);
+      c.stroke();
+      c.restore();
+    }
+  }
+
+  function wrapText(c, text, x, y, maxWidth, lineHeight) {
+    const chars = text.split('');
+    let line = '';
+    let curY = y;
+    for (let i = 0; i < chars.length; i++) {
+      const test = line + chars[i];
+      const m = c.measureText(test);
+      if (m.width > maxWidth && i > 0) {
+        c.fillText(line, x, curY);
+        line = chars[i];
+        curY += lineHeight;
+      } else {
+        line = test;
+      }
+    }
+    c.fillText(line, x, curY);
+    return curY;
+  }
+
+  async function openPoster() {
+    if (!currentResult) return;
+    showToast('正在生成专属朋友圈海报…');
+    const modal = $('#dnaPosterModal');
+    if (!modal) return;
+    modal.classList.add('open');
+
+    const preview = $('#posterPreviewImg');
+    const btnDl = $('#posterBtnDownload');
+
+    // 绘制 750 x 1320 高清海报
+    const canvas = document.createElement('canvas');
+    canvas.width = 750;
+    canvas.height = 1320;
+    const ctx = canvas.getContext('2d');
+
+    // 1. 深邃星空底色
+    const bg = ctx.createLinearGradient(0, 0, 0, 1320);
+    bg.addColorStop(0, '#0a0e1a');
+    bg.addColorStop(0.4, '#0f172a');
+    bg.addColorStop(1, '#060810');
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, 750, 1320);
+
+    // 纯净渐变底：不再画网格线与外边框，视觉聚焦内容本身
+
+    // 预加载所有图片
+    const [neanderImg, denisovImg, sapiensImg, sceneImg, ancestorImg, qrImg] = await Promise.all([
+      loadImage('images/avatars/neander.jpg'),
+      loadImage('images/avatars/longi.jpg'),
+      loadImage('images/avatars/sapiens.jpg'),
+      loadImage(currentResult.identity.scene || 'videos/scenes/scene5_sapiens.jpg'),
+      loadImage(currentResult.quoteObj.avatar || 'images/avatars/afarensis.jpg'),
+      loadImage('images/qrcode_site.png')
+    ]);
+
+    // 2. 头部标题
+    ctx.fillStyle = '#22d3ee';
+    ctx.font = 'bold 15px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+    ctx.fillText('HUMAN EVOLUTION PANORAMA · 700万年古人类演化全景图', 50, 68);
+
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 32px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+    ctx.fillText('古人类基因祖源测序证书', 50, 114);
+
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '14px monospace';
+    ctx.fillText(currentResult.sn + ' · PALEOGENOMICS TERMINAL', 50, 142);
+
+    // 基因百分比区块（视觉顺序第二，位于场景图下方）
+    const boxY = 566;
+    ctx.fillStyle = 'rgba(255,255,255,0.03)';
+    drawRoundedRect(ctx, 48, boxY, 654, 260, 14);
+    ctx.fill();
+
+    // 尼安德特人行
+    drawCircleImg(ctx, neanderImg, 88, boxY + 44, 22, '#fb7185');
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 18px -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx.fillText('🦴 尼安德特人基因渗入', 125, boxY + 38);
+    ctx.fillStyle = '#fb7185';
+    ctx.font = 'bold 20px monospace';
+    ctx.fillText(currentResult.neander + '%', 600, boxY + 38);
+    // 进度条
+    ctx.fillStyle = 'rgba(255,255,255,0.1)';
+    drawRoundedRect(ctx, 125, boxY + 48, 545, 8, 4);
+    ctx.fill();
+    ctx.fillStyle = '#f43f5e';
+    const nw = Math.min(545, (parseFloat(currentResult.neander) / 3.0) * 545);
+    drawRoundedRect(ctx, 125, boxY + 48, nw, 8, 4);
+    ctx.fill();
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '13px -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx.fillText('携带天赋：极度耐寒体质 · 增强免疫防御', 125, boxY + 74);
+
+    // 丹尼索瓦人行
+    drawCircleImg(ctx, denisovImg, 88, boxY + 128, 22, '#a78bfa');
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 18px -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx.fillText('🏔️ 丹尼索瓦人基因渗入', 125, boxY + 122);
+    ctx.fillStyle = '#a78bfa';
+    ctx.font = 'bold 20px monospace';
+    ctx.fillText(currentResult.denisov + '%', 600, boxY + 122);
+    ctx.fillStyle = 'rgba(255,255,255,0.1)';
+    drawRoundedRect(ctx, 125, boxY + 132, 545, 8, 4);
+    ctx.fill();
+    ctx.fillStyle = '#8b5cf6';
+    const dw = Math.min(545, (parseFloat(currentResult.denisov) / 2.0) * 545);
+    drawRoundedRect(ctx, 125, boxY + 132, dw, 8, 4);
+    ctx.fill();
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '13px -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx.fillText('携带天赋：高海拔低氧漫步 · 昼夜节律适应', 125, boxY + 158);
+
+    // 早期智人非洲冒险者行
+    drawCircleImg(ctx, sapiensImg, 88, boxY + 212, 22, '#34d399');
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 18px -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx.fillText('🌍 早期智人非洲冒险者血液', 125, boxY + 206);
+    ctx.fillStyle = '#34d399';
+    ctx.font = 'bold 20px monospace';
+    ctx.fillText(currentResult.sapiens + '%', 600, boxY + 206);
+    ctx.fillStyle = 'rgba(255,255,255,0.1)';
+    drawRoundedRect(ctx, 125, boxY + 216, 545, 8, 4);
+    ctx.fill();
+    ctx.fillStyle = '#10b981';
+    drawRoundedRect(ctx, 125, boxY + 216, 545, 8, 4);
+    ctx.fill();
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '13px -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx.fillText('携带天赋：对未知世界的好奇心 · 象征符号与语言创造', 125, boxY + 242);
+
+    // 前世身份图文卡（视觉顺序第一：场景大图紧跟标题，充当海报视觉钩子）
+    const idY = 166;
+    ctx.fillStyle = 'rgba(251,191,36,0.06)';
+    drawRoundedRect(ctx, 48, idY, 654, 380, 14);
+    ctx.fill();
+
+    // 场景横幅图
+    ctx.save();
+    drawRoundedRect(ctx, 48, idY, 654, 160, 14);
+    ctx.clip();
+    if (sceneImg) {
+      // 等比 cover 裁切：从原图中央偏上裁出 654:160 区域，避免硬塞导致的人脸压扁变形
+      const targetAspect = 654 / 160;
+      const imgAspect = sceneImg.width / sceneImg.height;
+      let sw, sh, sx, sy;
+      if (imgAspect > targetAspect) {
+        sh = sceneImg.height; sw = sh * targetAspect;
+        sx = (sceneImg.width - sw) / 2; sy = 0;
+      } else {
+        sw = sceneImg.width; sh = sw / targetAspect;
+        sx = 0; sy = (sceneImg.height - sh) * 0.35;
+      }
+      ctx.drawImage(sceneImg, sx, sy, sw, sh, 48, idY, 654, 160);
+    }
+    const sgrad = ctx.createLinearGradient(0, idY + 60, 0, idY + 160);
+    sgrad.addColorStop(0, 'transparent');
+    sgrad.addColorStop(1, 'rgba(15,23,42,0.95)');
+    ctx.fillStyle = sgrad;
+    ctx.fillRect(48, idY, 654, 160);
+    ctx.restore();
+
+    // 身份标签
+    ctx.fillStyle = 'rgba(0,0,0,0.65)';
+    drawRoundedRect(ctx, 66, idY + 115, 175, 30, 15);
+    ctx.fill();
+    ctx.fillStyle = '#fbbf24';
+    ctx.font = 'bold 13px -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx.fillText('前世身份推测 · ' + currentResult.identity.badge, 76, idY + 135);
+
+    // 身份主标题
+    ctx.fillStyle = '#fef3c7';
+    ctx.font = 'bold 23px -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx.fillText(currentResult.identity.title, 68, idY + 205);
+
+    // 描述文字
+    ctx.fillStyle = '#cbd5e1';
+    ctx.font = '16px -apple-system, BlinkMacSystemFont, sans-serif';
+    wrapText(ctx, currentResult.identity.desc, 68, idY + 245, 614, 26);
+
+    // 专属特质
+    ctx.fillStyle = '#38bdf8';
+    ctx.font = 'bold 15px -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx.fillText('⚡ ' + currentResult.identity.talent, 68, idY + 355);
+
+    // 5. 老祖宗留言区块
+    const ancY = 846;
+    ctx.fillStyle = 'rgba(244,63,94,0.06)';
+    drawRoundedRect(ctx, 48, ancY, 654, 175, 14);
+    ctx.fill();
+
+    drawCircleImg(ctx, ancestorImg, 96, ancY + 55, 30, '#fb7185');
+    ctx.fillStyle = '#fca5a5';
+    ctx.font = 'bold 17px -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx.fillText(currentResult.quoteObj.author, 140, ancY + 45);
+
+    ctx.fillStyle = '#e2e8f0';
+    ctx.font = '15px -apple-system, BlinkMacSystemFont, sans-serif';
+    wrapText(ctx, '“' + currentResult.quoteObj.text + '”', 140, ancY + 80, 540, 24);
+
+    // 6. 底部二维码与分享卡片
+    const qrY = 1040;
+    ctx.fillStyle = 'rgba(255,255,255,0.04)';
+    drawRoundedRect(ctx, 48, qrY, 654, 230, 14);
+    ctx.fill();
+
+    // 二维码白底
+    ctx.fillStyle = '#ffffff';
+    drawRoundedRect(ctx, 510, qrY + 35, 160, 160, 10);
+    ctx.fill();
+    if (qrImg) {
+      ctx.drawImage(qrImg, 520, qrY + 45, 140, 140);
+    }
+
+    ctx.fillStyle = '#fbbf24';
+    ctx.font = 'bold 22px -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx.fillText('长按识别二维码 · 测测你的古基因', 72, qrY + 70);
+
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '16px -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx.fillText('探索700万年人类演化全景与史诗历程', 72, qrY + 110);
+
+    ctx.fillStyle = '#38bdf8';
+    ctx.font = '15px monospace';
+    ctx.fillText('🌐 https://evolution.stockbuster.cn', 72, qrY + 155);
+
+    ctx.fillStyle = '#64748b';
+    ctx.font = '13px -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx.fillText('上海 · ICP备案：沪ICP备2026033174号-1', 72, qrY + 190);
+
+    // 导出 DataURL（file:// 直开或图片跨域污染 canvas 时会抛 SecurityError，兜底提示）
+    let dataUrl = null;
+    try {
+      dataUrl = canvas.toDataURL('image/png');
+    } catch (err) {
+      showToast('当前环境无法直接导出海报，请截图保存，或访问在线版生成');
+    }
+    if (dataUrl) {
+      if (preview) preview.src = dataUrl;
+      if (btnDl) btnDl.href = dataUrl;
+    }
+  }
+
+  function copyPosterText() {
+    if (!currentResult) return;
+    const text = `🧬 我的【700万年人类演化 · 古DNA祖源报告】出炉了：
+· 🦴 尼安德特人基因：${currentResult.neander}%（耐寒与抗疲劳）
+· 🏔️ 丹尼索瓦人基因：${currentResult.denisov}%（高海拔低氧适应）
+· 🌍 早期智人非洲血统：${currentResult.sapiens}%（对世界充满好奇心）
+🏆 前世身份：${currentResult.identity.title}
+💡 老祖宗叮嘱：${currentResult.quoteObj.text}
+👉 长按海报二维码或访问网站测测你的远古血统：https://evolution.stockbuster.cn`;
+    fallbackCopy(text, '已复制朋友圈配文，配上海报图片发圈更出彩！');
+  }
+
+  function copyText() {
+    if (!currentResult) return;
+    const text = `🧬 我的【700万年人类演化 · 古DNA祖源报告】出炉了：
+· 🦴 尼安德特人基因：${currentResult.neander}%（耐寒与抗疲劳天赋）
+· 🏔️ 丹尼索瓦人基因：${currentResult.denisov}%（高海拔低氧适应天赋）
+· 🌍 早期智人非洲血统：${currentResult.sapiens}%（对未知世界的无限好奇）
+🏆 前世身份：${currentResult.identity.title}
+💡 老祖宗叮嘱：${currentResult.quoteObj.text}
+👉 快来测测你身体里住着哪个远古人类：https://evolution.stockbuster.cn`;
+
+    fallbackCopy(text, '已复制到剪贴板，快去朋友圈秀出你的远古血统！');
+  }
+
+  function fallbackCopy(text, toastMsg) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(toastMsg || '复制成功！');
+      }).catch(() => execCopy(text, toastMsg));
+    } else {
+      execCopy(text, toastMsg);
+    }
+  }
+
+  function execCopy(text, toastMsg) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      showToast(toastMsg || '复制成功！');
+    } catch(e) {
+      alert('复制失败，请手动截屏保存海报！');
+    }
+    document.body.removeChild(ta);
+  }
+
+  function init() {
+    // 1. 全局委托监听点击事件（彻底杜绝 DOM 未挂载导致无法关闭的 Bug）
+    document.addEventListener('click', e => {
+      // 打开彩蛋 1 按钮
+      if (e.target.closest('#dnaTestTrigger')) {
+        open();
+        return;
+      }
+      // 关闭彩蛋 1（右上角 X 或 底部 关闭 按钮）
+      if (e.target.closest('#dnaModalClose') || e.target.closest('#dnaBtnClose')) {
+        close();
+        return;
+      }
+      // 关闭海报弹窗（右上角 X 或 底部 返回 按钮）
+      if (e.target.closest('#posterModalClose') || e.target.closest('#posterBtnBack')) {
+        closePoster();
+        return;
+      }
+      // 生成朋友圈专属海报
+      if (e.target.closest('#dnaBtnPoster')) {
+        openPoster();
+        return;
+      }
+      // 复制文案
+      if (e.target.closest('#dnaBtnCopy')) {
+        copyText();
+        return;
+      }
+      // 复制海报朋友圈配文
+      if (e.target.closest('#posterBtnCopyText')) {
+        copyPosterText();
+        return;
+      }
+      // 重新测算
+      if (e.target.closest('#dnaBtnReroll')) {
+        open();
+        return;
+      }
+
+      // 点击弹窗灰色背景关闭
+      if (e.target.id === 'dnaCertModal') {
+        close();
+      } else if (e.target.id === 'dnaPosterModal') {
+        closePoster();
+      }
+    });
+
+    // 2. 键盘 ESC 键全局关闭
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closePoster();
+        close();
+      }
+    });
+
+    // 3. Konami Code 秘籍监听 (↑ ↑ ↓ ↓ ← → ← → B A)
+    const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+    let kIdx = 0;
+    window.addEventListener('keydown', e => {
+      const key = e.key.toLowerCase() === 'b' ? 'b' : (e.key.toLowerCase() === 'a' ? 'a' : e.key);
+      if (key === konami[kIdx]) {
+        kIdx++;
+        if (kIdx === konami.length) {
+          kIdx = 0;
+          open();
+        }
+      } else {
+        kIdx = (key === konami[0]) ? 1 : 0;
+      }
+    });
+
+    // 4. 导航 Logo 或 Hero Badge 连击 5 次触发
+    let logoClicks = 0;
+    let logoTimer = null;
+    const onMultiTap = () => {
+      logoClicks++;
+      if (logoTimer) clearTimeout(logoTimer);
+      logoTimer = setTimeout(() => { logoClicks = 0; }, 2000);
+      if (logoClicks >= 5) {
+        logoClicks = 0;
+        open();
+      }
+    };
+
+    const navLogo = $('.nav-logo');
+    if (navLogo) navLogo.addEventListener('click', onMultiTap);
+    const heroBadge = $('.hero-badge');
+    if (heroBadge) heroBadge.addEventListener('click', onMultiTap);
+  }
+
+  return { init, open, close, openPoster, closePoster, copyText, copyPosterText };
+})();
+
+/* =========================================================
+   彩蛋 2：燧石击火 · 普罗米修斯物理微交互 (FlintFireApp)
+   ========================================================= */
+const FlintFireApp = (function(){
+  let canvas = null;
+  let ctx = null;
+  let particles = [];
+  let animId = null;
+  let heat = 0;
+  let decayTimer = null;
+  let isIgnited = false;
+  let W = 0, H = 0;
+
+  class Particle {
+    constructor(x, y, isBurst = false) {
+      this.x = x;
+      this.y = y;
+      this.isBurst = isBurst;
+      if (isBurst) {
+        const angle = Math.random() * Math.PI * 2;
+        const spd = 2 + Math.random() * 7;
+        this.vx = Math.cos(angle) * spd;
+        this.vy = Math.sin(angle) * spd - 3;
+        this.gravity = 0.08;
+        this.life = 1.0;
+        this.decay = 0.012 + Math.random() * 0.02;
+        this.size = 2.5 + Math.random() * 4;
+      } else {
+        const angle = -Math.PI * 0.5 + (Math.random() - 0.5) * 1.6;
+        const spd = 3 + Math.random() * 8;
+        this.vx = Math.cos(angle) * spd;
+        this.vy = Math.sin(angle) * spd;
+        this.gravity = 0.22;
+        this.life = 1.0;
+        this.decay = 0.025 + Math.random() * 0.035;
+        this.size = 1.8 + Math.random() * 2.6;
+      }
+    }
+
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.vy += this.gravity;
+      this.vx *= 0.98;
+      this.life -= this.decay;
+      if (this.size > 0.4) this.size *= 0.97;
+    }
+
+    draw(c) {
+      if (this.life <= 0) return;
+      c.save();
+      c.globalAlpha = Math.max(0, this.life);
+      
+      let color = '#ffffff';
+      if (this.life < 0.3) color = '#ef4444';
+      else if (this.life < 0.6) color = '#f97316';
+      else if (this.life < 0.85) color = '#fef08a';
+
+      c.fillStyle = color;
+      c.shadowColor = color;
+      c.shadowBlur = this.isBurst ? 10 : 6;
+      c.beginPath();
+      c.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      c.fill();
+      c.restore();
+    }
+  }
+
+  function resize() {
+    const stage = $('#flintStage');
+    if (!stage || !canvas) return;
+    W = stage.clientWidth || 400;
+    H = stage.clientHeight || 220;
+    canvas.width = W;
+    canvas.height = H;
+  }
+
+  function loop() {
+    if (!ctx) return;
+    ctx.clearRect(0, 0, W, H);
+
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+      p.update();
+      p.draw(ctx);
+      if (p.life <= 0) particles.splice(i, 1);
+    }
+
+    animId = requestAnimationFrame(loop);
+  }
+
+  function strike(clientX, clientY) {
+    if (isIgnited) return;
+
+    // 播放燧石音效
+    if (window.SoundEngine) window.SoundEngine.playSFX('flint', 0.8);
+
+    const stage = $('#flintStage');
+    if (!stage) return;
+    stage.classList.add('strike');
+    setTimeout(() => stage.classList.remove('strike'), 100);
+
+    const rect = stage.getBoundingClientRect();
+    const x = clientX ? (clientX - rect.left) : (W / 2);
+    const y = clientY ? (clientY - rect.top) : (H / 2);
+
+    // 激发 35 颗火星粒子
+    for (let i = 0; i < 35; i++) {
+      particles.push(new Particle(x, y, false));
+    }
+
+    // 增加热量 (+17%)
+    heat = Math.min(100, heat + 17);
+    updateHeatUI();
+
+    if (heat >= 100) {
+      ignite();
+    }
+  }
+
+  function updateHeatUI() {
+    const bar = $('#flintHeatBar');
+    const val = $('#flintHeatVal');
+    if (bar) bar.style.width = heat + '%';
+    const temp = Math.round(25 + (heat / 100) * 775);
+    if (val) {
+      val.textContent = `${temp}°C / 800°C (${Math.round(heat)}%)`;
+      if (heat >= 75) val.style.color = '#ef4444';
+      else if (heat >= 40) val.style.color = '#f97316';
+      else val.style.color = '#eab308';
+    }
+  }
+
+  function ignite() {
+    isIgnited = true;
+    if (decayTimer) clearInterval(decayTimer);
+
+    // 播放营火轰鸣原声
+    if (window.SoundEngine) window.SoundEngine.playSFX('fire', 1.0);
+
+    // 大规模篝火爆发粒子
+    for (let i = 0; i < 160; i++) {
+      particles.push(new Particle(W / 2, H / 2, true));
+    }
+
+    // 显示成就框
+    const stage = $('#flintStage');
+    const heatWrap = $('#flintHeatWrap');
+    const achieveBox = $('#flintAchieveBox');
+    if (stage) stage.style.display = 'none';
+    if (heatWrap) heatWrap.style.display = 'none';
+    if (achieveBox) achieveBox.style.display = 'block';
+  }
+
+  function reset() {
+    isIgnited = false;
+    heat = 0;
+    particles = [];
+    updateHeatUI();
+
+    const stage = $('#flintStage');
+    const heatWrap = $('#flintHeatWrap');
+    const achieveBox = $('#flintAchieveBox');
+    if (stage) stage.style.display = 'block';
+    if (heatWrap) heatWrap.style.display = 'block';
+    if (achieveBox) achieveBox.style.display = 'none';
+
+    resize();
+    startDecay();
+  }
+
+  function startDecay() {
+    if (decayTimer) clearInterval(decayTimer);
+    decayTimer = setInterval(() => {
+      if (isIgnited) return;
+      if (heat > 0) {
+        heat = Math.max(0, heat - 1.6);
+        updateHeatUI();
+      }
+    }, 120);
+  }
+
+  function open() {
+    const modal = $('#flintFireModal');
+    if (!modal) return;
+    modal.classList.add('open');
+    canvas = $('#flintCanvas');
+    if (canvas) ctx = canvas.getContext('2d');
+    reset();
+    if (!animId) loop();
+  }
+
+  function close() {
+    const modal = $('#flintFireModal');
+    if (modal) modal.classList.remove('open');
+    if (decayTimer) clearInterval(decayTimer);
+    if (animId) {
+      cancelAnimationFrame(animId);
+      animId = null;
+    }
+  }
+
+  function init() {
+    document.addEventListener('click', e => {
+      if (e.target.closest('#flintModalClose') || e.target.closest('#flintCloseBtn')) {
+        close();
+      }
+      if (e.target.closest('#flintReplayBtn')) {
+        reset();
+      }
+      if (e.target.id === 'flintFireModal') {
+        close();
+      }
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') close();
+    });
+
+    // 燧石击打交互
+    document.addEventListener('pointerdown', e => {
+      const stage = e.target.closest('#flintStage');
+      if (stage) {
+        e.preventDefault();
+        strike(e.clientX, e.clientY);
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      const modal = $('#flintFireModal');
+      if (modal && modal.classList.contains('open')) resize();
+    });
+  }
+
+  return { init, open, close };
+})();
+
+// 启动彩蛋应用
+AncientDNAApp.init();
+window.AncientDNAApp = AncientDNAApp;
+FlintFireApp.init();
+window.FlintFireApp = FlintFireApp;
 </script>
+
+<!-- ============ 彩蛋 1：古DNA祖源测序报告弹窗 ============ -->
+<div class="easter-modal" id="dnaCertModal" role="dialog" aria-modal="true" aria-label="古人类基因祖源测序报告">
+  <div class="dna-card" id="dnaCardBox">
+    <button class="dna-modal-close" id="dnaModalClose" type="button" title="关闭报告" aria-label="关闭"><i class="ph-duotone ph-x"></i></button>
+    
+    <!-- 扫描动效态 -->
+    <div class="dna-scan-view" id="dnaScanView">
+      <div class="dna-scanner-ring"><span><i class="ph-duotone ph-dna"></i></span></div>
+      <div class="dna-scan-title">正在解析古人类基因序列…</div>
+      <div class="dna-scan-sub" id="dnaScanSub">比对阿尔泰与文迪亚尼安德特人参考基因组...</div>
+      <div class="dna-scan-progress"><div class="dna-scan-bar" id="dnaScanBar"></div></div>
+    </div>
+
+    <!-- 报告展示态 -->
+    <div class="dna-rep-view" id="dnaRepView">
+      <!-- 前世身份：通栏出血大图，报告标题组压图作为海报式头部 -->
+      <div class="dna-identity-card" id="dnaIdentityCard">
+        <div class="dic-banner-wrap">
+          <img class="dic-banner-img" id="dicBannerImg" src="videos/scenes/scene5_sapiens.jpg" alt="前世史诗画卷" />
+          <div class="dic-banner-overlay"></div>
+          <div class="dna-rep-badge">PALEOGENOMICS TERMINAL · 智人祖源全景测序</div>
+          <div class="dna-rep-head">
+            <h3>古人类基因祖源测序报告</h3>
+            <div class="dna-rep-sn" id="dnaRepSn">REPORT ID: HOMO-2026-DNA-98AF2</div>
+          </div>
+          <div class="dic-tag" id="dicTag">前世身份推测 · 艺术先驱</div>
+        </div>
+        <div class="dic-body">
+          <div class="dic-title" id="dicTitle">旧石器晚期 · 拉斯科洞穴首席壁画大师</div>
+          <div class="dic-desc" id="dicDesc">你曾在幽暗深邃的石灰岩洞窟中，用赤铁矿粉末和兽油勾勒狂奔的野牛与野马。今天你依然对高饱和度色彩和深夜发呆情有独钟。</div>
+          <div class="dic-talent" id="dicTalent"><i class="ph-duotone ph-lightning" style="color:var(--amber);margin-right:4px"></i>专属特质：空间抽象思维 +100% · 极强夜间灵感</div>
+        </div>
+      </div>
+
+      <!-- 基因百分比条与古人类肖像图像 -->
+      <div class="dna-bars-wrap">
+        <div class="dna-row">
+          <img class="dna-species-avatar" src="images/avatars/neander.jpg" alt="尼安德特人肖像" />
+          <div class="dna-row-content">
+            <div class="dna-row-meta">
+              <span class="dna-row-nm"><i class="ph-duotone ph-bone" style="color:#fb7185;margin-right:4px"></i>尼安德特人基因渗入</span>
+              <span class="dna-row-pct" id="dnaPctNeander">2.4%</span>
+            </div>
+            <div class="dna-track"><div class="dna-fill" id="dnaBarNeander" style="width:0%;background:linear-gradient(90deg,#fb7185,#f43f5e)"></div></div>
+            <div class="dna-talent" id="dnaTalentNeander">携带天赋：极度耐寒体质 · 增强免疫防御</div>
+          </div>
+        </div>
+
+        <div class="dna-row">
+          <img class="dna-species-avatar" src="images/avatars/longi.jpg" alt="丹尼索瓦人肖像" />
+          <div class="dna-row-content">
+            <div class="dna-row-meta">
+              <span class="dna-row-nm"><i class="ph-duotone ph-mountains" style="color:#a78bfa;margin-right:4px"></i>丹尼索瓦人基因渗入</span>
+              <span class="dna-row-pct" id="dnaPctDenisov">0.8%</span>
+            </div>
+            <div class="dna-track"><div class="dna-fill" id="dnaBarDenisov" style="width:0%;background:linear-gradient(90deg,#a78bfa,#8b5cf6)"></div></div>
+            <div class="dna-talent" id="dnaTalentDenisov">携带天赋：高海拔低氧漫步 · 昼夜节律适应</div>
+          </div>
+        </div>
+
+        <div class="dna-row">
+          <img class="dna-species-avatar" src="images/avatars/sapiens.jpg" alt="早期智人肖像" />
+          <div class="dna-row-content">
+            <div class="dna-row-meta">
+              <span class="dna-row-nm"><i class="ph-duotone ph-globe-hemisphere-east" style="color:#34d399;margin-right:4px"></i>早期智人非洲血统</span>
+              <span class="dna-row-pct" id="dnaPctSapiens">96.8%</span>
+            </div>
+            <div class="dna-track"><div class="dna-fill" id="dnaBarSapiens" style="width:0%;background:linear-gradient(90deg,#34d399,#059669)"></div></div>
+            <div class="dna-talent" id="dnaTalentSapiens">携带天赋：对未知世界的好奇心 · 语言与象征符号创造</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 老祖宗全息连线对话 -->
+      <div class="dna-quote-box" id="dnaQuoteBox">
+        <div class="dna-ancestor-wrap">
+          <img class="dna-ancestor-avatar" id="dnaAncestorAvatar" src="images/avatars/afarensis.jpg" alt="老祖宗肖像" />
+          <div class="dna-ancestor-tag" id="dnaAncestorTag">320万年前连线</div>
+        </div>
+        <div class="dna-quote-content">
+          <b id="dnaAncestorName"><i class="ph-duotone ph-lightbulb" style="color:var(--amber);margin-right:4px"></i>320万年前 · 露西（Lucy）对你说：</b>
+          <p id="dnaQuoteTxt">站直了！少窝着看手机！当初我刚学双足直立行走脊椎受力还没完全进化好，你们今天倒好，天天窝在椅子上腰疼难受……赶紧起来转转脖子！</p>
+        </div>
+      </div>
+
+      <!-- 操作按钮群 -->
+      <div class="dna-actions">
+        <button class="dna-btn-poster" id="dnaBtnPoster" type="button">
+          <i class="ph-duotone ph-image" style="margin-right:5px"></i><span>生成海报</span>
+        </button>
+        <button class="dna-btn-reroll" id="dnaBtnReroll" type="button">
+          <i class="ph-duotone ph-arrow-clockwise" style="margin-right:5px"></i><span>重新测算</span>
+        </button>
+        <button class="dna-btn-close" id="dnaBtnClose" type="button">
+          <i class="ph-duotone ph-x" style="margin-right:5px"></i><span>关闭</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 专属朋友圈长图海报弹窗 ============ -->
+<div class="easter-modal" id="dnaPosterModal" role="dialog" aria-modal="true" aria-label="专属朋友圈海报">
+  <div class="poster-card" id="posterCardBox">
+    <button class="dna-modal-close" id="posterModalClose" type="button" title="关闭海报" aria-label="关闭"><i class="ph-duotone ph-x"></i></button>
+    <div class="poster-head">
+      <h4><i class="ph-duotone ph-camera" style="color:var(--cyan);margin-right:6px"></i>朋友圈专属海报已生成</h4>
+    </div>
+    <div class="poster-preview-wrap">
+      <img id="posterPreviewImg" alt="古人类基因祖源测序海报" />
+    </div>
+    <div class="poster-actions">
+      <a class="poster-btn-primary" id="posterBtnDownload" download="我的古人类基因测序海报.png" href="#">
+        <span><i class="ph-duotone ph-download-simple" style="margin-right:5px"></i>保存海报图片</span>
+      </a>
+      <button class="poster-btn-secondary" id="posterBtnCopyText" type="button">
+        <span><i class="ph-duotone ph-copy" style="margin-right:5px"></i>复制朋友圈配文</span>
+      </button>
+      <button class="poster-btn-back" id="posterBtnBack" type="button">
+        <span><i class="ph-duotone ph-arrow-left" style="margin-right:5px"></i>返回报告</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 彩蛋 2：燧石击火微游戏弹窗 ============ -->
+<div class="easter-modal" id="flintFireModal" role="dialog" aria-modal="true" aria-label="燧石击火试炼">
+  <div class="flint-card" id="flintCardBox">
+    <button class="dna-modal-close" id="flintModalClose" title="收起试炼" aria-label="关闭"><i class="ph-duotone ph-x"></i></button>
+
+    <div class="flint-head">
+      <h3><i class="ph-duotone ph-fire" style="color:#f97316;margin-right:6px"></i>燧石击火 · 普罗米修斯试炼</h3>
+      <p>快速连续敲击或划动两块燧石，摩擦出足够热量点燃引火绒！</p>
+    </div>
+
+    <div class="flint-stage" id="flintStage">
+      <canvas class="flint-canvas" id="flintCanvas"></canvas>
+      <div class="flint-stone-l" id="flintStoneL">🪨</div>
+      <div class="flint-stone-r" id="flintStoneR">🪨</div>
+      <div class="flint-hint-badge" id="flintHintBadge"><i class="ph-duotone ph-hand-tap" style="margin-right:4px"></i>连续快速敲击或摩擦 (热量会自然衰减)</div>
+    </div>
+
+    <div class="flint-heat-wrap" id="flintHeatWrap">
+      <div class="flint-heat-meta">
+        <span class="flint-heat-label"><i class="ph-duotone ph-fire" style="color:#f97316;margin-right:4px"></i>摩擦热量与引燃温度</span>
+        <span class="flint-heat-val" id="flintHeatVal">25°C / 800°C (0%)</span>
+      </div>
+      <div class="flint-heat-track">
+        <div class="flint-heat-bar" id="flintHeatBar"></div>
+      </div>
+    </div>
+
+    <!-- 点火成功成就卡片 -->
+    <div class="flint-achieve-box" id="flintAchieveBox">
+      <div class="flint-achieve-badge"><i class="ph-duotone ph-trophy" style="color:var(--amber);margin-right:4px"></i>成就解锁 · 盗火者</div>
+      <h4>文明的第一簇火焰已引燃！</h4>
+      <p>100 万年前，直立人在东非大裂谷的黑夜中敲出了这簇火光。从此，人类告别了茹毛饮血与无尽严寒，黑夜变成了围炉夜话与神话诞生的摇篮。</p>
+      <div class="ach-actions">
+        <button class="ach-btn" id="flintReplayBtn" type="button"><i class="ph-duotone ph-arrow-clockwise" style="margin-right:4px"></i>再击一次火</button>
+        <button class="ach-btn secondary" id="flintCloseBtn" type="button"><i class="ph-duotone ph-x" style="margin-right:4px"></i>收起试炼</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 提示轻气泡 Toast -->
+<div class="easter-toast" id="easterToast">已复制到剪贴板，快去朋友圈秀出你的远古血统！</div>
 
 <!-- ICP 备案合规页脚 -->
 <style>
