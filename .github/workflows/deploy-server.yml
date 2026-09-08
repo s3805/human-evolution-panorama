@@ -34,7 +34,6 @@ jobs:
             --exclude='.git*' \
             --exclude='.github' \
             --exclude='.DS_Store' \
-            --exclude='*.pdf' \
             --exclude='download' \
             ./ "$SERVER_USER@$SERVER_HOST":/var/www/evolution/
 
